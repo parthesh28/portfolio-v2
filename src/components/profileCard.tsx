@@ -10,8 +10,10 @@ import Image from 'next/image';
 import useDiscord from '@/hooks/useDiscord';
 
 type WakaTimeData = {
-    total_time: string;
-    top_languages: string[];
+    total_seconds?: number;
+    human_readable_total?: string;
+    languages?: { name: string; percent: number }[];
+    [key: string]: any;
 };
 
 type Props = {
@@ -25,31 +27,25 @@ const ProfileCard = ({
     const [isFlipped, setIsFlipped] = useState(false);
     const discordStatus = useDiscord();
 
+    // UPDATED: All lowercase, complete stack
     const skills = {
-        WEB: ['Next.js', 'Hono'],
-        WEB3: ['Rust', 'Anchor'],
-        MOBILE: ['React Native', 'Expo']
+        languages: ['typescript', 'java', 'rust'],
+        frontend: ['next.js', 'tailwind css'],
+        backend: ['hono', 'drizzle orm', 'sqlite'],
+        blockchain: ['solana', 'anchor', 'pinocchio'],
+        mobile: ['react native', 'jetpack compose'],
     };
-
-    const socialLinks = [
-        { href: 'https://github.com', icon: 'hn-github' },
-        { href: 'https://linkedin.com', icon: 'hn-linkedin' },
-        { href: 'mailto:contact@example.com', icon: 'hn-envelope' },
-        { href: 'https://x.com', icon: 'hn-x' }
-    ];
-
-
 
     const PixelSeparator = () => (
         <div className="w-full h-0.5"
             style={{
                 backgroundImage: `repeating-linear-gradient(
-                    90deg,
-                    currentColor 0px,
-                    currentColor 2px,
-                    transparent 2px,
-                    transparent 4px
-                )`,
+                        90deg,
+                        currentColor 0px,
+                        currentColor 2px,
+                        transparent 2px,
+                        transparent 4px
+                        )`,
                 imageRendering: 'pixelated'
             }}
         />
@@ -64,7 +60,7 @@ const ProfileCard = ({
         </Button>
     );
 
-    const InfoItem = ({ label, value }) => (
+    const InfoItem = ({ label, value }: { label: string, value: string }) => (
         <div className="flex gap-1">
             <span className="font-bold text-md tracking-widest">{label}</span>
             <span className="font-semibold text-md">{value}</span>
@@ -75,7 +71,7 @@ const ProfileCard = ({
         <>
             <div className='flex items-center gap-2'>
                 <i className="hn hn-analytics"></i>
-                <span className="font-bold text-lg tracking-widest">This week on keyboard:</span>
+                <span className="font-bold text-lg tracking-widest">this week on keyboard:</span>
             </div>
             <div className="flex gap-10 mt-2 sm:flex-row sm:gap-4">
                 <div className="flex items-center gap-2">
@@ -84,14 +80,14 @@ const ProfileCard = ({
                 </div>
                 <div className="flex items-center gap-2">
                     <i className="hn hn-code-block-solid"></i>
-                    <span className="font-semibold text-md tracking-widest">{data?.top_languages.join(', ')}</span>
+                    <span className="font-semibold text-md tracking-widest lowercase">{data?.top_languages.join(', ')}</span>
                 </div>
             </div>
         </>
     );
 
 
-    function calculateAge( birthDate :string) {
+    function calculateAge(birthDate: string) {
         const today = new Date();
         const birth = new Date(birthDate);
 
@@ -115,14 +111,15 @@ const ProfileCard = ({
     }
 
     const age = calculateAge("2003-10-23");
-    console.log(age); // { years: 21, months: 8 } (example)
 
     const profileInfo = [
-        { label: 'Status:', value: 'Online' },
-        { label: 'Age:', value: `${age.years} Yrs ${age.months} Mon` },
-        { label: 'Authenti-City:', value: 'Mumbai' },
-        { label: 'Degree:', value: 'B.E. In Computers' }
+        { label: 'status:', value: 'online' },
+        { label: 'age:', value: `${age.years} yrs ${age.months} mon` },
+        { label: 'authenti-city:', value: 'mumbai' },
+        { label: 'studies:', value: 'b.e. in computers' }
     ];
+
+    // --- FRONT CONTENT (UNCHANGED) ---
     const FrontContent = () => (
         <div className="h-full flex flex-col">
             <div className='py-1.5 px-4'>
@@ -132,10 +129,10 @@ const ProfileCard = ({
                     </div>
                     <div className="text">
                         <p className="text-lg font-bold tracking-widest">
-                            Parthesh Purohit
+                            parthesh purohit
                         </p>
                         <p className="text-sm tracking-wide">
-                            Professional Vibe Coder
+                            just a human
                         </p>
                     </div>
                 </div>
@@ -144,14 +141,14 @@ const ProfileCard = ({
 
             <div className='flex gap-3 p-4'>
                 <div className='flex flex-col items-center'>
-                    <div className='w-25 h-32 sm:w-30 sm:h-30 border-[3px] border-stone-800 dark:border-zinc-500 overflow-hidden'>
+                    <div className='w-25 h-25 sm:w-30 sm:h-30 overflow-hidden'>
                         <Image
                             width={50}
                             height={50}
                             quality={100}
-                            src="/Profile_Picture.jpg"
+                            src="/pfp.jpg"
                             alt="Profile"
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover rounded-full"
                         />
                     </div>
                     <span className="flex items-center mt-2">
@@ -161,7 +158,7 @@ const ProfileCard = ({
                                     'bg-red-500'
                                 }`}
                         />
-                        <p className='font-bold tracking-widest'> {discordStatus.charAt(0).toUpperCase() + discordStatus.slice(1)}</p>
+                        <p className='font-bold tracking-widest'> {discordStatus.charAt(0).toLowerCase() + discordStatus.slice(1)}</p>
                     </span>
                 </div>
 
@@ -199,29 +196,37 @@ const ProfileCard = ({
         </div>
     );
 
-    const SectionHeader = ({ title }) => (
-        <div className='flex gap-2 p-3 items-center justify-center'>
+    const SectionHeader = ({ title }: { title: string }) => (
+        <div className='flex gap-2 pt-3 items-center justify-center'>
             <h1 className="text-xl tracking-wide font-bold underline underline-offset-8">
                 {title}
             </h1>
         </div>
     );
 
+    // --- BACK CONTENT (UPDATED) ---
     const BackContent = () => (
         <div className="h-full flex flex-col">
-            <SectionHeader title="Expertise" />
+            <SectionHeader title="expertise" />
 
-            <div className='px-5 pt-1'>
-                <div className="space-y-3">
+            {/* Title Removed, added padding top (pt-6) to compensate */}
+            <div className='px-5 pt-6 flex-1 overflow-y-auto custom-scrollbar'>
+
+                {/* Mobile: gap-2 (reduced from space-y-3) 
+                   Desktop: grid-cols-2 for better fit
+                */}
+                <div className="flex flex-col gap-2 lg:grid lg:grid-cols-2 lg:gap-x-4 lg:gap-y-4">
                     {Object.entries(skills).map(([category, items]) => (
-                        <div key={category} className="flex flex-col sm:flex-row gap-2 items-center">
-                            <span className="text-md font-bold uppercase tracking-widest w-13 flex-shrink-0">
+                        <div key={category} className="flex flex-col gap-1">
+                            {/* Category Title: Lowercase, reduced margin */}
+                            <span className="text-md font-bold tracking-widest lowercase border-b border-dashed border-gray-400/50 w-max mb-0.5">
                                 {category}:
                             </span>
-                            <div className="flex flex-wrap gap-2">
+                            {/* Badges: Lowercase */}
+                            <div className="flex flex-wrap gap-1.5">
                                 {items.map(skill => (
                                     <Badge key={skill}>
-                                        {skill}
+                                        {skill.toLowerCase()}
                                     </Badge>
                                 ))}
                             </div>
@@ -230,24 +235,10 @@ const ProfileCard = ({
                 </div>
             </div>
 
-            <SectionHeader title="Connect" />
-
-            <div className='flex justify-center items-center gap-2'>
-                {socialLinks.map((social, index) => (
-                    <Link
-                        key={index}
-                        className='socials p-2 w-10 h-10 border-2 text-2xl text-white flex items-center justify-center'
-                        href={social.href}
-                    >
-                        <i className={`hn ${social.icon}`}></i>
-                    </Link>
-                ))}
-            </div>
-
-            <div className='flex flex-col items-center justify-center mt-8 pt-2 sm:mt-5 border-black'>
+            <div className='flex flex-col items-center justify-center mt-2 border-black'>
                 <PixelSeparator />
-                <Link href={'https://buymecoffee.com/parthesh28'} className="underline text-md font-bold p-1 sm:p-1.5 tracking-widest">
-                    Buy Me Coffee
+                <Link href={'https://buymecoffee.com/parthesh28'} className="underline text-md font-bold p-1 sm:p-1.5 tracking-widest lowercase">
+                    buy me coffee
                 </Link>
             </div>
         </div>

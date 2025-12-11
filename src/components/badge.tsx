@@ -1,23 +1,26 @@
 import React from 'react';
 
+// 1. Define Props Interface
+interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+    children: React.ReactNode;
+}
 
 const Badge = ({
     children,
     className = '',
     ...props
-}) => {
-    const baseStyles = "relative bg-zinc-200 border-2 border-black badge-shadow inline-block";
-
+}: BadgeProps) => {
 
     return (
-        <div className="relative border-2 badge inline-block">
-        <div className="px-2">
-            <p className="text-sm pt-0.5 font-bold ">
+        <div
+            className={`badge relative inline-flex items-center justify-center border-2 px-2 py-0.5 ${className}`}
+            {...props}
+        >
+            <span className="text-xs sm:text-sm font-bold tracking-widest lowercase">
                 {children}
-            </p>
+            </span>
         </div>
-    </div>
     );
 };
 
-export default Badge; 
+export default Badge;

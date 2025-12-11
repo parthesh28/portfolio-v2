@@ -4,7 +4,7 @@ export default function useDiscord() {
     const [status, setStatus] = useState('offline');
 
     useEffect(() => {
-        const userId = "764456744755003443";
+        const userId = process.env.NEXT_PUBLIC_DISCORD_ID;
         if (!userId) {
             console.error('Discord User ID not configured');
             return;

@@ -1,152 +1,125 @@
-import Button from '@/components/button'
+'use client'
 import ProfileCard from '@/components/profileCard'
-import Tabs from '@/components/tabs';
 import React, { useEffect, useState } from 'react'
+import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
+import Button from '@/components/button';
+
+// 1. Define the data shape
+interface WakaTimeData {
+    total_seconds?: number;
+    human_readable_total?: string;
+    languages?: { name: string; percent: number }[];
+    [key: string]: any;
+}
 
 function Home() {
-    const [stats, setStats] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [stats, setStats] = useState<WakaTimeData | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+
+    // Typewriter State
+    const [text, setText] = useState<string>('');
+    const [isDeleting, setIsDeleting] = useState<boolean>(false);
+    const [loopNum, setLoopNum] = useState<number>(0);
+    const [typingSpeed, setTypingSpeed] = useState<number>(150);
+
+    const roles: string[] = ["developer", "builder", "solver", "learner"];
 
     useEffect(() => {
         const fetchWakaTimeStats = async () => {
             try {
                 setLoading(true);
                 const response = await fetch('/api/wakatime');
+                if (!response.ok) throw new Error('Failed to fetch stats');
 
-                if (!response.ok) {
-                    throw new Error('Failed to fetch WakaTime stats');
-                }
-
-                const data = await response.json();
+                const data: WakaTimeData = await response.json();
                 setStats(data);
             } catch (err) {
-                setError(err.message);
+                console.error(err);
             } finally {
                 setLoading(false);
             }
         };
-
         fetchWakaTimeStats();
     }, []);
 
-    const scrollToNextSection = () => {
-        const nextSection = document.getElementById('profile-section');
-        nextSection?.scrollIntoView({ behavior: 'smooth' });
-    };
+    useEffect(() => {
+        const handleType = () => {
+            const i = loopNum % roles.length;
+            const fullText = roles[i];
 
+            setText(isDeleting
+                ? fullText.substring(0, text.length - 1)
+                : fullText.substring(0, text.length + 1)
+            );
 
-    const ProjectContent = ({ title, description }) => (
-        <div>
-            <h3 className="text-3xl font-semibold mb-3">{title}</h3>
-            <p className="text-lg font-semibold tracking-wide">
-                {description}
-            </p>
-        </div>
-    );
-    
-    const projects = [
-        {
-            id: "pulp",
-            label: "Pulp",
-            content: (
-                <ProjectContent
-                    title="Text sharing platform"
-                    description="A comprehensive dashboard for tracking sales, inventory, and customer analytics with real-time updates and interactive charts."
-                />
-            )
-        },
-        {
-            id: "blockmart",
-            label: "BlockMart",
-            content: (
-                <ProjectContent
-                    title="Shopping on Blockchain"
-                    description="A modern e-commerce platform built on blockchain with direct wallet integration."
-                />
-            )
-        },
-        {
-            id: "symphnony",
-            label: "Symphony Ledger",
-            content: (
-                <ProjectContent
-                    title="Copyright music on Blockchain"
-                    description="A beautiful ledger app for music built to prevent copyright infringement through blockchain."
-                />
-            )
-        }
-    ];
+            if (isDeleting) {
+                setTypingSpeed(50);
+            } else {
+                setTypingSpeed(100 + Math.random() * 50);
+            }
 
+            if (!isDeleting && text === fullText) {
+                window.setTimeout(() => setIsDeleting(true), 2000);
+            } else if (isDeleting && text === '') {
+                setIsDeleting(false);
+                setLoopNum(loopNum + 1);
+                setTypingSpeed(500);
+            }
+        };
 
-
-    const Divider = ({ vertical = false }) => (
-        <div className={`
-            ${vertical
-                ? 'hidden lg:block w-px min-h-[50vh] border-r-2'
-                : 'block lg:hidden w-full h-px my-8 border-b-2'}
-            border-dashed border-zinc-900 dark:border-zinc-400
-        `} />
-    );
-
-    const SectionTitle = ({ children }) => (
-        <p className='text-4xl text-center uppercase font-bold tracking-widest underline underline-offset-8 mb-4'>
-            {children}
-        </p>
-    );
+        const timer = window.setTimeout(handleType, typingSpeed);
+        return () => clearTimeout(timer);
+    }, [text, isDeleting, loopNum, roles, typingSpeed]);
 
     return (
-        <div className='flex flex-col items-center justify-center'>
-            {/* Hero Section */}
-            <section className="min-h-screen flex items-center justify-center w-full px-4 relative">
-                <div className="max-w-6xl mx-auto text-center flex flex-col lg:flex-row justify-center items-center w-full">
-                    <div className="flex-1 text-center lg:pr-8 mb-8 lg:mb-0">
-                        <h1 className="text-7xl sm:text-8xl tracking-wide font-bold mb-4 leading-none">
-                            Hey there,
-                            <br />
-                            Parthesh here,
-                            <br />
-                            a Human
-                        </h1>
-                    </div>
+        <div className='min-h-screen w-full flex flex-col items-center justify-center pt-16 pb-20 px-4 sm:p-6 sm:pb-24'>
 
-                    <Divider vertical />
+            <section className='flex flex-col lg:flex-row items-center justify-center max-w-5xl w-full gap-4 sm:gap-10'>
 
-                    <div className="flex-1 text-center lg:text-left lg:pl-8">
-                        <p className="text-xl font-semibold sm:text-2xl tracking-wide leading-relaxed mb-8">
-                            Minimalist by philosophy, builder by craft. I create simple, beautiful solutions that work—across Android, Web, and Blockchain.
-                        </p>
-                        <div className="flex justify-center">
-                            <Button onClick={()=>{}} className='flex items-center gap-3 font-black tracking-widest'>
-                                RESUME
-                                <i className='hn hn-arrow-right' />
-                            </Button>
-                        </div>
-                    </div>
+                {/* 1. Profile Card */}
+                <div className='flex-shrink-0 transform scale-90 sm:scale-100 origin-center transition-transform'>
+                    {/* TS FIX: Only render if stats is not null */}
+                    {stats && <ProfileCard data={stats} />}
                 </div>
 
-                <button
-                    onClick={scrollToNextSection}
-                    className="absolute bottom-8 text-4xl left-1/2 -translate-x-1/2 animate-bounce cursor-pointer duration-300"
-                    aria-label="Scroll down"
-                >
-                    <i className='hn hn-arrow-down' />
-                </button>
-            </section>
+                {/* 2. Divider - Fixed Backtick Error here */}
+                <div className="
+                    border-zinc-900 dark:border-zinc-500 border-dashed
+                    w-full border-b-2 my-2 sm:my-0
+                    lg:w-px lg:border-r-2 lg:border-b-0 lg:h-64 lg:mx-10
+                " />
 
-            {/* Profile & Work Section */}
-            <section className='flex items-center sm:min-h-screen' id="profile-section">
-                <div className='flex flex-col lg:flex-row items-center justify-center gap-5'>
-                    <div className='mx-4'>
-                        <ProfileCard data={stats}  />
-                    </div>
+                <div className="flex-1 max-w-xl text-center lg:text-left flex flex-col items-center lg:items-start gap-4 sm:gap-6">
 
-                    <Divider vertical />
+                    <h1 className="text-4xl sm:text-6xl font-medium leading-tight tracking-normal lowercase">
+                        just a{' '}
+                        <span className="inline-block">
+                            <span className="text-zinc-900 dark:text-zinc-100 font-bold tracking-wide">
+                                {text}
+                            </span>
+                            <span className="animate-pulse font-bold text-zinc-900 dark:text-zinc-100 ml-1">
+                                _
+                            </span>
+                        </span>
+                    </h1>
 
-                    <div className='p-5'>
-                        <Tabs tabs={projects} />
-                    </div>
+                    <p className="text-md sm:text-xl text-zinc-800 dark:text-zinc-400 leading-relaxed font-normal lowercase">
+                        i build <span className="text-zinc-900 dark:text-zinc-100 font-bold px-1">solana</span> apps and build <span className="text-zinc-900 dark:text-zinc-100 font-bold px-1">native android</span> systems. living by the truth that <span className="italic opacity-80">i can love anything if i spend enough time with it</span>—i use that patience to bridge low-level logic with human experience.
+                    </p>
+
+                    <Button>
+                        <a
+                            href="/resume.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i className="hn hn-eye text-lg sm:text-xl"></i>
+                            resume
+                        </a>
+                    </Button>
+
                 </div>
+
             </section>
         </div>
     )
