@@ -1,6 +1,5 @@
 import React from 'react';
 
-// 1. Define Props Interface
 interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
 }

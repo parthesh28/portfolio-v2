@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { bits } from '@/utils/bits' // Adjust path as needed
+import { bits } from '@/utils/bits'
 import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
 
 const ITEMS_PER_PAGE = 3;
@@ -11,12 +11,10 @@ const Bitspage = () => {
   const [filter, setFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(0);
 
-  // 1. Filter Logic
   const filteredBits = filter === 'all'
     ? bits
     : bits.filter(bit => bit.type === filter);
 
-  // 2. Pagination Logic
   const totalPages = Math.ceil(filteredBits.length / ITEMS_PER_PAGE);
   const displayedBits = filteredBits.slice(
     currentPage * ITEMS_PER_PAGE,
@@ -33,7 +31,7 @@ const Bitspage = () => {
 
   const handleFilterChange = (newFilter: string) => {
     setFilter(newFilter);
-    setCurrentPage(0); // Reset to page 1 when filtering
+    setCurrentPage(0); 
   };
 
   return (
@@ -41,19 +39,16 @@ const Bitspage = () => {
 
       <div className="w-full max-w-2xl flex flex-col h-full">
 
-        {/* HEADER & FILTER TABS */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-5 mt-5">
           <h1 className="text-4xl font-bold tracking-tight lowercase">
             bits & logs
           </h1>
 
-          {/* Filter Tabs */}
           <div className="card flex p-1 gap-1 border-2 bg-white dark:bg-zinc-900">
             {['all', 'tech', 'life'].map((type) => (
               <button
                 key={type}
                 onClick={() => handleFilterChange(type)}
-                // Removed hover classes and transitions for a completely flat feel
                 className={`
                     px-4 py-1 text-sm font-bold lowercase cursor-pointer
                     ${filter === type
@@ -68,7 +63,6 @@ const Bitspage = () => {
           </div>
         </div>
 
-        {/* THE BIT LIST CONTAINER */}
         <div className="flex flex-col gap-4 flex-1 min-h-[25rem]">
           {displayedBits.map((bit) => (
             <Link
@@ -79,7 +73,6 @@ const Bitspage = () => {
               <div className="flex justify-between items-start gap-4">
                 <div className="flex-1">
 
-                  {/* Meta Data */}
                   <div className="flex items-center gap-3 mb-5 text-xs font-bold tracking-widest">
                     <span>{bit.date}</span>
                     <span className="w-1 h-1 bg-current rounded-full" />
@@ -87,20 +80,16 @@ const Bitspage = () => {
                       {bit.type}
                     </span>
                   </div>
-
-                  {/* Title */}
                   <h2 className="text-lg sm:text-xl font-bold leading-tight lowercase group-hover:underline underline-offset-4 decoration-2">
                     {bit.title}
                   </h2>
                 </div>
 
-                {/* Hover Arrow */}
                 <i className="hn hn-chevron-right text-xl opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             </Link>
           ))}
 
-          {/* Empty State */}
           {displayedBits.length === 0 && (
             <div className="flex-1 flex items-center justify-center opacity-50 lowercase font-mono">
               [ nothing found in this sector ]
@@ -108,11 +97,9 @@ const Bitspage = () => {
           )}
         </div>
 
-        {/* PAGINATION CONTROLS */}
         {totalPages > 1 && (
           <div className="mt-5 flex justify-center items-center gap-4">
 
-            {/* PREV BUTTON (Conditionally Rendered) */}
             {currentPage > 0 ? (
               <button
                 onClick={prevPage}
@@ -128,7 +115,6 @@ const Bitspage = () => {
               page {currentPage + 1} of {totalPages}
             </span>
 
-            {/* NEXT BUTTON (Conditionally Rendered) */}
             {currentPage < totalPages - 1 ? (
               <button
                 onClick={nextPage}

@@ -20,10 +20,8 @@ const CheckboxIcon = ({
             className={className}
             {...props}
         >
-            {/* Back square - filled */}
             <rect x="6" y="3" width="15" height="15" fill={color} />
 
-            {/* Front square - outline only */}
             <rect x="3" y="6" width="15" height="15" fill="none" stroke={color} strokeWidth={strokeWidth} />
         </svg>
     );

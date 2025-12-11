@@ -6,7 +6,6 @@ import DoubleSquareIcon from './doubleBox';
 import React, { useEffect, useState } from 'react';
 import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
 
-// 1. Defined outside to prevent re-renders
 interface NavLinkProps {
   href: string;
   icon: string;
@@ -16,7 +15,6 @@ interface NavLinkProps {
 const NavLink = ({ href, icon, children }: NavLinkProps) => (
   <Link
     href={href}
-    // ADDED: active:translate-y-1 active:shadow-none transition-none
     className="navlink border-2 tracking-widest text-lg font-bold px-2 sm:px-3 py-2 sm:py-1.5 flex items-center justify-center min-w-[40px] sm:min-w-[80px] transition-none active:translate-y-1 active:shadow-none"
   >
     <i className={`hn ${icon} sm:hidden`}></i>
@@ -64,7 +62,6 @@ const Navbar = () => {
     { name: 'work', href: '/work', icon: 'hn-business' }
   ];
 
-  // Safe check for pathname existence
   const filteredLinks = links.filter(link =>
     link.href !== '/' ? !pathname?.startsWith(link.href) : pathname !== '/'
   );
@@ -72,7 +69,6 @@ const Navbar = () => {
   return (
     <nav className="fixed left-1/2 -translate-x-1/2 z-50 navbar card-shadow border-2 px-4 py-2 w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-[55rem] flex items-center justify-between mt-4 sm:mt-6 bg-white dark:bg-zinc-900 transition-colors">
 
-      {/* LEFT: Logo & Name */}
       <div className='flex items-center'>
         <div className="p-1 logo border-2">
           <DoubleSquareIcon />
@@ -81,8 +77,6 @@ const Navbar = () => {
           parthesh
         </p>
       </div>
-
-      {/* RIGHT: Links & Toggle */}
       <div className="flex gap-2 sm:gap-4">
         {filteredLinks.map((link) => (
           <NavLink key={link.name} href={link.href} icon={link.icon}>
@@ -92,13 +86,10 @@ const Navbar = () => {
 
         <button
           onClick={toggleTheme}
-          // ADDED: Click effect here too for consistency
           className="pl-2 sm:pl-0 py-2 sm:py-1.5 flex items-center justify-center cursor-pointer min-w-[30px] transition-none active:translate-y-1 active:shadow-none"
           aria-label="Toggle Theme"
         >
-          {/* 2. Only wait for mount on the specific icon to prevent hydration mismatch */}
           {!mounted ? (
-            // Placeholder to prevent layout shift while checking theme
             <div className="w-5 h-5" />
           ) : isDark ? (
             <i className="hn hn-sun text-xl"></i>

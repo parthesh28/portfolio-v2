@@ -31,10 +31,8 @@ const BitDetailPage = async ({ params }: { params: Promise<{ slug: string }> }) 
 
             <div className="w-full max-w-2xl flex flex-col">
 
-                {/* HEADER ROW: Back Arrow + Meta Data */}
                 <div className="flex items-center justify-between mb-8 border-b-2 border-dashed border-zinc-300 dark:border-zinc-500 pb-4">
 
-                    {/* Back Arrow Only */}
                     <Link
                         href="/bits"
                         className="p-2 -ml-2"
@@ -43,7 +41,6 @@ const BitDetailPage = async ({ params }: { params: Promise<{ slug: string }> }) 
                         <i className="hn hn-arrow-left text-xl"></i>
                     </Link>
 
-                    {/* Meta Info (Right Aligned) */}
                     <div className="flex items-center gap-3 text-xs font-bold tracking-widest opacity-60 lowercase font-mono">
                         <i className="hn hn-edit text-sm"></i>
                         <span>{bit.date}</span>
@@ -54,12 +51,9 @@ const BitDetailPage = async ({ params }: { params: Promise<{ slug: string }> }) 
                     </div>
                 </div>
 
-                {/* Huge Title */}
                 <h1 className="text-4xl sm:text-5xl font-bold lowercase leading-tight tracking-wide text-zinc-900 dark:text-zinc-100 mb-8">
                     {bit.title}
                 </h1>
-
-                {/* CONTENT */}
                 <div className="text-lg sm:text-xl leading-relaxed font-medium text-zinc-800 dark:text-zinc-300 lowercase whitespace-pre-wrap mb-16 text-justify sm:text-left">
                     {bit.content}
                 </div>

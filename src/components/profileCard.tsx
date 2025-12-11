@@ -27,7 +27,6 @@ const ProfileCard = ({
     const [isFlipped, setIsFlipped] = useState(false);
     const discordStatus = useDiscord();
 
-    // UPDATED: All lowercase, complete stack
     const skills = {
         languages: ['typescript', 'java', 'rust'],
         frontend: ['next.js', 'tailwind css'],
@@ -94,7 +93,6 @@ const ProfileCard = ({
         let years = today.getFullYear() - birth.getFullYear();
         let months = today.getMonth() - birth.getMonth();
 
-        // Adjust for negative months
         if (months < 0) {
             years--;
             months += 12;
@@ -119,7 +117,6 @@ const ProfileCard = ({
         { label: 'studies:', value: 'b.e. in computers' }
     ];
 
-    // --- FRONT CONTENT (UNCHANGED) ---
     const FrontContent = () => (
         <div className="h-full flex flex-col">
             <div className='py-1.5 px-4'>
@@ -204,25 +201,18 @@ const ProfileCard = ({
         </div>
     );
 
-    // --- BACK CONTENT (UPDATED) ---
     const BackContent = () => (
         <div className="h-full flex flex-col">
             <SectionHeader title="expertise" />
 
-            {/* Title Removed, added padding top (pt-6) to compensate */}
             <div className='px-5 pt-6 flex-1 overflow-y-auto custom-scrollbar'>
 
-                {/* Mobile: gap-2 (reduced from space-y-3) 
-                   Desktop: grid-cols-2 for better fit
-                */}
                 <div className="flex flex-col gap-2 lg:grid lg:grid-cols-2 lg:gap-x-4 lg:gap-y-4">
                     {Object.entries(skills).map(([category, items]) => (
                         <div key={category} className="flex flex-col gap-1">
-                            {/* Category Title: Lowercase, reduced margin */}
                             <span className="text-md font-bold tracking-widest lowercase border-b border-dashed border-gray-400/50 w-max mb-0.5">
                                 {category}:
                             </span>
-                            {/* Badges: Lowercase */}
                             <div className="flex flex-wrap gap-1.5">
                                 {items.map(skill => (
                                     <Badge key={skill}>

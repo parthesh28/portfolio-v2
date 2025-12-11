@@ -11,7 +11,7 @@ const Button = ({
   size = 'default',
   className = '',
   disabled = false,
-  ...props // Spreads onClick, type, aria-labels, etc. automatically
+  ...props
 }: ButtonProps) => {
 
   const sizes = {

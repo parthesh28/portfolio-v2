@@ -46,16 +46,12 @@ const BitLoader = () => {
     if (!loading) return null;
 
     return (
-        // CHANGED: Added backdrop-blur-md and semi-transparent bg
         <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center backdrop-blur-md bg-white/30 dark:bg-black/30 cursor-wait transition-all duration-300">
 
             <div className="flex flex-col items-center gap-6">
 
-                {/* THE BIT BUCKET CONTAINER */}
-                {/* Added bg-white/black inside the box to make the bits pop against the blur */}
                 <div className="relative w-16 h-16 border-4 border-zinc-900 dark:border-zinc-100 p-1">
 
-                    {/* 4x4 GRID */}
                     <div className="grid grid-cols-4 grid-rows-4 gap-1 w-full h-full">
                         {bits.map((active, i) => (
                             <div
@@ -71,11 +67,9 @@ const BitLoader = () => {
                         ))}
                     </div>
 
-                    {/* DECORATIVE: Corner Pixels */}
                  
                 </div>
 
-                {/* TEXT - Added drop shadow for readability over blurred content */}
                 <p className="text-xs font-bold tracking-[0.2em] lowercase text-zinc-900 dark:text-zinc-100 animate-pulse drop-shadow-md">
                     loading...
                 </p>

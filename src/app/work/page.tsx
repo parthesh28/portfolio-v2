@@ -43,7 +43,6 @@ const projects = [
   }
 ];
 
-// --- DATA: EXPERIENCE ---
 const experiences = [
   {
     type: 'experience',
@@ -107,19 +106,16 @@ const WorkPage = () => {
   };
 
   return (
-    // OPTIMIZED PADDING: Reduced pt-32/pb-24 to pt-28/pb-4 to fit content without scrolling
     <div className="min-h-screen w-full flex flex-col items-center justify-start sm:justify-center pt-36 sm:pt-15 pb-4 px-6 lowercase">
 
       <div className="w-full max-w-2xl">
 
-        {/* HEADING - Reduced bottom padding */}
         <div className="pb-4 pl-1">
           <h1 className="text-4xl font-bold tracking-wide lowercase">
             proof of work
           </h1>
         </div>
 
-        {/* --- TABS SECTION --- */}
         <div className="flex items-end relative z-20 top-[2px]">
 
           <button
@@ -166,21 +162,17 @@ const WorkPage = () => {
               </span>
             </div>
 
-            {/* Content */}
-            {/* Reduced gap between title/desc and tags/links */}
             <div className="flex-1 flex flex-col justify-between gap-4">
               <div>
                 <h2 className="text-3xl sm:text-4xl font-bold tracking-wide mb-3 lowercase">
                   {currentItem.title}
                 </h2>
-                {/* Smaller text size for compactness */}
                 <div className="text-md sm:text-base leading-6 sm:leading-7 font-medium opacity-90 lowercase text-justify sm:text-left">
                   {currentItem.description}
                 </div>
               </div>
 
               <div>
-                {/* Compact tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {currentItem.tags.map(tag => (
                     <span key={tag} className="badge px-2 py-0.5 text-[10px] sm:text-xs font-bold border-2 lowercase">
@@ -189,7 +181,6 @@ const WorkPage = () => {
                   ))}
                 </div>
 
-                {/* Actions (Links) */}
                 <div className="flex gap-6 mb-2">
                   {currentItem.links?.github && (
                     <Link
@@ -216,7 +207,6 @@ const WorkPage = () => {
               </div>
             </div>
 
-            {/* Controls - Positioned to not add extra height */}
             <div className="absolute -bottom-5 left-0 w-full flex justify-center items-center gap-4 z-20">
               <button onClick={prevItem} className="button w-10 h-10 border-2 flex items-center justify-center transition-none active:translate-y-1 active:shadow-none">
                 <i className="hn hn-arrow-left text-lg"></i>
@@ -238,7 +228,6 @@ const WorkPage = () => {
 
       </div>
 
-      {/* Archive Link - Reduced top margin */}
       <Link
         href="https://github.com/parthesh28?tab=repositories"
         target="_blank"

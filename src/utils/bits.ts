@@ -45,11 +45,11 @@ export const bits = [
         tags: ['solana', 'spl-tokens', 'rust']
     },
     {
-        id: '6', // New Life Bit
+        id: '6', 
         slug: 'crossroads-and-chai',
         type: 'life',
         date: '11 dec 2025',
-        title: 'crossroads and chai', // 3 words
+        title: 'crossroads and chai',
         content: "we often stand at crossroads, paralyzed by the weight of decision. we ask if these tangled problems are life's essence, or if living is simply the courage to set worries aside. these questions spiral endlessly, each answer only breeding more confusion.\n\nperhaps the solution isn't to drown in heavy choices, but to enjoy the tea at hand. that simple cup of 'chai' that fuels you for another hour is a valid choice in itself—and honestly, a pretty good one. maybe life was never about making the right choice, but about living every day fully.",
         tags: ['philosophy', 'chai', 'life']
     }
