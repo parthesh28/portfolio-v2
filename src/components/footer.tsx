@@ -23,9 +23,9 @@ const Footer = () => {
 
                 <div className="w-full h-px border-t-2 border-dotted border-zinc-800/50 dark:border-zinc-600/50" />
 
-                <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-2">
+                <div className="w-full flex flex-row items-center justify-between gap-2">
 
-                    <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 text-xs font-bold tracking-widest lowercase text-zinc-800 dark:text-zinc-300 text-center sm:text-left">
+                    <div className="flex items-center gap-1 sm:gap-2 text-xs font-bold tracking-widest lowercase text-zinc-800 dark:text-zinc-300 text-center sm:text-left">
                         <p>
                             © {currentYear} parthesh purohit
                         </p>

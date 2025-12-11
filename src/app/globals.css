@@ -36,6 +36,8 @@
 body {
   color: var(--text-color);
   font-family: 'Handjet';
+  overflow-x: hidden;
+    width: 100%;
 }
 
 .navbar {

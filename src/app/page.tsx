@@ -15,7 +15,6 @@ function Home() {
   const [stats, setStats] = useState<WakaTimeData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  // Typewriter State
   const [text, setText] = useState<string>('');
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [loopNum, setLoopNum] = useState<number>(0);
@@ -71,24 +70,22 @@ function Home() {
   }, [text, isDeleting, loopNum, roles, typingSpeed]);
 
   return (
-    <div className='min-h-screen w-full flex flex-col items-center justify-center pt-5 pb-10 px-4 sm:pt-32 sm:pb-24 sm:px-6'>
+    <div className='min-h-screen w-full flex flex-col items-center justify-center pt-5 pb-20 px-4 sm:p-6 sm:pb-24'>
 
-      <section className='flex flex-col lg:flex-row items-center justify-center max-w-5xl w-full gap-6 sm:gap-10'>
+      <section className='flex flex-col lg:flex-row items-center justify-center max-w-5xl w-full gap-4 sm:gap-10'>
 
-        <div className='flex-shrink-0 transform  origin-center transition-transform'>
+        <div className='flex-shrink-0 transform scale-90 sm:scale-100 origin-center transition-transform'>
           {stats && <ProfileCard data={stats} />}
         </div>
-
-        {/* 2. Divider - Compact Margins on Mobile */}
         <div className="
-                border-zinc-900 dark:border-zinc-500 border-dashed
-                w-full border-b-2 my-4 sm:my-0
-                lg:w-px lg:border-r-2 lg:border-b-0 lg:h-64 lg:mx-10
-            " />
+                    border-zinc-900 dark:border-zinc-500 border-dashed
+                    w-full border-b-2 my-2 sm:my-0
+                    lg:w-px lg:border-r-2 lg:border-b-0 lg:h-64 lg:mx-10
+                " />
 
         <div className="flex-1 max-w-xl text-center lg:text-left flex flex-col items-center lg:items-start gap-4 sm:gap-6">
 
-          <h1 className="text-4xl sm:text-6xl font-semibold leading-tight tracking-normal lowercase">
+          <h1 className="text-4xl sm:text-6xl font-medium leading-tight tracking-normal lowercase">
             just a{' '}
             <span className="inline-block">
               <span className="text-zinc-900 dark:text-zinc-100 font-bold tracking-wide">
@@ -101,7 +98,7 @@ function Home() {
           </h1>
 
           <p className="text-md sm:text-xl text-zinc-800 dark:text-zinc-400 leading-relaxed font-normal lowercase">
-            i build <span className="text-zinc-900 dark:text-zinc-100 font-bold px-1">solana</span> apps and <span className="text-zinc-900 dark:text-zinc-100 font-bold px-1">native android</span> systems. living by the truth that <span className="italic opacity-80">i can love anything if i spend enough time with it</span>—i use that patience to bridge low-level logic with human experience.
+            i build <span className="text-zinc-900 dark:text-zinc-100 font-bold px-1">solana</span> apps and build <span className="text-zinc-900 dark:text-zinc-100 font-bold px-1">native android</span> systems. living by the truth that <span className="italic opacity-80">i can love anything if i spend enough time with it</span>—i use that patience to bridge low-level logic with human experience.
           </p>
 
           <Button>
@@ -109,7 +106,6 @@ function Home() {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className='flex items-center gap-2'
             >
               <i className="hn hn-eye text-lg sm:text-xl"></i>
               resume
