@@ -10,9 +10,10 @@
   },
   "dependencies": {
     "@hackernoon/pixel-icon-library": "^1.0.6",
-    "next": "15.3.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "eslint-config-next": "^16.0.8",
+    "next": "^16.0.8",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
