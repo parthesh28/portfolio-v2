@@ -27,15 +27,15 @@ const BitDetailPage = async ({ params }: { params: Promise<{ slug: string }> }) 
     const readTime = getReadingTime(bit.content);
 
     return (
-        <div className="min-h-screen w-full flex justify-center pt-32 pb-32 px-6">
+        <div className="min-h-screen w-full flex justify-center pt-50 pb-10 px-6">
 
             <div className="w-full max-w-2xl flex flex-col">
 
-                <div className="flex items-center justify-between mb-8 border-b-2 border-dashed border-zinc-300 dark:border-zinc-500 pb-4">
+                <div className="flex items-center justify-between mb-4 border-b-2 border-dashed border-zinc-600 dark:border-zinc-500 pb-3">
 
                     <Link
                         href="/bits"
-                        className="p-2 -ml-2"
+                        className="p-1.5 -ml-1.5 opacity-60 hover:opacity-100 transition-opacity"
                         aria-label="return to logs"
                     >
                         <i className="hn hn-arrow-left text-xl"></i>
@@ -51,12 +51,14 @@ const BitDetailPage = async ({ params }: { params: Promise<{ slug: string }> }) 
                     </div>
                 </div>
 
-                <h1 className="text-4xl sm:text-5xl font-bold lowercase leading-tight tracking-wide text-zinc-900 dark:text-zinc-100 mb-8">
+                <h1 className="text-3xl sm:text-4xl font-bold lowercase leading-tight tracking-wide text-zinc-900 dark:text-zinc-100 mb-6">
                     {bit.title}
                 </h1>
-                <div className="text-lg sm:text-xl leading-relaxed font-medium text-zinc-800 dark:text-zinc-300 lowercase whitespace-pre-wrap mb-16 text-justify sm:text-left">
+
+                <div className="text-base sm:text-lg leading-relaxed font-medium text-zinc-800 dark:text-zinc-300 lowercase whitespace-pre-wrap mb-8 text-justify sm:text-left">
                     {bit.content}
                 </div>
+
             </div>
         </div>
     )
