@@ -10,7 +10,7 @@ const Footer = () => {
 
     const socialLinks = [
         { href: 'https://github.com/parthesh28', icon: 'hn-github', label: 'github' },
-        { href: 'https://x.com/parthesh28', icon: 'hn-twitter', label: 'x' },
+        { href: 'https://x.com/parthesh28', icon: 'hn-x', label: 'x' },
         { href: 'https://linkedin.com/in/parthesh28', icon: 'hn-linkedin', label: 'linkedin' },
         { href: 'https://discord.com/users/parthesh28', icon: 'hn-discord', label: 'discord' },
         { href: 'mailto:partheshpurohit28@gmail.com', icon: 'hn-email', label: 'email' },
@@ -27,7 +27,7 @@ const Footer = () => {
 
                     <div className="flex items-center gap-1 sm:gap-2 text-xs font-bold tracking-widest lowercase text-zinc-800 dark:text-zinc-300 text-center sm:text-left">
                         <p>
-                            © {currentYear} parthesh purohit
+                             made in pain <span className='uppercase'>T_T</span>
                         </p>
                     </div>
 

@@ -107,7 +107,6 @@ function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i className="hn hn-eye text-lg sm:text-xl"></i>
               resume
             </a>
           </Button>
