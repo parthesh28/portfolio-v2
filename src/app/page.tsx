@@ -71,8 +71,8 @@ function Home() {
       <section className='
         flex flex-col lg:flex-row items-center justify-center 
         max-w-5xl w-full gap-4 sm:gap-10 
-        transform scale-[0.80] sm:scale-90 lg:scale-100 transition-transform 
-        mt-16
+        transform scale-[0.90] sm:scale-90 md:scale-100 lg:scale-100 transition-transform 
+        mt-10
       '>
 
         <div className='flex-shrink-0'>

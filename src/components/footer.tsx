@@ -17,11 +17,11 @@ const Footer = () => {
     return (
         <footer className="fixed bottom-1 left-1/2 -translate-x-1/2 z-40 w-[95%] max-w-3xl">
             <div className="flex flex-col items-center justify-center gap-2 px-6 py-3">
-                <div className="w-full h-px border-t-2 border-dotted border-zinc-800/50 dark:border-zinc-600/50" />
+                <div className="w-full h-px border-t-2 border-dashed border-zinc-800/50 dark:border-zinc-600/50" />
                 <div className="w-full flex flex-row items-center justify-between gap-2">
                     <div className="flex items-center gap-1 sm:gap-2 text-xs font-bold tracking-widest lowercase text-zinc-800 dark:text-zinc-300 text-center sm:text-left">
                         <p>
-                            still learning
+                            © {new Date().getFullYear()} parthesh
                         </p>
                     </div>
 

@@ -114,11 +114,11 @@ const ProfileCard = ({
                         <CheckboxIcon />
                     </div>
                     <div className="text">
-                        <p className="text-lg font-bold tracking-widest">
+                        <p className="text-lg font-bold tracking-widest underline">
                             parthesh purohit
                         </p>
                         <p className="text-sm tracking-wide">
-                            a human
+                            just a human
                         </p>
                     </div>
                 </div>

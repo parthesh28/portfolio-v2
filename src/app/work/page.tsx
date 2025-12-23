@@ -10,10 +10,10 @@ const projects = [
     title: 'printf',
     description: (
       <>
-        a production-grade printing ecosystem deployed at my college. replaces public pc logins with a secure oauth-based workflow. comprises three components: a <span className="font-bold text-zinc-900 dark:text-zinc-100">react native</span> android app for ordering, a restful api gateway, and a high-performance <span className="font-bold text-zinc-900 dark:text-zinc-100">rust</span> daemon that interfaces directly with native <span className="font-bold text-zinc-900 dark:text-zinc-100">windows print apis</span> to execute jobs.
+        a production-grade printing ecosystem. replaces public pc logins with a secure oauth-based workflow. comprises three components: a <span className="font-bold text-zinc-900 dark:text-zinc-100">react native</span> android app for ordering, a restful api gateway, and a high-performance <span className="font-bold text-zinc-900 dark:text-zinc-100">rust</span> daemon that interfaces directly with native <span className="font-bold text-zinc-900 dark:text-zinc-100">windows print apis</span> to execute jobs.
       </>
     ),
-    tags: ['rust', 'react native', 'win32 api', 'systems'],
+    tags: ['rust', 'react native','systems'],
     links: { github: 'https://github.com/parthesh28/printf', live: null },
     status: 'jan 2025'
   },
@@ -22,7 +22,7 @@ const projects = [
     title: 'pulp',
     description: (
       <>
-        a developer-first text sharing platform available across three interfaces. the core restful api (<span className="font-bold text-zinc-900 dark:text-zinc-100">hono</span>/<span className="font-bold text-zinc-900 dark:text-zinc-100">sqlite</span>) powers a <span className="font-bold text-zinc-900 dark:text-zinc-100">next.js</span> web app, a native cli tool written in <span className="font-bold text-zinc-900 dark:text-zinc-100">go</span>, and a custom <span className="font-bold text-zinc-900 dark:text-zinc-100">vs code extension</span>—allowing developers to share code snippets directly from their editor environment.
+        a text sharing platform available across three interfaces. the core restful api (<span className="font-bold text-zinc-900 dark:text-zinc-100">hono</span>/<span className="font-bold text-zinc-900 dark:text-zinc-100">sqlite</span>) powers a <span className="font-bold text-zinc-900 dark:text-zinc-100">next.js</span> web app, a native cli tool written in <span className="font-bold text-zinc-900 dark:text-zinc-100">go</span>, and a custom <span className="font-bold text-zinc-900 dark:text-zinc-100">vs code extension</span>—allowing developers to share code snippets directly from their editor environment.
       </>
     ),
     tags: ['next.js', 'go (cli)', 'vs code api', 'hono'],
@@ -63,11 +63,11 @@ const experiences = [
     description: (
       <>
         <span className="block mb-2 font-bold text-zinc-900 dark:text-zinc-100">{`> webmaster & tech lead`}</span>
-        led the technical division of the computer engineering department. revamped and maintained the club website, developed a native <span className="font-bold text-zinc-900 dark:text-zinc-100">android game</span> for the annual tech fest, and personally conducted an in-depth <span className="font-bold text-zinc-900 dark:text-zinc-100">git & github workshop</span> attended by 120+ students.
+        led the technical division of the computer engineering department at sfit. revamped and maintained the club website, developed a native <span className="font-bold text-zinc-900 dark:text-zinc-100">android game</span> for the annual tech fest, and personally conducted an in-depth <span className="font-bold text-zinc-900 dark:text-zinc-100">git & github workshop</span> attended by 120+ students.
       </>
     ),
     tags: ['leadership', 'android', 'mentoring', 'web dev'],
-    links: { github: undefined, live: undefined },
+    links: { github: undefined, live: 'https://codex.sfit.ac.in' },
     status: '2024 - 2025'
   },
   {
@@ -76,7 +76,7 @@ const experiences = [
     description: (
       <>
         <span className="block mb-2 font-bold text-zinc-900 dark:text-zinc-100">{`> freelance technical writer`}</span>
-        worked as a freelance writer for 2 years, authoring technical blogs, product descriptions, and articles for third-party clients. developed strong <span className="font-bold text-zinc-900 dark:text-zinc-100">documentation</span> and communication skills essential for explaining complex technical concepts to broader audiences.
+        worked as a freelance writer for 2+ years, authoring technical blogs, product descriptions, and articles for third-party clients. developed strong <span className="font-bold text-zinc-900 dark:text-zinc-100">documentation</span> and communication skills essential for explaining complex technical concepts to broader audiences.
       </>
     ),
     tags: ['writing', 'communication', 'freelance', 'seo'],
@@ -108,7 +108,7 @@ const WorkPage = () => {
   return (
     <main className="h-[100dvh] w-full relative overflow-hidden flex flex-col items-center justify-center">
 
-      <div className="w-full max-w-2xl transform scale-[0.80] sm:scale-90 lg:scale-100 transition-transform mt-20 sm:mt-0">
+      <div className="w-full max-w-2xl transform scale-[0.90] sm:scale-90 lg:scale-100 transition-transform mt-20 sm:mt-0">
 
         <div className="pb-4 pl-1">
           <h1 className="text-4xl font-bold tracking-wide lowercase">
@@ -155,7 +155,7 @@ const WorkPage = () => {
                   {activeTab === 'projects' ? 'project' : 'record'}_0{currentIndex + 1}
                 </span>
               </div>
-              <span className="text-xs font-mono border-2 border-current px-2 py-1 lowercase">
+              <span className="text-sm font-semibold border-2 border-current px-2 py-1 lowercase">
                 {currentItem.status}
               </span>
             </div>
