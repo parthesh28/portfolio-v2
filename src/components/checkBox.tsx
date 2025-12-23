@@ -1,5 +1,3 @@
-import React from 'react';
-
 const CheckboxIcon = ({
     size = 24,
     color = 'currentColor',

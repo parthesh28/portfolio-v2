@@ -66,14 +66,11 @@ const BitLoader = () => {
                             />
                         ))}
                     </div>
-
-                 
                 </div>
 
                 <p className="text-xs font-bold tracking-[0.2em] lowercase text-zinc-900 dark:text-zinc-100 animate-pulse drop-shadow-md">
                     loading...
                 </p>
-
             </div>
         </div>
     )

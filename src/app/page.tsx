@@ -20,7 +20,7 @@ function Home() {
   const [loopNum, setLoopNum] = useState<number>(0);
   const [typingSpeed, setTypingSpeed] = useState<number>(150);
 
-  const roles: string[] = ["developer", "builder", "solver", "learner"];
+  const roles: string[] = ["observer","learner", "writer"];
 
   useEffect(() => {
     const fetchWakaTimeStats = async () => {
@@ -45,16 +45,13 @@ function Home() {
       const i = loopNum % roles.length;
       const fullText = roles[i];
 
-      setText(isDeleting
-        ? fullText.substring(0, text.length - 1)
-        : fullText.substring(0, text.length + 1)
+      setText(
+        isDeleting
+          ? fullText.substring(0, text.length - 1)
+          : fullText.substring(0, text.length + 1)
       );
 
-      if (isDeleting) {
-        setTypingSpeed(50);
-      } else {
-        setTypingSpeed(100 + Math.random() * 50);
-      }
+      setTypingSpeed(isDeleting ? 50 : 100 + Math.random() * 50);
 
       if (!isDeleting && text === fullText) {
         window.setTimeout(() => setIsDeleting(true), 2000);
@@ -70,17 +67,7 @@ function Home() {
   }, [text, isDeleting, loopNum, roles, typingSpeed]);
 
   return (
-    // MAIN CONTAINER FIX:
-    // 1. h-[100dvh] -> Forces explicit full screen height (dynamic).
-    // 2. overflow-hidden -> Prevents any scrollbars.
     <main className='h-[100dvh] w-full relative overflow-hidden flex flex-col items-center justify-center'>
-
-      {/* SCALING FIX:
-         - scale-[0.80]: Shrinks content to 80% on mobile so it fits in the viewport without scrolling.
-         - sm:scale-90: Slightly larger on tablet.
-         - lg:scale-100: Full size on desktop.
-         - mt-16: Adds visual breathing room below the fixed navbar.
-      */}
       <section className='
         flex flex-col lg:flex-row items-center justify-center 
         max-w-5xl w-full gap-4 sm:gap-10 
@@ -93,9 +80,9 @@ function Home() {
         </div>
 
         <div className="
-            border-zinc-900 dark:border-zinc-500 border-dashed
-            w-full border-b-2 my-2 sm:my-0
-            lg:w-px lg:border-r-2 lg:border-b-0 lg:h-64 lg:mx-10
+          border-zinc-900 dark:border-zinc-500 border-dashed
+          w-full border-b-2 my-2 sm:my-0
+          lg:w-px lg:border-r-2 lg:border-b-0 lg:h-64 lg:mx-10
         " />
 
         <div className="flex-1 max-w-xl text-center lg:text-left flex flex-col items-center lg:items-start gap-4 sm:gap-6">
@@ -112,8 +99,35 @@ function Home() {
             </span>
           </h1>
 
-          <p className="text-md sm:text-xl text-zinc-800 dark:text-zinc-400 leading-relaxed font-normal lowercase">
-            i build <span className="text-zinc-900 dark:text-zinc-100 font-bold px-1">solana</span> apps and build <span className="text-zinc-900 dark:text-zinc-100 font-bold px-1">native android</span> systems. living by the truth that <span className="italic opacity-80">i can love anything if i spend enough time with it</span>—i use that patience to bridge low-level logic with human experience.
+          <p className="text-lg sm:text-xl text-zinc-800 dark:text-zinc-400 leading-relaxed font-normal lowercase">
+            a{' '} full-stack
+            <span className="text-zinc-900 dark:text-zinc-100 font-bold px-1">
+              web3
+            </span>
+            developer building on solana for{' '}
+            <span className="text-zinc-900 dark:text-zinc-100 font-semibold px-1">
+              web
+            </span>
+            and{' '}
+            <span className="text-zinc-900 dark:text-zinc-100 font-semibold px-1">
+              android
+            </span>
+            , from on-chain smart contracts to{' '}
+            <span className="text-zinc-900 dark:text-zinc-100 font-semibold px-1">
+              react
+            </span>
+            and{' '}
+            <span className="text-zinc-900 dark:text-zinc-100 font-semibold px-1">
+              react native
+            </span>
+            interfaces. 
+          </p>
+
+          <p className="text-lg sm:text-lg text-zinc-700 dark:text-zinc-500 leading-relaxed font-semibold lowercase">
+            <span className="italic text-zinc-900 dark:text-zinc-100">
+              i can love anything if i spend enough time with it
+            </span>
+            {' '}— thing i realized about myself, be it with people, concepts or code.
           </p>
 
           <Button>
@@ -127,7 +141,6 @@ function Home() {
           </Button>
 
         </div>
-
       </section>
     </main>
   )

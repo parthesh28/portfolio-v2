@@ -1,5 +1,3 @@
-import React from 'react';
-
 const DoubleSquareIcon = ({
     size = 24,
     color = 'currentColor',

@@ -31,7 +31,7 @@ const ProfileCard = ({
         languages: ['typescript', 'java', 'rust'],
         frontend: ['next.js', 'tailwind css'],
         backend: ['hono', 'drizzle orm', 'sqlite'],
-        blockchain: ['solana', 'anchor', 'pinocchio'],
+        web3: ['solana', 'anchor', 'pinocchio'],
         mobile: ['react native', 'jetpack compose'],
     };
 
@@ -91,28 +91,17 @@ const ProfileCard = ({
         const birth = new Date(birthDate);
 
         let years = today.getFullYear() - birth.getFullYear();
-        let months = today.getMonth() - birth.getMonth();
+        
+       
 
-        if (months < 0) {
-            years--;
-            months += 12;
-        }
-        if (today.getDate() < birth.getDate()) {
-            months--;
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
-        }
-
-        return { years, months };
+        return { years };
     }
 
     const age = calculateAge("2003-10-23");
 
     const profileInfo = [
         { label: 'status:', value: 'online' },
-        { label: 'age:', value: `${age.years} yrs ${age.months} mon` },
+        { label: 'age:', value: `${age.years} years` },
         { label: 'authenti-city:', value: 'mumbai' },
         { label: 'studies:', value: 'b.e. in computers' }
     ];
@@ -129,7 +118,7 @@ const ProfileCard = ({
                             parthesh purohit
                         </p>
                         <p className="text-sm tracking-wide">
-                            just a human
+                            a human
                         </p>
                     </div>
                 </div>
@@ -205,7 +194,7 @@ const ProfileCard = ({
         <div className="h-full flex flex-col">
             <SectionHeader title="expertise" />
 
-            <div className='px-5 pt-6 flex-1 overflow-y-auto custom-scrollbar'>
+            <div className='px-5 pt-4 flex-1 overflow-y-auto custom-scrollbar'>
 
                 <div className="flex flex-col gap-2 lg:grid lg:grid-cols-2 lg:gap-x-4 lg:gap-y-4">
                     {Object.entries(skills).map(([category, items]) => (

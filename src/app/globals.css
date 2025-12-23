@@ -19,8 +19,8 @@
 }
 
 .dark {
-  --bg-gradient-start: theme(--color-zinc-950/ 80%);
-  --bg-gradient-mid: theme(--color-zinc-900 / 90%);
+  --bg-gradient-start: theme(--color-zinc-900/ 80%);
+  --bg-gradient-mid: theme(--color-zinc-950 / 90%);
   --bg-color: theme(--color-zinc-700 / 100%);
   --bg-card-color: theme(--color-zinc-700 / 100%);
   --bg-tab-color: theme(--color-zinc-700 / 100%);
@@ -33,17 +33,13 @@
   --logo-color: theme(--color-zinc-200/ 100%);
 }
 
-/* --- THE FIX: LOCK SCROLLING --- */
 html,
 body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  /* Disables scrollbars */
   overscroll-behavior: none;
-  /* Disables rubber-banding on Mac/iOS */
   position: fixed;
-  /* Locks the body in place */
   color: var(--text-color);
   font-family: 'Handjet';
 }
@@ -111,15 +107,10 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-
-  /* --- THE FIX: USE DYNAMIC VIEWPORT HEIGHT --- */
   height: 100vh;
-  /* Fallback */
   height: 100dvh;
-  /* Adapts to mobile address bars */
-
   z-index: -10000;
-  filter: blur(7px);
+  filter: blur(6px);
   transform: scale(1.1);
 
   background:

@@ -106,13 +106,8 @@ const WorkPage = () => {
   };
 
   return (
-    // FIX 1: Main container uses h-[100dvh] and overflow-hidden to match the "no-scroll" app feel
     <main className="h-[100dvh] w-full relative overflow-hidden flex flex-col items-center justify-center">
 
-      {/* FIX 2: Added scale transform. 
-         - scale-[0.80] on mobile shrinks the big card so it fits without scrolling.
-         - mt-20 ensures it pushes down below the fixed navbar visually.
-      */}
       <div className="w-full max-w-2xl transform scale-[0.80] sm:scale-90 lg:scale-100 transition-transform mt-20 sm:mt-0">
 
         <div className="pb-4 pl-1">
@@ -170,9 +165,6 @@ const WorkPage = () => {
                 <h2 className="text-3xl sm:text-4xl font-bold tracking-wide mb-3 lowercase">
                   {currentItem.title}
                 </h2>
-                {/* FIX 3: Added max-h constraint and custom scrollbar for the text description only. 
-                   If text is super long, only the text scrolls, not the whole page.
-                */}
                 <div className="text-md sm:text-base leading-6 sm:leading-7 font-medium opacity-90 lowercase text-justify sm:text-left max-h-[150px] overflow-y-auto custom-scrollbar pr-2">
                   {currentItem.description}
                 </div>

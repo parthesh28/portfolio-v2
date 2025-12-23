@@ -1,6 +1,5 @@
 import React from 'react';
 
-// 1. Define Props Interface extending standard HTML Button props
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   size?: 'sm' | 'default' | 'lg';

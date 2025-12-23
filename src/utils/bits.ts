@@ -40,18 +40,26 @@ export const bits = [
         slug: 'spl-mints-vs-accounts',
         type: 'tech',
         date: '19 oct 2025',
-        title: 'spl mints vs token accounts', 
+        title: 'spl mints vs token accounts',
         content: "on solana, a mint only defines the token metadata; it doesn't hold value. tokens live in token accounts (tas) which link an owner to a mint. most users rely on associated token accounts (atas)—deterministic pdas derived from the wallet and mint—ensuring every user has exactly one standard account per token.\n\nminting requires the mint authority, while transfers need the owner's signature on the source ta. unlike ethereum's contract-mapped balances, solana accounts are distinct storage slots. closing a ta returns rent to the destination, but this operation fails unless the token balance is strictly zero.",
         tags: ['solana', 'spl-tokens', 'rust']
     },
     {
-        id: '6', 
+        id: '6',
         slug: 'crossroads-and-chai',
         type: 'life',
         date: '11 dec 2025',
         title: 'crossroads and chai',
         content: "we often stand at crossroads, paralyzed by the weight of decision. we ask if these tangled problems are life's essence, or if living is simply the courage to set worries aside. these questions spiral endlessly, each answer only breeding more confusion.\n\nperhaps the solution isn't to drown in heavy choices, but to enjoy the tea at hand. that simple cup of 'chai' that fuels you for another hour is a valid choice in itself—and honestly, a pretty good one. maybe life was never about making the right choice, but about living every day fully.",
         tags: ['philosophy', 'chai', 'life']
+    },
+    {
+        id: '7',
+        slug: 'fear-of-the-inevitable',
+        type: 'life',
+        date: '23 dec 2025',
+        title: 'fear of the inevitable',
+        content: "we all live to die. we witness people burning or being buried, worrying that one day we will leave this world too. but why does this fear persist? we know everything ends; we know the truth. why can't we simply accept it?\n\nwhat drives us to fill our time with unnecessary distractions, merely to mask this reality? we perform rituals and pray, doing anything to keep this ultimate truth at bay—even though it will catch up to us regardless.\n\nwhy fear death and lose the beauty of life? why ignore death and fear the uncertainty of living? why fear outcomes that are destined to occur, regardless of our anxiety?",
+        tags: ['philosophy', 'death', 'life']
     }
-   
 ];
