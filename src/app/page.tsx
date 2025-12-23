@@ -70,18 +70,33 @@ function Home() {
   }, [text, isDeleting, loopNum, roles, typingSpeed]);
 
   return (
-    <div className='min-h-screen w-full flex flex-col items-center justify-center pt-5 pb-20 px-4 sm:p-6 sm:pb-24'>
+    // MAIN CONTAINER FIX:
+    // 1. h-[100dvh] -> Forces explicit full screen height (dynamic).
+    // 2. overflow-hidden -> Prevents any scrollbars.
+    <main className='h-[100dvh] w-full relative overflow-hidden flex flex-col items-center justify-center'>
 
-      <section className='flex flex-col lg:flex-row items-center justify-center max-w-5xl w-full gap-4 sm:gap-10'>
+      {/* SCALING FIX:
+         - scale-[0.80]: Shrinks content to 80% on mobile so it fits in the viewport without scrolling.
+         - sm:scale-90: Slightly larger on tablet.
+         - lg:scale-100: Full size on desktop.
+         - mt-16: Adds visual breathing room below the fixed navbar.
+      */}
+      <section className='
+        flex flex-col lg:flex-row items-center justify-center 
+        max-w-5xl w-full gap-4 sm:gap-10 
+        transform scale-[0.80] sm:scale-90 lg:scale-100 transition-transform 
+        mt-16
+      '>
 
-        <div className='flex-shrink-0 transform scale-90 sm:scale-100 origin-center transition-transform'>
+        <div className='flex-shrink-0'>
           {stats && <ProfileCard data={stats} />}
         </div>
+
         <div className="
-                    border-zinc-900 dark:border-zinc-500 border-dashed
-                    w-full border-b-2 my-2 sm:my-0
-                    lg:w-px lg:border-r-2 lg:border-b-0 lg:h-64 lg:mx-10
-                " />
+            border-zinc-900 dark:border-zinc-500 border-dashed
+            w-full border-b-2 my-2 sm:my-0
+            lg:w-px lg:border-r-2 lg:border-b-0 lg:h-64 lg:mx-10
+        " />
 
         <div className="flex-1 max-w-xl text-center lg:text-left flex flex-col items-center lg:items-start gap-4 sm:gap-6">
 
@@ -114,7 +129,7 @@ function Home() {
         </div>
 
       </section>
-    </div>
+    </main>
   )
 }
 

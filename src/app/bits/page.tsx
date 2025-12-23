@@ -31,15 +31,15 @@ const Bitspage = () => {
 
   const handleFilterChange = (newFilter: string) => {
     setFilter(newFilter);
-    setCurrentPage(0); 
+    setCurrentPage(0);
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center pt-28 pb-24 px-4 sm:px-6">
+    <div className="h-[100dvh] w-full relative overflow-hidden flex flex-col items-center justify-center pt-24 pb-32 sm:pt-28">
 
-      <div className="w-full max-w-2xl flex flex-col h-full">
+      <div className="w-full max-w-2xl flex flex-col h-auto max-h-[75vh] px-4 sm:px-6">
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-5 mt-5">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4 shrink-0">
           <h1 className="text-4xl font-bold tracking-tight lowercase">
             bits & logs
           </h1>
@@ -63,47 +63,43 @@ const Bitspage = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 flex-1 min-h-[25rem]">
+        <div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar p-1 flex flex-col gap-3">
           {displayedBits.map((bit) => (
             <Link
               key={bit.id}
               href={`/bits/${bit.slug}`}
-              className="card relative border-2 p-4 sm:p-5 cursor-pointer"
+              className="card relative border-2 p-4 sm:p-5 cursor-pointer "
             >
               <div className="flex justify-between items-start gap-4">
                 <div className="flex-1">
-
-                  <div className="flex items-center gap-3 mb-5 text-xs font-bold tracking-widest">
+                  <div className="flex items-center gap-3 mb-3 text-xs font-bold tracking-widest">
                     <span>{bit.date}</span>
                     <span className="w-1 h-1 bg-current rounded-full" />
                     <span className={` px-1.5 py-0.5 border border-current text-[10px]`}>
                       {bit.type}
                     </span>
                   </div>
-                  <h2 className="text-lg sm:text-xl font-bold leading-tight lowercase group-hover:underline underline-offset-4 decoration-2">
+                  <h2 className="text-lg sm:text-xl font-bold leading-tight lowercase underline-offset-4 decoration-2">
                     {bit.title}
                   </h2>
                 </div>
-
-                <i className="hn hn-chevron-right text-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <i className="hn hn-chevron-right text-xl opacity-0 transition-opacity" />
               </div>
             </Link>
           ))}
 
           {displayedBits.length === 0 && (
-            <div className="flex-1 flex items-center justify-center opacity-50 lowercase font-mono">
+            <div className="py-10 flex items-center justify-center opacity-50 lowercase font-mono">
               [ nothing found in this sector ]
             </div>
           )}
         </div>
-
         {totalPages > 1 && (
-          <div className="mt-5 flex justify-center items-center gap-4">
-
+          <div className="mt-4 flex justify-center items-center gap-4 shrink-0 pt-2">
             {currentPage > 0 ? (
               <button
                 onClick={prevPage}
-                className="button w-10 h-10 border-2 flex items-center justify-center bg-white dark:bg-zinc-900"
+                className="button w-10 h-10 border-2 flex items-center justify-center bg-white dark:bg-zinc-900 active:translate-y-1 transition-transform"
               >
                 <i className="hn hn-arrow-left text-lg"></i>
               </button>
@@ -118,14 +114,13 @@ const Bitspage = () => {
             {currentPage < totalPages - 1 ? (
               <button
                 onClick={nextPage}
-                className="button w-10 h-10 border-2 flex items-center justify-center bg-white dark:bg-zinc-900"
+                className="button w-10 h-10 border-2 flex items-center justify-center bg-white dark:bg-zinc-900 active:translate-y-1 transition-transform"
               >
                 <i className="hn hn-arrow-right text-lg"></i>
               </button>
             ) : (
               <div className="w-10 h-10" />
             )}
-
           </div>
         )}
 

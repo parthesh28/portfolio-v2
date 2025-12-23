@@ -27,35 +27,34 @@ const BitDetailPage = async ({ params }: { params: Promise<{ slug: string }> }) 
     const readTime = getReadingTime(bit.content);
 
     return (
-        <div className="min-h-screen w-full flex justify-center pt-50 pb-10 px-6">
+        <div className="h-[100dvh] w-full relative overflow-hidden flex flex-col items-center justify-center pt-24 pb-24 px-6">
 
-            <div className="w-full max-w-2xl flex flex-col">
+            <div className="w-full max-w-2xl flex flex-col gap-6">
 
-                <div className="flex items-center justify-between mb-4 border-b-2 border-dashed border-zinc-600 dark:border-zinc-500 pb-3">
+                <div className="flex items-center justify-between w-full">
 
                     <Link
                         href="/bits"
-                        className="p-1.5 -ml-1.5 opacity-60 hover:opacity-100 transition-opacity"
-                        aria-label="return to logs"
+                        className="group flex items-center gap-2 text-sm font-bold tracking-widest lowercase "
                     >
-                        <i className="hn hn-arrow-left text-xl"></i>
+                        <i className="hn hn-arrow-left text-lg transition-transform"></i>
+                        <span>back</span>
                     </Link>
 
-                    <div className="flex items-center gap-3 text-xs font-bold tracking-widest opacity-60 lowercase font-mono">
-                        <i className="hn hn-edit text-sm"></i>
+                    <div className="card border-2 px-3 py-1.5 flex items-center gap-3 text-[10px] sm:text-xs font-bold tracking-widest lowercase">
                         <span>{bit.date}</span>
-                        <span>//</span>
+                        <span className="w-1 h-1 bg-current rounded-full opacity-50"></span>
                         <span>{bit.type}</span>
-                        <span>//</span>
+                        <span className="w-1 h-1 bg-current rounded-full opacity-50"></span>
                         <span>{readTime}</span>
                     </div>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl font-bold lowercase leading-tight tracking-wide text-zinc-900 dark:text-zinc-100 mb-6">
+                <h1 className="text-3xl sm:text-4xl font-bold lowercase leading-tight tracking-wide text-zinc-900 dark:text-zinc-100">
                     {bit.title}
                 </h1>
 
-                <div className="text-base sm:text-lg leading-relaxed font-medium text-zinc-800 dark:text-zinc-300 lowercase whitespace-pre-wrap mb-8 text-justify sm:text-left">
+                <div className="text-base sm:text-lg leading-relaxed font-medium text-zinc-800 dark:text-zinc-300 lowercase whitespace-pre-wrap text-justify sm:text-left">
                     {bit.content}
                 </div>
 

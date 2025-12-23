@@ -106,9 +106,14 @@ const WorkPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-start sm:justify-center pt-36 sm:pt-15 pb-4 px-6 lowercase">
+    // FIX 1: Main container uses h-[100dvh] and overflow-hidden to match the "no-scroll" app feel
+    <main className="h-[100dvh] w-full relative overflow-hidden flex flex-col items-center justify-center">
 
-      <div className="w-full max-w-2xl">
+      {/* FIX 2: Added scale transform. 
+         - scale-[0.80] on mobile shrinks the big card so it fits without scrolling.
+         - mt-20 ensures it pushes down below the fixed navbar visually.
+      */}
+      <div className="w-full max-w-2xl transform scale-[0.80] sm:scale-90 lg:scale-100 transition-transform mt-20 sm:mt-0">
 
         <div className="pb-4 pl-1">
           <h1 className="text-4xl font-bold tracking-wide lowercase">
@@ -117,7 +122,6 @@ const WorkPage = () => {
         </div>
 
         <div className="flex items-end relative z-20 top-[2px]">
-
           <button
             onClick={() => handleTabChange('projects')}
             className={`
@@ -143,10 +147,9 @@ const WorkPage = () => {
           >
             experience
           </button>
-
         </div>
 
-        <div className="w-full relative mb-8">
+        <div className="w-full relative mb-4 sm:mb-8">
 
           <div className="card relative border-2 p-5 sm:p-6 flex flex-col min-h-[22rem] sm:min-h-[24rem] z-10">
 
@@ -167,7 +170,10 @@ const WorkPage = () => {
                 <h2 className="text-3xl sm:text-4xl font-bold tracking-wide mb-3 lowercase">
                   {currentItem.title}
                 </h2>
-                <div className="text-md sm:text-base leading-6 sm:leading-7 font-medium opacity-90 lowercase text-justify sm:text-left">
+                {/* FIX 3: Added max-h constraint and custom scrollbar for the text description only. 
+                   If text is super long, only the text scrolls, not the whole page.
+                */}
+                <div className="text-md sm:text-base leading-6 sm:leading-7 font-medium opacity-90 lowercase text-justify sm:text-left max-h-[150px] overflow-y-auto custom-scrollbar pr-2">
                   {currentItem.description}
                 </div>
               </div>
@@ -226,19 +232,18 @@ const WorkPage = () => {
           </div>
         </div>
 
+        <Link
+          href="https://github.com/parthesh28?tab=repositories"
+          target="_blank"
+          className="flex flex-col items-center gap-1 group mt-20 sm:mt-4"
+        >
+          <span className="text-sm font-bold tracking-widest lowercase opacity-70">
+            [ view full archive ]
+          </span>
+        </Link>
       </div>
 
-      <Link
-        href="https://github.com/parthesh28?tab=repositories"
-        target="_blank"
-        className="flex flex-col items-center gap-1 group mt-2"
-      >
-        <span className="text-sm font-bold tracking-widest lowercase opacity-70">
-          [ view full archive ]
-        </span>
-      </Link>
-
-    </div>
+    </main>
   )
 }
 
