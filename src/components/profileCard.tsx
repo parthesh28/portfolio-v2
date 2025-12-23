@@ -66,24 +66,39 @@ const ProfileCard = ({
         </div>
     );
 
-    const WeekStats = () => (
-        <>
-            <div className='flex items-center gap-2'>
-                <i className="hn hn-analytics"></i>
-                <span className="font-bold text-lg tracking-widest">this week on keyboard:</span>
-            </div>
-            <div className="flex gap-10 mt-2 sm:flex-row sm:gap-4">
-                <div className="flex items-center gap-2">
-                    <i className='hn hn-clock' />
-                    <span className="font-semibold text-md">{data?.total_time}</span>
+    const WeekStats = () => {
+        const isInactive = !data?.total_time || data.total_time === '0 secs';
+
+        return (
+            <>
+                <div className='flex items-center gap-2'>
+                    <i className="hn hn-analytics"></i>
+                    <span className="font-bold text-lg tracking-widest">this week on keyboard:</span>
                 </div>
-                <div className="flex items-center gap-2">
-                    <i className="hn hn-code-block-solid"></i>
-                    <span className="font-semibold text-md tracking-widest lowercase">{data?.top_languages.join(', ')}</span>
-                </div>
-            </div>
-        </>
-    );
+
+                {isInactive ? (
+                    <div className="mt-2">
+                        <span className="font-semibold text-md tracking-widest italic opacity-80">
+                            was in pursuit of happyness this week...
+                        </span>
+                    </div>
+                ) : (
+                    <div className="flex gap-10 mt-2 sm:flex-row sm:gap-4">
+                        <div className="flex items-center gap-2">
+                            <i className='hn hn-clock' />
+                            <span className="font-semibold text-md">{data?.total_time}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <i className="hn hn-code-block-solid"></i>
+                            <span className="font-semibold text-md tracking-widest lowercase">
+                                {data?.top_languages?.join(', ')}
+                            </span>
+                        </div>
+                    </div>
+                )}
+            </>
+        );
+    };
 
 
     function calculateAge(birthDate: string) {
@@ -173,7 +188,7 @@ const ProfileCard = ({
                 <WeekStats />
             </div>
 
-            <div className='flex flex-col items-center justify-center mt-auto'>
+            <div className='flex flex-col px-4 items-center justify-center mt-auto'>
                 <PixelSeparator />
                 <p className="quote text-lg p-1 sm:p-1.5 font-bold justify-center tracking-widest">
                     ॥ तत्त्वमसि ॥
@@ -192,7 +207,7 @@ const ProfileCard = ({
 
     const BackContent = () => (
         <div className="h-full flex flex-col">
-            <SectionHeader title="expertise" />
+            <SectionHeader title="things i love right now" />
 
             <div className='px-5 pt-4 flex-1 overflow-y-auto custom-scrollbar'>
 

@@ -72,7 +72,7 @@ function Home() {
         flex flex-col lg:flex-row items-center justify-center 
         max-w-5xl w-full gap-4 sm:gap-10 
         transform scale-[0.90] sm:scale-90 md:scale-100 lg:scale-100 transition-transform 
-        mt-10
+        mt-12
       '>
 
         <div className='flex-shrink-0'>
@@ -85,7 +85,7 @@ function Home() {
           lg:w-px lg:border-r-2 lg:border-b-0 lg:h-64 lg:mx-10
         " />
 
-        <div className="flex-1 max-w-xl text-center lg:text-left flex flex-col items-center lg:items-start gap-4 sm:gap-6">
+        <div className="flex-1 max-w-xl text-center lg:text-left flex flex-col items-center lg:items-start gap-3 sm:gap-3">
 
           <h1 className="text-4xl sm:text-6xl font-medium leading-tight tracking-normal lowercase">
             just a{' '}
@@ -100,7 +100,7 @@ function Home() {
           </h1>
 
           <p className="text-lg sm:text-xl text-zinc-800 dark:text-zinc-400 leading-relaxed font-normal lowercase">
-            a{' '} full-stack
+            a{' '}
             <span className="text-zinc-900 dark:text-zinc-100 font-bold px-1">
               web3
             </span>
@@ -112,22 +112,14 @@ function Home() {
             <span className="text-zinc-900 dark:text-zinc-100 font-semibold px-1">
               android
             </span>
-            , from on-chain smart contracts to{' '}
-            <span className="text-zinc-900 dark:text-zinc-100 font-semibold px-1">
-              react
-            </span>
-            and{' '}
-            <span className="text-zinc-900 dark:text-zinc-100 font-semibold px-1">
-              react native
-            </span>
-            interfaces. 
+            , from smart contracts to beautiful interfaces
           </p>
 
           <p className="text-lg sm:text-lg text-zinc-700 dark:text-zinc-500 leading-relaxed font-semibold lowercase">
             <span className="italic text-zinc-900 dark:text-zinc-100">
               i can love anything if i spend enough time with it
             </span>
-            {' '}— thing i realized about myself, be it with people, concepts or code.
+            {' '}— a thing i realized about myself, be it with people, concepts, code or myself.
           </p>
 
           <Button>
