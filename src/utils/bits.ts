@@ -61,5 +61,14 @@ export const bits = [
         title: 'fear of the inevitable',
         content: "we all live to die. we witness people burning or being buried, worrying that one day we will leave this world too. but why does this fear persist? we know everything ends; we know the truth. why can't we simply accept it?\n\nwhat drives us to fill our time with unnecessary distractions, merely to mask this reality? we perform rituals and pray, doing anything to keep this ultimate truth at bay—even though it will catch up to us regardless.\n\nwhy fear death and lose the beauty of life? why ignore death and fear the uncertainty of living? why fear outcomes that are destined to occur, regardless of our anxiety?",
         tags: ['philosophy', 'death', 'life']
+    },
+    {
+        id: '8',
+        slug: 'zero-copy-deserialization',
+        type: 'tech',
+        date: '27 dec 2025',
+        title: 'zero-copy deserialization',
+        content: "zero-copy deserialization does not convert bytes into values. instead, it reinterprets an existing byte buffer as a typed struct using a reference. the data is never copied; the struct is simply a view over raw memory.\n\nthis is fast, but unsafe. the compiler assumes the bytes already satisfy all invariants of the type: correct layout, correct alignment, correct padding, and valid values. none of these are checked at runtime. if any assumption is violated—such as a misaligned `u64`—the behavior is undefined and may crash immediately on strict architectures like bpf.\n\nbecause of this, zero-copy is only viable when copying is too expensive and the memory layout is fully controlled. systems like blockchains, kernels, and databases rely on it to avoid copying large state, but they pay for it with rigid layouts, explicit byte fields, and heavy safety discipline.",
+        tags: ['rust', 'systems', 'solana', 'performance']
     }
 ];
