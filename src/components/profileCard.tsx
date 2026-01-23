@@ -231,7 +231,7 @@ const ProfileCard = ({
 
             <div className='flex flex-col items-center justify-center mt-2 border-black'>
                 <PixelSeparator />
-                <Link href={'https://buymecoffee.com/parthesh28'} className="underline text-md font-bold p-1 sm:p-1.5 tracking-widest lowercase">
+                <Link href={'https://buymeacoffee.com/parthesh28'} className="underline text-md font-bold p-1 sm:p-1.5 tracking-widest lowercase">
                     buy me coffee
                 </Link>
             </div>
