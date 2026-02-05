@@ -70,5 +70,14 @@ export const bits = [
         title: 'zero-copy deserialization',
         content: "zero-copy deserialization does not convert bytes into values. instead, it reinterprets an existing byte buffer as a typed struct using a reference. the data is never copied; the struct is simply a view over raw memory.\n\nthis is fast, but unsafe. the compiler assumes the bytes already satisfy all invariants of the type: correct layout, correct alignment, correct padding, and valid values. none of these are checked at runtime. if any assumption is violated—such as a misaligned `u64`—the behavior is undefined and may crash immediately on strict architectures like bpf.\n\nbecause of this, zero-copy is only viable when copying is too expensive and the memory layout is fully controlled. systems like blockchains, kernels, and databases rely on it to avoid copying large state, but they pay for it with rigid layouts, explicit byte fields, and heavy safety discipline.",
         tags: ['rust', 'systems', 'solana', 'performance']
+    },
+    {
+        id: '9',
+        slug: 'cnfts-are-proofs-not-objects',
+        type: 'tech',
+        date: '05 feb 2026',
+        title: 'compressed nfts are proofs, not objects',
+        content: "the common mistake with compressed nfts is asking \"where is the nft stored?\" that assumes an nft must exist as an on-chain object. it doesn’t.\nin the traditional model, an nft is on-chain state: mints, token accounts, metadata. ownership is read directly from accounts. this model is simple, but expensive and difficult to scale.\n\ncompressed nfts replace storage with proof. each nft is a leaf in a merkle tree whose root is anchored on-chain. the chain stores only the root; ownership is validated by submitting a merkle proof that reconstructs it.\nimages and metadata still live on ipfs or arweave. their uri is committed into the leaf hash instead of a dedicated account.\n\nnothing is trusted off-chain. indexers only surface leaf data and proofs; the chain verifies everything.\nthe tradeoff is intentional: cnfts sacrifice on-chain discoverability and composability to make millions of nfts economically viable.",
+        tags: ['solana', 'nfts', 'scaling', 'cryptography']
     }
 ];
