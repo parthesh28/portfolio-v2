@@ -77,7 +77,7 @@ function Home() {
     const isInactive = !stats?.total_time || stats.total_time === '0 secs';
 
     return (
-      <div className='flex flex-col gap-1 border-l-2 border-zinc-600 dark:border-zinc-400 pl-4'>
+      <div className='flex flex-col gap-1 border-l-2 border-zinc-600 dark:border-zinc-600 pl-4'>
         <div className='flex items-center gap-2'>
           <i className="hn hn-analytics text-xs"></i>
           <span className="font-bold text-md tracking-widest ">this week on keyboard</span>
@@ -88,10 +88,10 @@ function Home() {
             was in pursuit of happyness...
           </span>
         ) : (
-          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-sm">
-            <span className="font-medium text-lg">{stats?.total_time}</span>
-            <span className="hidden sm:inline">|</span>
-            <span className="text-lg font-medium lowercase">
+          <div className="flex flex-row sm:items-center gap-1 sm:gap-4 text-sm">
+            <span className="font-medium text-md">{stats?.total_time}</span>
+            <span className='font-black px-1' >|</span>
+            <span className="text-md font-medium lowercase">
               {stats?.top_languages?.join(', ')}
             </span>
           </div>
@@ -104,29 +104,22 @@ function Home() {
     <main className='min-h-[100dvh] w-full flex items-center justify-center p-6 sm:p-12 pt-20 sm:pt-28'>
       <div className='max-w-2xl w-full flex flex-col gap-8 sm:gap-10'>
 
-        <div className='w-full flex flex-col sm:flex-row gap-6 sm:gap-8 items-center mt-2'>
+        <div className='w-full flex flex-col sm:flex-row gap-3 sm:gap-8 items-center'>
           <ProfileAvatar
             src="/profile.jpg"
           />
-          <div className='flex-1'>
+          <div className= 'flex-1'>
             <p className='text-xl leading-relaxed'>
               hey, this is <span className='font-medium underline'>parthesh purohit,</span> a human.
             </p>
-            <p className='text-base sm:text-lg leading-relaxed opacity-95'>
-              currently learning distributed systems and understanding solana's internals. 
-              actively contributing to the ecosystem.
+            <p className='text-base sm:text-lg leading-relaxed'>  
+                currently learning distributed systems and solana.
             </p>
-            <p className='text-base sm:text-lg leading-relaxed opacity-95'>
-              i can love anything if i spend enough time with it - be it code, people or myself .
-            </p>
-
           </div>
         </div>
 
-    
-
         <div className='w-full border-l-2 border-zinc-600 dark:border-zinc pl-4'>
-          <div className='flex items-center gap-2 mb-3'>
+          <div className='flex items-center gap-2 mb-2'>
             <i className="hn hn-github text-md"></i>
             <span className="font-bold text-md tracking-widest">contributions</span>
           </div>
@@ -139,7 +132,7 @@ function Home() {
                   light: ['#f5f5f5', '#bfbfbf', '#8c8c8c', '#525252', '#1a1a1a'],
                   dark: ['#535357', '#71717a', '#a1a1aa', '#d4d4d8', '#f4f4f5'],
                 }}
-                blockSize={11}
+                blockSize={10}
                 blockMargin={3}
                 fontSize={13}
                 showWeekdayLabels
@@ -161,7 +154,7 @@ function Home() {
         <WeekStats />
 
         <div className='pb-5 border-l-2 border-zinc-600 dark:border-zinc pl-4'>
-          <div className='flex items-center gap-2 mb-3 '>
+          <div className='flex items-center gap-2'>
             <i className="hn hn-heart-solid text-md"></i>
             <span className="font-bold text-md tracking-widest">things i am in love with</span>
           </div>
