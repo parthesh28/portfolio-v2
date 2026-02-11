@@ -1,13 +1,20 @@
 'use client'
-import ProfileCard from '@/components/profileCard'
+
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image';
+import useDiscord from '@/hooks/useDiscord';
+import Badge from '@/components/badge';
 import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
-import Button from '@/components/button';
+import { ActivityCalendar } from 'react-activity-calendar';
+import StatusProfile from '@/components/profileAvatar';
+import ProfileAvatar from '@/components/profileAvatar';
 
 interface WakaTimeData {
   total_seconds?: number;
   human_readable_total?: string;
   languages?: { name: string; percent: number }[];
+  total_time?: string;
+  top_languages?: string[];
   [key: string]: any;
 }
 
@@ -15,12 +22,23 @@ function Home() {
   const [stats, setStats] = useState<WakaTimeData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const [text, setText] = useState<string>('');
-  const [isDeleting, setIsDeleting] = useState<boolean>(false);
-  const [loopNum, setLoopNum] = useState<number>(0);
-  const [typingSpeed, setTypingSpeed] = useState<number>(150);
+  const [contribs, setContribs] = useState<any[]>([]);
+  const [loadingGithub, setLoadingGithub] = useState(true);
 
-  const roles: string[] = ["observer","learner", "writer"];
+  const [calendarDays, setCalendarDays] = useState(100);
+
+  const stack = ['solana', 'ui/ux', 'systems', 'data structures'];
+
+  useEffect(() => {
+    const handleResize = () => {
+      setCalendarDays(window.innerWidth > 640 ? 250 : 151);
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const fetchWakaTimeStats = async () => {
@@ -28,8 +46,7 @@ function Home() {
         setLoading(true);
         const response = await fetch('/api/wakatime');
         if (!response.ok) throw new Error('Failed to fetch stats');
-
-        const data: WakaTimeData = await response.json();
+        const data = await response.json();
         setStats(data);
       } catch (err) {
         console.error(err);
@@ -41,99 +58,122 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    const handleType = () => {
-      const i = loopNum % roles.length;
-      const fullText = roles[i];
-
-      setText(
-        isDeleting
-          ? fullText.substring(0, text.length - 1)
-          : fullText.substring(0, text.length + 1)
-      );
-
-      setTypingSpeed(isDeleting ? 50 : 100 + Math.random() * 50);
-
-      if (!isDeleting && text === fullText) {
-        window.setTimeout(() => setIsDeleting(true), 2000);
-      } else if (isDeleting && text === '') {
-        setIsDeleting(false);
-        setLoopNum(loopNum + 1);
-        setTypingSpeed(500);
+    const fetchGithub = async () => {
+      try {
+        const username = 'parthesh28';
+        const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`);
+        const json = await res.json();
+        setContribs(json.contributions);
+      } catch (error) {
+        console.error("Failed to fetch github stats", error);
+      } finally {
+        setLoadingGithub(false);
       }
     };
+    fetchGithub();
+  }, []);
 
-    const timer = window.setTimeout(handleType, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, roles, typingSpeed]);
+  const WeekStats = () => {
+    const isInactive = !stats?.total_time || stats.total_time === '0 secs';
+
+    return (
+      <div className='flex flex-col gap-1 border-l-2 border-zinc-600 dark:border-zinc-400 pl-4'>
+        <div className='flex items-center gap-2'>
+          <i className="hn hn-analytics text-xs"></i>
+          <span className="font-bold text-md tracking-widest ">this week on keyboard</span>
+        </div>
+
+        {isInactive ? (
+          <span className="italic opacity-50 text-sm">
+            was in pursuit of happyness...
+          </span>
+        ) : (
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-sm">
+            <span className="font-medium text-lg">{stats?.total_time}</span>
+            <span className="hidden sm:inline">|</span>
+            <span className="text-lg font-medium lowercase">
+              {stats?.top_languages?.join(', ')}
+            </span>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
-    <main className='h-[100dvh] w-full relative overflow-hidden flex flex-col items-center justify-center'>
-      <section className='
-        flex flex-col lg:flex-row items-center justify-center 
-        max-w-5xl w-full gap-4 sm:gap-10 
-        transform scale-[0.90] sm:scale-90 md:scale-100 lg:scale-100 transition-transform 
-        mt-12
-      '>
+    <main className='min-h-[100dvh] w-full flex items-center justify-center p-6 sm:p-12 pt-20 sm:pt-28'>
+      <div className='max-w-2xl w-full flex flex-col gap-8 sm:gap-10'>
 
-        <div className='flex-shrink-0'>
-          {stats && <ProfileCard data={stats} />}
+        <div className='w-full flex flex-col sm:flex-row gap-6 sm:gap-8 items-center mt-2'>
+          <ProfileAvatar
+            src="/profile.jpg"
+          />
+          <div className='flex-1'>
+            <p className='text-xl leading-relaxed'>
+              hey, this is <span className='font-medium underline'>parthesh purohit,</span> a human.
+            </p>
+            <p className='text-base sm:text-lg leading-relaxed opacity-95'>
+              currently learning distributed systems and understanding solana's internals. 
+              actively contributing to the ecosystem.
+            </p>
+            <p className='text-base sm:text-lg leading-relaxed opacity-95'>
+              i can love anything if i spend enough time with it - be it code, people or myself .
+            </p>
+
+          </div>
         </div>
 
-        <div className="
-          border-zinc-900 dark:border-zinc-500 border-dashed
-          w-full border-b-2 my-2 sm:my-0
-          lg:w-px lg:border-r-2 lg:border-b-0 lg:h-64 lg:mx-10
-        " />
+    
 
-        <div className="flex-1 max-w-xl text-center lg:text-left flex flex-col items-center lg:items-start gap-3 sm:gap-3">
+        <div className='w-full border-l-2 border-zinc-600 dark:border-zinc pl-4'>
+          <div className='flex items-center gap-2 mb-3'>
+            <i className="hn hn-github text-md"></i>
+            <span className="font-bold text-md tracking-widest">contributions</span>
+          </div>
 
-          <h1 className="text-4xl sm:text-6xl font-medium leading-tight tracking-normal lowercase">
-            just a{' '}
-            <span className="inline-block">
-              <span className="text-zinc-900 dark:text-zinc-100 font-bold tracking-wide">
-                {text}
-              </span>
-              <span className="animate-pulse font-bold text-zinc-900 dark:text-zinc-100 ml-1">
-                _
-              </span>
-            </span>
-          </h1>
-
-          <p className="text-lg sm:text-xl text-zinc-800 dark:text-zinc-400 leading-relaxed font-normal lowercase">
-            a{' '}
-            <span className="text-zinc-900 dark:text-zinc-100 font-bold px-1">
-              web3
-            </span>
-            developer building on solana for{' '}
-            <span className="text-zinc-900 dark:text-zinc-100 font-semibold px-1">
-              web
-            </span>
-            and{' '}
-            <span className="text-zinc-900 dark:text-zinc-100 font-semibold px-1">
-              android
-            </span>
-            , from smart contracts to beautiful interfaces
-          </p>
-
-          <p className="text-lg sm:text-lg text-zinc-700 dark:text-zinc-500 leading-relaxed font-semibold lowercase">
-            <span className="italic text-zinc-900 dark:text-zinc-100">
-              i can love anything if i spend enough time with it
-            </span>
-            {' '}— a thing i realized about myself, be it with people, concepts, code or myself.
-          </p>
-
-          <Button>
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              resume
-            </a>
-          </Button>
-
+          {!loadingGithub && contribs.length > 0 && (
+            <div className='w-full overflow-x-auto'>
+              <ActivityCalendar
+                data={contribs.slice(-calendarDays)}
+                theme={{
+                  light: ['#f5f5f5', '#bfbfbf', '#8c8c8c', '#525252', '#1a1a1a'],
+                  dark: ['#535357', '#71717a', '#a1a1aa', '#d4d4d8', '#f4f4f5'],
+                }}
+                blockSize={11}
+                blockMargin={3}
+                fontSize={13}
+                showWeekdayLabels
+                renderBlock={(block, activity) => (
+                  React.cloneElement(block, {
+                    style: {
+                      ...block.props.style,
+                      borderRadius: '2px',
+                    },
+                  })
+                )}
+                labels={{
+                  totalCount: `{{count}} commits in last ${calendarDays} days`
+                }}
+              />
+            </div>
+          )}
         </div>
-      </section>
+        <WeekStats />
+
+        <div className='pb-5 border-l-2 border-zinc-600 dark:border-zinc pl-4'>
+          <div className='flex items-center gap-2 mb-3 '>
+            <i className="hn hn-heart-solid text-md"></i>
+            <span className="font-bold text-md tracking-widest">things i am in love with</span>
+          </div>
+          <div className='flex flex-wrap gap-2'>
+            {stack.map((tech) => (
+              <Badge key={tech} className='text-sm px-3 py-1.5 border-zinc-300 dark:border-zinc-700'>
+                {tech}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      </div>
     </main>
   )
 }

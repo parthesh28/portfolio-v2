@@ -35,7 +35,7 @@ const BitDetailPage = async ({ params }: { params: Promise<{ slug: string }> }) 
 
                     <Link
                         href="/bits"
-                        className="group flex items-center gap-2 text-sm font-bold tracking-widest lowercase "
+                        className="group flex items-center gap-2 text-lg     font-bold tracking-widest lowercase "
                     >
                         <i className="hn hn-arrow-left text-lg transition-transform"></i>
                         <span>back</span>

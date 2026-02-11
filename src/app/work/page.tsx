@@ -13,7 +13,7 @@ const projects = [
         a production-grade printing ecosystem. replaces public pc logins with a secure oauth-based workflow. comprises three components: a <span className="font-bold text-zinc-900 dark:text-zinc-100">react native</span> android app for ordering, a restful api gateway, and a high-performance <span className="font-bold text-zinc-900 dark:text-zinc-100">rust</span> daemon that interfaces directly with native <span className="font-bold text-zinc-900 dark:text-zinc-100">windows print apis</span> to execute jobs.
       </>
     ),
-    tags: ['rust', 'react native','systems'],
+    tags: ['rust', 'react native', 'systems'],
     links: { github: 'https://github.com/parthesh28/printf', live: null },
     status: 'jan 2025'
   },
@@ -59,16 +59,16 @@ const experiences = [
   },
   {
     type: 'experience',
-    title: 'codex club',
+    title: 'turbin3',
     description: (
       <>
-        <span className="block mb-2 font-bold text-zinc-900 dark:text-zinc-100">{`> webmaster & tech lead`}</span>
-        led the technical division of the computer engineering department at sfit. revamped and maintained the club website, developed a native <span className="font-bold text-zinc-900 dark:text-zinc-100">android game</span> for the annual tech fest, and personally conducted an in-depth <span className="font-bold text-zinc-900 dark:text-zinc-100">git & github workshop</span> attended by 120+ students.
+        <span className="block mb-2 font-bold text-zinc-900 dark:text-zinc-100">{`> builders cohort`}</span>
+        part of an intensive cohort for <span className="font-bold text-zinc-900 dark:text-zinc-100">solana developers</span> focused on advanced smart contract techniques and holistic project development. covers <span className="font-bold text-zinc-900 dark:text-zinc-100">architecture design</span>, <span className="font-bold text-zinc-900 dark:text-zinc-100">rust optimization</span>, communication skills, and developer experience best practices—going beyond code to build production-ready applications.
       </>
     ),
-    tags: ['leadership', 'android', 'mentoring', 'web dev'],
-    links: { github: undefined, live: 'https://codex.sfit.ac.in' },
-    status: '2024 - 2025'
+    tags: ['solana', 'smart contracts', 'architecture', 'rust'],
+    links: { github: undefined, live: 'https://turbin3.org' },
+    status: 'jan 2026 - present'
   },
   {
     type: 'experience',
@@ -120,7 +120,7 @@ const WorkPage = () => {
           <button
             onClick={() => handleTabChange('projects')}
             className={`
-              px-8 py-3 font-bold text-sm tracking-widest transition-none border-2 border-zinc-900
+             cursor-pointer px-8 py-3 font-bold text-sm tracking-widest transition-none border-2 border-zinc-900
               ${activeTab === 'projects'
                 ? 'card z-20 pb-[14px]'
                 : 'tab z-0 text-zinc-500'
@@ -133,7 +133,7 @@ const WorkPage = () => {
           <button
             onClick={() => handleTabChange('experience')}
             className={`
-              px-8 py-3 font-bold text-sm tracking-widest transition-none border-2 border-zinc-900
+              cursor-pointer px-8 py-3 font-bold text-sm tracking-widest transition-none border-2 border-zinc-900
               ${activeTab === 'experience'
                 ? 'card z-20 pb-[14px]'
                 : 'tab z-0 text-zinc-500 border-b-2'
@@ -206,17 +206,17 @@ const WorkPage = () => {
             </div>
 
             <div className="absolute -bottom-5 left-0 w-full flex justify-center items-center gap-4 z-20">
-              <button onClick={prevItem} className="button w-10 h-10 border-2 flex items-center justify-center transition-none active:translate-y-1 active:shadow-none">
+              <button onClick={prevItem} className="cursor-pointer button w-10 h-10 border-2 flex items-center justify-center transition-none active:translate-y-1 active:shadow-none">
                 <i className="hn hn-arrow-left text-lg"></i>
               </button>
 
               <div className="card flex gap-2 px-3 py-2 border-2">
                 {currentList.map((_, idx) => (
-                  <div key={idx} className={`w-2 h-2 ${idx === currentIndex ? 'bg-current' : 'bg-gray-400 dark:bg-zinc-600'}`} />
+                  <div key={idx} className={`w-2 h-2 ${idx === currentIndex ? 'bg-current' : 'bg-gray-400 dark:bg-zinc-500'}`} />
                 ))}
               </div>
 
-              <button onClick={nextItem} className="button w-10 h-10 border-2 flex items-center justify-center transition-none active:translate-y-1 active:shadow-none">
+              <button onClick={nextItem} className="cursor-pointer button w-10 h-10 border-2 flex items-center justify-center transition-none active:translate-y-1 active:shadow-none">
                 <i className="hn hn-arrow-right text-lg"></i>
               </button>
             </div>
@@ -230,7 +230,7 @@ const WorkPage = () => {
           className="flex flex-col items-center gap-1 group mt-20 sm:mt-4"
         >
           <span className="text-sm font-bold tracking-widest lowercase opacity-70">
-            [ view full archive ]
+            [ view all projects ]
           </span>
         </Link>
       </div>

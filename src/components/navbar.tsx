@@ -67,13 +67,13 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="fixed left-1/2 -translate-x-1/2 z-50 navbar card-shadow border-2 px-4 py-2 w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-[55rem] flex items-center justify-between mt-4 sm:mt-6 bg-white dark:bg-zinc-900 transition-colors">
+    <nav className="fixed left-1/2 -translate-x-1/2 z-50 navbar card-shadow border-2 px-4 py-2 w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-[55rem] flex items-center justify-between mt-4 sm:mt-6">
 
       <div className='flex items-center'>
         <div className="p-1 logo border-2">
           <DoubleSquareIcon />
         </div>
-        <p className="text-2xl sm:text-3xl font-bold px-2 sm:px-3 py-1 sm:py-2 tracking-widest lowercase">
+        <p className="text-2xl sm:text-3xl font-bold px-2 sm:px-3 py-1 sm:py-2 tracking-wide">
           parthesh
         </p>
       </div>
@@ -86,7 +86,7 @@ const Navbar = () => {
 
         <button
           onClick={toggleTheme}
-          className="pl-2 sm:pl-0 py-2 sm:py-1.5 flex items-center justify-center cursor-pointer min-w-[30px] transition-none active:translate-y-1 active:shadow-none"
+          className="pl-2 sm:pl-0 py-2 sm:py-1.5 flex items-center justify-center cursor-pointer min-w-[30px]"
           aria-label="Toggle Theme"
         >
           {!mounted ? (

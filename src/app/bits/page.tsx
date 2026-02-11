@@ -52,8 +52,8 @@ const Bitspage = () => {
                 className={`
                     px-4 py-1 text-sm font-bold lowercase cursor-pointer
                     ${filter === type
-                    ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-black'
-                    : 'text-zinc-500 dark:text-zinc-400'
+                    ? 'bg-zinc-700 border-2 border-black text-white dark:bg-zinc-200 dark:text-black'
+                    : 'text-zinc-700 dark:text-zinc-300'
                   }
                 `}
               >
@@ -99,7 +99,7 @@ const Bitspage = () => {
             {currentPage > 0 ? (
               <button
                 onClick={prevPage}
-                className="button w-10 h-10 border-2 flex items-center justify-center bg-white dark:bg-zinc-900 active:translate-y-1 transition-transform"
+                className="cursor-pointer button w-10 h-10 border-2 flex items-center justify-center bg-white dark:bg-zinc-900 active:translate-y-1 transition-transform"
               >
                 <i className="hn hn-arrow-left text-lg"></i>
               </button>
@@ -114,7 +114,7 @@ const Bitspage = () => {
             {currentPage < totalPages - 1 ? (
               <button
                 onClick={nextPage}
-                className="button w-10 h-10 border-2 flex items-center justify-center bg-white dark:bg-zinc-900 active:translate-y-1 transition-transform"
+                className="cursor-pointer button w-10 h-10 border-2 flex items-center justify-center bg-white dark:bg-zinc-900 active:translate-y-1 transition-transform"
               >
                 <i className="hn hn-arrow-right text-lg"></i>
               </button>
