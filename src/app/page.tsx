@@ -1,12 +1,8 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
-import Image from 'next/image';
-import useDiscord from '@/hooks/useDiscord';
+import { useEffect, useState } from 'react'
 import Badge from '@/components/badge';
 import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
-import { ActivityCalendar } from 'react-activity-calendar';
-import StatusProfile from '@/components/profileAvatar';
 import ProfileAvatar from '@/components/profileAvatar';
 
 interface WakaTimeData {
@@ -22,23 +18,8 @@ function Home() {
   const [stats, setStats] = useState<WakaTimeData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const [contribs, setContribs] = useState<any[]>([]);
-  const [loadingGithub, setLoadingGithub] = useState(true);
-
-  const [calendarDays, setCalendarDays] = useState(100);
-
-  const stack = ['solana', 'ui/ux', 'systems', 'data structures'];
-
-  useEffect(() => {
-    const handleResize = () => {
-      setCalendarDays(window.innerWidth > 640 ? 250 : 151);
-    };
-
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const frontendStack = ['Next.js', 'React Native'];
+  const backendStack = ['anchor', 'Hono'];
 
   useEffect(() => {
     const fetchWakaTimeStats = async () => {
@@ -57,22 +38,6 @@ function Home() {
     fetchWakaTimeStats();
   }, []);
 
-  useEffect(() => {
-    const fetchGithub = async () => {
-      try {
-        const username = 'parthesh28';
-        const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`);
-        const json = await res.json();
-        setContribs(json.contributions);
-      } catch (error) {
-        console.error("Failed to fetch github stats", error);
-      } finally {
-        setLoadingGithub(false);
-      }
-    };
-    fetchGithub();
-  }, []);
-
   const WeekStats = () => {
     const isInactive = !stats?.total_time || stats.total_time === '0 secs';
 
@@ -84,7 +49,7 @@ function Home() {
         </div>
 
         {isInactive ? (
-          <span className="italic opacity-50 text-sm">
+          <span className="italic text-sm">
             was in pursuit of happyness...
           </span>
         ) : (
@@ -101,69 +66,60 @@ function Home() {
   };
 
   return (
-    <main className='min-h-[100dvh] w-full flex items-center justify-center p-6 sm:p-12 pt-20 sm:pt-28'>
-      <div className='max-w-2xl w-full flex flex-col gap-8 sm:gap-10'>
-
-        <div className='w-full flex flex-col sm:flex-row gap-3 sm:gap-8 items-center'>
-          <ProfileAvatar
-            src="/profile.jpg"
-          />
-          <div className= 'flex-1'>
+    <main className='min-h-[100dvh] w-full flex items-center justify-center p-6 sm:p-12 pt-10 sm:pt-28'>
+      <div className='max-w-2xl w-full flex flex-col gap-4 sm:gap-10'>
+        <div className='w-full flex flex-col sm:flex-row gap-3 sm:gap-5 items-center'>
+          <ProfileAvatar src="/profile.jpg" />
+          <div className='flex-1 text-center sm:text-left'>
             <p className='text-xl leading-relaxed'>
-              hey, this is <span className='font-medium underline'>parthesh purohit,</span> a human.
+              hey, this is <span className='font-medium underline'>parthesh purohit,</span>.
             </p>
-            <p className='text-base sm:text-lg leading-relaxed'>  
-                currently learning distributed systems and solana.
+            <p className='text-md leading-relaxed'>
+              a computer science undergrad, full-stack dev and <span className='font-bold tracking-wide underline underline-offset-1'>a human</span>.
             </p>
           </div>
         </div>
 
-        <div className='w-full border-l-2 border-zinc-600 dark:border-zinc pl-4'>
-          <div className='flex items-center gap-2 mb-2'>
-            <i className="hn hn-github text-md"></i>
-            <span className="font-bold text-md tracking-widest">contributions</span>
-          </div>
-
-          {!loadingGithub && contribs.length > 0 && (
-            <div className='w-full overflow-x-auto'>
-              <ActivityCalendar
-                data={contribs.slice(-calendarDays)}
-                theme={{
-                  light: ['#f5f5f5', '#bfbfbf', '#8c8c8c', '#525252', '#1a1a1a'],
-                  dark: ['#535357', '#71717a', '#a1a1aa', '#d4d4d8', '#f4f4f5'],
-                }}
-                blockSize={10}
-                blockMargin={3}
-                fontSize={13}
-                showWeekdayLabels
-                renderBlock={(block, activity) => (
-                  React.cloneElement(block, {
-                    style: {
-                      ...block.props.style,
-                      borderRadius: '2px',
-                    },
-                  })
-                )}
-                labels={{
-                  totalCount: `{{count}} commits in last ${calendarDays} days`
-                }}
-              />
-            </div>
-          )}
-        </div>
         <WeekStats />
 
-        <div className='pb-5 border-l-2 border-zinc-600 dark:border-zinc pl-4'>
+        <div className='flex flex-col pt-2 gap-2 border-l-2 border-zinc-600 dark:border-zinc-600 pl-4'>
           <div className='flex items-center gap-2'>
-            <i className="hn hn-heart-solid text-md"></i>
-            <span className="font-bold text-md tracking-widest">things i am in love with</span>
+            <i className="hn hn-heart text-md"></i>
+            <span className="font-bold text-md tracking-widest">things i know:</span>
           </div>
-          <div className='flex flex-wrap gap-2'>
-            {stack.map((tech) => (
-              <Badge key={tech} className='text-sm px-3 py-1.5 border-zinc-300 dark:border-zinc-700'>
-                {tech}
-              </Badge>
-            ))}
+
+          <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
+            <div className='card border-2 border-zinc-900 dark:border-zinc-200 p-3 flex flex-col justify-between gap-3'>
+              <div>
+                <h3 className='font-bold text-sm mb-1'>frontend</h3>
+                <p className='text-sm leading-relaxed'>
+                designing interfaces for the web and native platforms.
+                </p>
+              </div>
+              <div className='flex flex-wrap gap-2'>
+                {frontendStack.map(tech => (
+                  <Badge key={tech} className='badge border-zinc-400 dark:border-zinc-600'>{tech}</Badge>
+                ))}
+              </div>
+            </div>
+
+            <div className='card border-2 border-zinc-900 dark:border-zinc-200 p-3 flex flex-col justify-between gap-3'>
+              <div>
+                <h3 className='font-bold text-sm mb-1'>backend</h3>
+                <p className='text-sm leading-relaxed'>
+                 writing contracts on solana and developing REST APIs.
+                </p>
+              </div>
+              <div className='flex flex-wrap gap-2'>
+                {backendStack.map(tech => (
+                  <Badge key={tech} className='badge border-zinc-400 dark:border-zinc-600'>{tech}</Badge>
+                ))}
+              </div>
+              
+            </div>
+            <div className='text-md font-medium'>
+              + practicing critical thinking with <span className='not-italic font-bold tracking-wide'>java @ <a  className='underline cursor-pointer font-bold underline-offset-1' href="https://codeforces.com/profile/parthesh28">codeforces</a></span>.
+            </div>
           </div>
         </div>
       </div>

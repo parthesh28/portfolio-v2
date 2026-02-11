@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&family=Kalam:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap');
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -10,7 +10,6 @@
   --bg-card-color: theme(--color-stone-300 / 100%);
   --bg-tab-color: theme(--color-stone-300 / 100%);
   --bg-button-color: theme(--color-neutral-400 / 100%);
-  --bg-socials-color: theme(--color-zinc-700 / 100%);
   --bg-logo-color: theme(--color-neutral-600 / 100%);
   --border-color: theme(--color-neutral-800/ 100%);
   --shadow-color: theme(--color-neutral-800 / 100%);
@@ -26,7 +25,6 @@
   --bg-card-color: theme(--color-zinc-700 / 100%);
   --bg-tab-color: theme(--color-zinc-700 / 100%);
   --bg-button-color: theme(--color-zinc-600 / 100%);
-  --bg-socials-color: theme(--color-neutral-600 / 100%);
   --bg-logo-color: theme(--color-neutral-600 / 100%);
   --border-color: theme(--color-neutral-900 / 100%);
   --shadow-color: theme(--color-slate-900 / 100%);
@@ -61,15 +59,6 @@ body {
 .tab {
   background-color: var(--bg-tab-color);
   box-shadow: 3px 0px 0px 0px var(--shadow-color);
-}
-
-.card-1 {
-  background-color: var(--bg-card-color);
-  border-color: var(--border-color);
-}
-
-.quote {
-  font-family: 'Kalam';
 }
 
 .navlink {
@@ -108,6 +97,4 @@ body {
   height: 100dvh;
   z-index: -10000;
   background-color: var(--background-color);
-
-  will-change: transform;
 }

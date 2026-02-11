@@ -22,7 +22,7 @@ const projects = [
     title: 'pulp',
     description: (
       <>
-        a text sharing platform available across three interfaces. the core restful api (<span className="font-bold text-zinc-900 dark:text-zinc-100">hono</span>/<span className="font-bold text-zinc-900 dark:text-zinc-100">sqlite</span>) powers a <span className="font-bold text-zinc-900 dark:text-zinc-100">next.js</span> web app, a native cli tool written in <span className="font-bold text-zinc-900 dark:text-zinc-100">go</span>, and a custom <span className="font-bold text-zinc-900 dark:text-zinc-100">vs code extension</span>—allowing developers to share code snippets directly from their editor environment.
+        a text sharing platform available across three interfaces. the core rest api (<span className="font-bold text-zinc-900 dark:text-zinc-100">hono</span>/<span className="font-bold text-zinc-900 dark:text-zinc-100">sqlite</span>) powers a <span className="font-bold text-zinc-900 dark:text-zinc-100">next.js</span> web app, a native cli tool written in <span className="font-bold text-zinc-900 dark:text-zinc-100">go</span>, and a custom <span className="font-bold text-zinc-900 dark:text-zinc-100">vs code extension</span>—allowing developers to share code snippets directly from their editor environment.
       </>
     ),
     tags: ['next.js', 'go (cli)', 'vs code api', 'hono'],
@@ -123,7 +123,7 @@ const WorkPage = () => {
              cursor-pointer px-8 py-3 font-bold text-sm tracking-widest transition-none border-2 border-zinc-900
               ${activeTab === 'projects'
                 ? 'card z-20 pb-[14px]'
-                : 'tab z-0 text-zinc-500'
+                : 'tab z-0 text-zinc-400'
               }
             `}
           >
@@ -136,7 +136,7 @@ const WorkPage = () => {
               cursor-pointer px-8 py-3 font-bold text-sm tracking-widest transition-none border-2 border-zinc-900
               ${activeTab === 'experience'
                 ? 'card z-20 pb-[14px]'
-                : 'tab z-0 text-zinc-500 border-b-2'
+                : 'tab z-0 text-zinc-400 border-b-2'
               }
             `}
           >
