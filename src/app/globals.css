@@ -4,7 +4,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --bg-gradient-start: theme(--color-zinc-100 / 20%);
+  --bg-gradient-start: theme(--color-zinc-300 / 30%);
   --bg-gradient-mid: theme(--color-zinc-400 / 30%);
   --bg-color: theme(--color-neutral-300 / 100%);
   --bg-card-color: theme(--color-stone-300 / 100%);
@@ -19,8 +19,8 @@
 }
 
 .dark {
-  --bg-gradient-start: theme(--color-zinc-900/ 80%);
-  --bg-gradient-mid: theme(--color-zinc-950 / 90%);
+  --bg-gradient-start: theme(--color-zinc-800/ 85%);
+  --bg-gradient-mid: theme(--color-zinc-900 / 80%);
   --bg-color: theme(--color-zinc-700 / 100%);
   --bg-card-color: theme(--color-zinc-700 / 100%);
   --bg-tab-color: theme(--color-zinc-700 / 100%);
