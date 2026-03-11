@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import DoubleSquareIcon from './doubleBox';
 import React, { useEffect, useState } from 'react';
 import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
 
@@ -34,23 +33,26 @@ const Navbar = () => {
     const storedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
+    const root = document.documentElement;
+
     if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark)) {
-      document.body.classList.add('dark');
+      root.classList.add('dark');
       setIsDark(true);
     } else {
-      document.body.classList.remove('dark');
+      root.classList.remove('dark');
       setIsDark(false);
     }
   }, []);
 
   const toggleTheme = () => {
-    const body = document.body;
-    if (body.classList.contains('dark')) {
-      body.classList.remove('dark');
+    const root = document.documentElement;
+
+    if (root.classList.contains('dark')) {
+      root.classList.remove('dark');
       localStorage.setItem('theme', 'light');
       setIsDark(false);
     } else {
-      body.classList.add('dark');
+      root.classList.add('dark');
       localStorage.setItem('theme', 'dark');
       setIsDark(true);
     }
@@ -68,11 +70,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed left-1/2 -translate-x-1/2 z-50 navbar card-shadow border-2 px-4 py-2 w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-[55rem] flex items-center justify-between mt-4 sm:mt-6">
-
       <div className='flex items-center'>
-        <div className="p-1 logo border-2">
-          <DoubleSquareIcon />
-        </div>
         <p className="text-2xl sm:text-3xl font-bold px-2 sm:px-3 py-1 sm:py-2 tracking-wide">
           parthesh
         </p>

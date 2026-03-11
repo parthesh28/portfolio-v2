@@ -1,7 +1,5 @@
 'use client'
-
 import Link from 'next/link'
-import React from 'react'
 import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
 
 const Footer = () => {
@@ -11,7 +9,6 @@ const Footer = () => {
         { href: 'https://x.com/parthesh28', icon: 'hn-x', label: 'x' },
         { href: 'https://linkedin.com/in/parthesh28', icon: 'hn-linkedin', label: 'linkedin' },
         { href: 'https://discord.com/users/parthesh28', icon: 'hn-discord', label: 'discord' },
-        { href: 'mailto:partheshpurohit28@gmail.com', icon: 'hn-email', label: 'email' },
     ];
 
     return (
@@ -19,9 +16,9 @@ const Footer = () => {
             <div className="flex flex-col items-center justify-center gap-2 px-6 py-3">
                 <div className="w-full h-px border-t-2 border-dashed border-zinc-800/90 dark:border-zinc-600/90" />
                 <div className="w-full flex flex-row items-center justify-between gap-2">
-                    <div className="flex items-center gap-1 sm:gap-2 text-sm font-bold tracking-widest lowercase text-zinc-800 dark:text-zinc-300 text-center sm:text-left">
+                    <div className="flex font-mono tracking-wide items-center gap-1 sm:gap-2 text-sm font-bold lowercase text-zinc-800 dark:text-zinc-300 text-center sm:text-left">
                         <p>
-                            © {new Date().getFullYear()} parthesh
+                            © {new Date().getFullYear()}
                         </p>
                     </div>
 

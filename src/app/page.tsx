@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useState } from 'react'
 import Badge from '@/components/badge';
 import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
@@ -18,8 +17,8 @@ function Home() {
   const [stats, setStats] = useState<WakaTimeData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const frontendStack = ['Next.js', 'React Native'];
-  const backendStack = ['anchor', 'Hono'];
+  const frontendStack = ['next.js', 'react native'];
+  const backendStack = ['anchor', 'Hono', 'SQL'];
 
   useEffect(() => {
     const fetchWakaTimeStats = async () => {
@@ -45,18 +44,18 @@ function Home() {
       <div className='flex flex-col gap-1 border-l-2 border-zinc-600 dark:border-zinc-600 pl-4'>
         <div className='flex items-center gap-2'>
           <i className="hn hn-analytics text-xs"></i>
-          <span className="font-bold text-md tracking-widest ">this week on keyboard</span>
+          <span className="font-bold text-md font-pixel-square ">this week on keyboard</span>
         </div>
 
         {isInactive ? (
-          <span className="italic text-sm">
+          <span className="italic text-sm font-pixel-square">
             was in pursuit of happyness...
           </span>
         ) : (
           <div className="flex flex-row sm:items-center gap-1 sm:gap-4 text-sm">
-            <span className="font-medium text-md">{stats?.total_time}</span>
+            <span className="font-medium text-md font-mono">{stats?.total_time}</span>
             <span className='font-black px-1' >|</span>
-            <span className="text-md font-medium lowercase">
+            <span className="text-md font-medium lowercase font-mono">
               {stats?.top_languages?.join(', ')}
             </span>
           </div>
@@ -71,29 +70,29 @@ function Home() {
         <div className='w-full flex flex-col sm:flex-row gap-3 sm:gap-5 items-center'>
           <ProfileAvatar src="/profile.jpg" />
           <div className='flex-1 text-center sm:text-left'>
-            <p className='text-xl leading-relaxed'>
-              hey, this is <span className='font-medium underline'>parthesh purohit,</span>.
+            <p className='text-lg font-pixel-square'>
+              hey, this is <span className='font-bold underline'>parthesh purohit</span>.
             </p>
-            <p className='text-md leading-relaxed'>
-              a computer science undergrad, full-stack dev and <span className='font-bold tracking-wide underline underline-offset-1'>a human</span>.
+            <p className='text-md leading-relaxed font-pixel-square'>
+              a cs undergrad, full stack dev and <span className='font-bold underline underline-offset-1'>a human</span>.
             </p>
           </div>
         </div>
 
-        <WeekStats />
+        <WeekStats/>
 
         <div className='flex flex-col pt-2 gap-2 border-l-2 border-zinc-600 dark:border-zinc-600 pl-4'>
           <div className='flex items-center gap-2'>
             <i className="hn hn-heart text-md"></i>
-            <span className="font-bold text-md tracking-widest">things i know:</span>
+            <span className="font-bold text-md">things i know:</span>
           </div>
 
-          <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 gap-5 font-pixel-square'>
             <div className='card border-2 border-zinc-900 dark:border-zinc-200 p-3 flex flex-col justify-between gap-3'>
               <div>
-                <h3 className='font-bold text-sm mb-1'>frontend</h3>
+                <h3 className='font-bold text-sm mb-1'>client</h3>
                 <p className='text-sm leading-relaxed'>
-                designing interfaces for the web and native platforms.
+                designing web and native app UIs.
                 </p>
               </div>
               <div className='flex flex-wrap gap-2'>
@@ -105,9 +104,9 @@ function Home() {
 
             <div className='card border-2 border-zinc-900 dark:border-zinc-200 p-3 flex flex-col justify-between gap-3'>
               <div>
-                <h3 className='font-bold text-sm mb-1'>backend</h3>
+                <h3 className='font-bold text-sm mb-1'>server</h3>
                 <p className='text-sm leading-relaxed'>
-                 writing contracts on solana and developing REST APIs.
+                 designing smart contracts and REST APIs.
                 </p>
               </div>
               <div className='flex flex-wrap gap-2'>
@@ -118,13 +117,13 @@ function Home() {
               
             </div>
             <div className='text-md font-medium'>
-              + practicing critical thinking with <span className='not-italic font-bold tracking-wide'>java @ <a  className='underline cursor-pointer font-bold underline-offset-1' href="https://codeforces.com/profile/parthesh28">codeforces</a></span>.
+              + thinking and solving on <span className='not-italic font-bold'><a  className='underline cursor-pointer font-bold font-mono tracking-tight underline-offset-1' href="https://codeforces.com/profile/parthesh28">@codeforces</a></span>.
             </div>
           </div>
         </div>
       </div>
     </main>
   )
-}
+} 
 
 export default Home

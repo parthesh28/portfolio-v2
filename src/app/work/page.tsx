@@ -1,6 +1,5 @@
 'use client'
-
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
 
@@ -108,10 +107,10 @@ const WorkPage = () => {
   return (
     <main className="h-[100dvh] w-full relative overflow-hidden flex flex-col items-center justify-center">
 
-      <div className="w-full max-w-2xl transform scale-[0.90] sm:scale-90 lg:scale-100 transition-transform mt-20 sm:mt-0">
+      <div className="w-full max-w-2xl transform scale-[0.90] sm:scale-90 lg:scale-100 mt-20 sm:mt-0">
 
         <div className="pb-4 pl-1">
-          <h1 className="text-4xl font-bold tracking-wide lowercase">
+          <h1 className="text-4xl font-bold lowercase">
             proof of work
           </h1>
         </div>
@@ -120,7 +119,7 @@ const WorkPage = () => {
           <button
             onClick={() => handleTabChange('projects')}
             className={`
-             cursor-pointer px-8 py-3 font-bold text-sm tracking-widest transition-none border-2 border-zinc-900
+             cursor-pointer px-8 py-3 font-bold text-sm border-2 border-zinc-900
               ${activeTab === 'projects'
                 ? 'card z-20 pb-[14px]'
                 : 'tab z-0 text-zinc-400'
@@ -133,7 +132,7 @@ const WorkPage = () => {
           <button
             onClick={() => handleTabChange('experience')}
             className={`
-              cursor-pointer px-8 py-3 font-bold text-sm tracking-widest transition-none border-2 border-zinc-900
+              cursor-pointer px-8 py-3 font-bold text-sm border-2 border-zinc-900
               ${activeTab === 'experience'
                 ? 'card z-20 pb-[14px]'
                 : 'tab z-0 text-zinc-400 border-b-2'
@@ -151,7 +150,7 @@ const WorkPage = () => {
             <div className="flex justify-between items-center mb-4 border-b-2 border-dotted border-current pb-3">
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 bg-current block" />
-                <span className="text-sm font-bold tracking-widest lowercase">
+                <span className="text-sm font-bold lowercase">
                   {activeTab === 'projects' ? 'project' : 'record'}_0{currentIndex + 1}
                 </span>
               </div>
@@ -162,7 +161,7 @@ const WorkPage = () => {
 
             <div className="flex-1 flex flex-col justify-between gap-4">
               <div>
-                <h2 className="text-3xl sm:text-4xl font-bold tracking-wide mb-3 lowercase">
+                <h2 className="text-3xl sm:text-4xl font-bold mb-3 lowercase">
                   {currentItem.title}
                 </h2>
                 <div className="text-md sm:text-base leading-6 sm:leading-7 font-medium opacity-90 lowercase text-justify sm:text-left max-h-[150px] overflow-y-auto custom-scrollbar pr-2">
@@ -184,7 +183,7 @@ const WorkPage = () => {
                     <Link
                       href={currentItem.links.github}
                       target="_blank"
-                      className="flex items-center gap-2 text-sm font-bold decoration-2 decoration-current lowercase hover:opacity-75 transition-opacity"
+                      className="flex items-center gap-2 text-sm font-bold decoration-2 decoration-current lowercase"
                     >
                       <i className="hn hn-github text-lg"></i>
                       code
@@ -195,7 +194,7 @@ const WorkPage = () => {
                     <Link
                       href={currentItem.links.live}
                       target="_blank"
-                      className="flex items-center gap-2 text-sm font-bold decoration-2 decoration-current lowercase hover:opacity-75 transition-opacity"
+                      className="flex items-center gap-2 text-sm font-bold decoration-2 decoration-current lowercase"
                     >
                       <i className="hn hn-link text-lg"></i>
                       {activeTab === 'projects' ? 'live demo' : 'visit org'}
@@ -206,7 +205,7 @@ const WorkPage = () => {
             </div>
 
             <div className="absolute -bottom-5 left-0 w-full flex justify-center items-center gap-4 z-20">
-              <button onClick={prevItem} className="cursor-pointer button w-10 h-10 border-2 flex items-center justify-center transition-none active:translate-y-1 active:shadow-none">
+              <button onClick={prevItem} className="cursor-pointer button w-10 h-10 border-2 flex items-center justify-center active:translate-y-1 active:shadow-none">
                 <i className="hn hn-arrow-left text-lg"></i>
               </button>
 
@@ -216,7 +215,7 @@ const WorkPage = () => {
                 ))}
               </div>
 
-              <button onClick={nextItem} className="cursor-pointer button w-10 h-10 border-2 flex items-center justify-center transition-none active:translate-y-1 active:shadow-none">
+              <button onClick={nextItem} className="cursor-pointer button w-10 h-10 border-2 flex items-center justify-center active:translate-y-1 active:shadow-none">
                 <i className="hn hn-arrow-right text-lg"></i>
               </button>
             </div>

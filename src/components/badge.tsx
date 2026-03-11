@@ -15,7 +15,7 @@ const Badge = ({
             className={`badge relative inline-flex items-center justify-center border-2 px-2 py-0.5 ${className}`}
             {...props}
         >
-            <span className="text-xs sm:text-sm font-bold tracking-widest lowercase">
+            <span className="text-xs sm:text-sm font-bold lowercase">
                 {children}
             </span>
         </div>
