@@ -14,7 +14,7 @@ interface NavLinkProps {
 const NavLink = ({ href, icon, children }: NavLinkProps) => (
   <Link
     href={href}
-    className="navlink border-2 tracking-widest text-lg font-bold px-2 sm:px-3 py-2 sm:py-1.5 flex items-center justify-center min-w-[40px] sm:min-w-[80px] transition-none active:translate-y-1 active:shadow-none"
+    className="navlink tracking-widest text-lg font-bold px-2 sm:px-3 py-2 sm:py-1.5 flex items-center justify-center min-w-[40px] sm:min-w-[80px] transition-none active:translate-y-1 active:shadow-none"
   >
     <i className={`hn ${icon} sm:hidden`}></i>
     <span className="hidden sm:inline">
@@ -32,7 +32,6 @@ const Navbar = () => {
     setMounted(true);
     const storedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
     const root = document.documentElement;
 
     if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark)) {
@@ -46,7 +45,6 @@ const Navbar = () => {
 
   const toggleTheme = () => {
     const root = document.documentElement;
-
     if (root.classList.contains('dark')) {
       root.classList.remove('dark');
       localStorage.setItem('theme', 'light');
@@ -61,7 +59,7 @@ const Navbar = () => {
   const links = [
     { name: 'home', href: '/', icon: 'hn-home' },
     { name: 'bits', href: '/bits', icon: 'hn-tech-stories' },
-    { name: 'work', href: '/work', icon: 'hn-business' }
+    { name: 'work', href: '/work', icon: 'hn-business' },
   ];
 
   const filteredLinks = links.filter(link =>
@@ -69,7 +67,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="fixed left-1/2 -translate-x-1/2 z-50 navbar card-shadow border-2 px-4 py-2 w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-[55rem] flex items-center justify-between mt-4 sm:mt-6">
+    <nav className="fixed left-1/2 -translate-x-1/2 z-50 navbar px-4 py-2 w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-[55rem] flex items-center justify-between mt-4 sm:mt-6">
       <div className='flex items-center'>
         <p className="text-2xl sm:text-3xl font-bold px-2 sm:px-3 py-1 sm:py-2 tracking-wide">
           parthesh
@@ -78,7 +76,7 @@ const Navbar = () => {
       <div className="flex gap-2 sm:gap-4">
         {filteredLinks.map((link) => (
           <NavLink key={link.name} href={link.href} icon={link.icon}>
-            {link.name.toLowerCase()}
+            {link.name}
           </NavLink>
         ))}
 

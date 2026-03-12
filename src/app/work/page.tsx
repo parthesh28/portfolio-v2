@@ -1,7 +1,6 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
 
 const projects = [
   {
@@ -9,12 +8,12 @@ const projects = [
     title: 'printf',
     description: (
       <>
-        a production-grade printing ecosystem. replaces public pc logins with a secure oauth-based workflow. comprises three components: a <span className="font-bold text-zinc-900 dark:text-zinc-100">react native</span> android app for ordering, a restful api gateway, and a high-performance <span className="font-bold text-zinc-900 dark:text-zinc-100">rust</span> daemon that interfaces directly with native <span className="font-bold text-zinc-900 dark:text-zinc-100">windows print apis</span> to execute jobs.
+        a printing utility which removes public pc logins with a secure oauth-based workflow. comprises three components: a android app for ordering, a restful api, and a rust daemon that interfaces directly with native <span className="font-bold text-zinc-900 dark:text-zinc-100">print apis</span> to execute jobs.
       </>
     ),
     tags: ['rust', 'react native', 'systems'],
     links: { github: 'https://github.com/parthesh28/printf', live: null },
-    status: 'jan 2025'
+    status: 'jan 2025',
   },
   {
     type: 'project',
@@ -26,20 +25,20 @@ const projects = [
     ),
     tags: ['next.js', 'go (cli)', 'vs code api', 'hono'],
     links: { github: 'https://github.com/parthesh28/pulp', live: 'https://pulpx.vercel.app' },
-    status: 'june 2023'
+    status: 'june 2023',
   },
   {
     type: 'project',
     title: 'spliter',
     description: (
       <>
-        a decentralized expense settlement dapp on <span className="font-bold text-zinc-900 dark:text-zinc-100">solana</span>. leverages <span className="font-bold text-zinc-900 dark:text-zinc-100">anchor</span> (<span className="font-bold text-zinc-900 dark:text-zinc-100">rust</span>) smart contracts to handle trustless fund routing and distinct splits. features a polished <span className="font-bold text-zinc-900 dark:text-zinc-100">next.js</span> frontend with real-time wallet integration, allowing users to create groups, track debts, and settle on-chain instantly.
+        a decentralized expense settlement dapp. use smart contracts to handle trustless fund routing and distinct splits. <span className="font-bold text-zinc-900 dark:text-zinc-100">next.js</span> frontend with real-time wallet integration, allowing users to create groups, track debts, and settle on-chain instantly.
       </>
     ),
     tags: ['solana', 'anchor (rust)', 'next.js', 'web3.js'],
     links: { github: 'https://github.com/parthesh28/spliter-sol', live: 'https://splitersol.vercel.app' },
-    status: 'sept 2025'
-  }
+    status: 'sept 2025',
+  },
 ];
 
 const experiences = [
@@ -54,7 +53,7 @@ const experiences = [
     ),
     tags: ['certification', 'solana', 'rust', 'security'],
     links: { github: undefined, live: 'https://ackee.xyz/school-of-solana' },
-    status: '2025'
+    status: '2025',
   },
   {
     type: 'experience',
@@ -67,7 +66,7 @@ const experiences = [
     ),
     tags: ['solana', 'smart contracts', 'architecture', 'rust'],
     links: { github: undefined, live: 'https://turbin3.org' },
-    status: 'jan 2026 - present'
+    status: 'jan 2026 - present',
   },
   {
     type: 'experience',
@@ -80,11 +79,11 @@ const experiences = [
     ),
     tags: ['writing', 'communication', 'freelance', 'seo'],
     links: { github: undefined, live: 'https://textmercato.com' },
-    status: '2020-2022'
-  }
+    status: '2020-2022',
+  },
 ];
 
-const WorkPage = () => {
+const Work = () => {
   const [activeTab, setActiveTab] = useState<'projects' | 'experience'>('projects');
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -96,57 +95,34 @@ const WorkPage = () => {
     setCurrentIndex(0);
   };
 
-  const nextItem = () => {
-    setCurrentIndex((prev) => (prev + 1) % currentList.length);
-  };
-
-  const prevItem = () => {
-    setCurrentIndex((prev) => (prev - 1 + currentList.length) % currentList.length);
-  };
+  const nextItem = () => setCurrentIndex(prev => (prev + 1) % currentList.length);
+  const prevItem = () => setCurrentIndex(prev => (prev - 1 + currentList.length) % currentList.length);
 
   return (
-    <main className="h-[100dvh] w-full relative overflow-hidden flex flex-col items-center justify-center">
-
-      <div className="w-full max-w-2xl transform scale-[0.90] sm:scale-90 lg:scale-100 mt-20 sm:mt-0">
+    <main className="page-container px-4 pt-45 pb-32" >
+      <div className="w-full max-w-2xl">
 
         <div className="pb-4 pl-1">
-          <h1 className="text-4xl font-bold lowercase">
-            proof of work
-          </h1>
+          <h1 className="page-title">proof of work</h1>
         </div>
 
         <div className="flex items-end relative z-20 top-[2px]">
           <button
             onClick={() => handleTabChange('projects')}
-            className={`
-             cursor-pointer px-8 py-3 font-bold text-sm border-2 border-zinc-900
-              ${activeTab === 'projects'
-                ? 'card z-20 pb-[14px]'
-                : 'tab z-0 text-zinc-400'
-              }
-            `}
-          >
+            className={`cursor-pointer px-8 py-3 font-bold text-sm ${activeTab === 'projects' ? 'card z-20 pb-[14px]' : 'tab z-0 text-zinc-400'
+              }`}>
             projects
           </button>
-
           <button
             onClick={() => handleTabChange('experience')}
-            className={`
-              cursor-pointer px-8 py-3 font-bold text-sm border-2 border-zinc-900
-              ${activeTab === 'experience'
-                ? 'card z-20 pb-[14px]'
-                : 'tab z-0 text-zinc-400 border-b-2'
-              }
-            `}
-          >
+            className={`cursor-pointer px-8 py-3 font-bold text-sm ${activeTab === 'experience' ? 'card z-20 pb-[14px]' : 'tab z-0 text-zinc-400'
+              }`}>
             experience
           </button>
         </div>
 
         <div className="w-full relative mb-4 sm:mb-8">
-
-          <div className="card relative border-2 p-5 sm:p-6 flex flex-col min-h-[22rem] sm:min-h-[24rem] z-10">
-
+          <div className="card relative p-5 sm:p-6 flex flex-col min-h-[22rem] sm:min-h-[24rem] z-10">
             <div className="flex justify-between items-center mb-4 border-b-2 border-dotted border-current pb-3">
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 bg-current block" />
@@ -154,17 +130,15 @@ const WorkPage = () => {
                   {activeTab === 'projects' ? 'project' : 'record'}_0{currentIndex + 1}
                 </span>
               </div>
-              <span className="text-sm font-semibold border-2 border-current px-2 py-1 lowercase">
+              <span className="text-sm font-semibold px-2 py-1 lowercase">
                 {currentItem.status}
               </span>
             </div>
 
             <div className="flex-1 flex flex-col justify-between gap-4">
               <div>
-                <h2 className="text-3xl sm:text-4xl font-bold mb-3 lowercase">
-                  {currentItem.title}
-                </h2>
-                <div className="text-md sm:text-base leading-6 sm:leading-7 font-medium opacity-90 lowercase text-justify sm:text-left max-h-[150px] overflow-y-auto custom-scrollbar pr-2">
+                <h2 className="text-3xl sm:text-4xl font-bold mb-3 lowercase">{currentItem.title}</h2>
+                <div className="text-md sm:text-base leading-6 sm:leading-7 font-medium opacity-90 lowercase text-justify sm:text-left max-h-[150px] overflow-y-auto pr-2">
                   {currentItem.description}
                 </div>
               </div>
@@ -172,30 +146,20 @@ const WorkPage = () => {
               <div>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {currentItem.tags.map(tag => (
-                    <span key={tag} className="badge px-2 py-0.5 text-[10px] sm:text-xs font-bold border-2 lowercase">
+                    <span key={tag} className="badge px-2 py-0.5 text-[10px] sm:text-xs font-bold lowercase">
                       {tag}
                     </span>
                   ))}
                 </div>
-
                 <div className="flex gap-6 mb-2">
                   {currentItem.links?.github && (
-                    <Link
-                      href={currentItem.links.github}
-                      target="_blank"
-                      className="flex items-center gap-2 text-sm font-bold decoration-2 decoration-current lowercase"
-                    >
+                    <Link href={currentItem.links.github} target="_blank" className="flex items-center gap-2 text-sm font-bold lowercase">
                       <i className="hn hn-github text-lg"></i>
                       code
                     </Link>
                   )}
-
                   {currentItem.links?.live && (
-                    <Link
-                      href={currentItem.links.live}
-                      target="_blank"
-                      className="flex items-center gap-2 text-sm font-bold decoration-2 decoration-current lowercase"
-                    >
+                    <Link href={currentItem.links.live} target="_blank" className="flex items-center gap-2 text-sm font-bold lowercase">
                       <i className="hn hn-link text-lg"></i>
                       {activeTab === 'projects' ? 'live demo' : 'visit org'}
                     </Link>
@@ -205,37 +169,35 @@ const WorkPage = () => {
             </div>
 
             <div className="absolute -bottom-5 left-0 w-full flex justify-center items-center gap-4 z-20">
-              <button onClick={prevItem} className="cursor-pointer button w-10 h-10 border-2 flex items-center justify-center active:translate-y-1 active:shadow-none">
+              <button aria-label="previous item" onClick={prevItem} className="cursor-pointer button w-10 h-10 flex items-center justify-center active:translate-y-1 active:shadow-none">
                 <i className="hn hn-arrow-left text-lg"></i>
               </button>
 
-              <div className="card flex gap-2 px-3 py-2 border-2">
+              <div className="card flex gap-2 px-3 py-2">
                 {currentList.map((_, idx) => (
                   <div key={idx} className={`w-2 h-2 ${idx === currentIndex ? 'bg-current' : 'bg-gray-400 dark:bg-zinc-500'}`} />
                 ))}
               </div>
 
-              <button onClick={nextItem} className="cursor-pointer button w-10 h-10 border-2 flex items-center justify-center active:translate-y-1 active:shadow-none">
+              <button aria-label="next item" onClick={nextItem} className="cursor-pointer button w-10 h-10 flex items-center justify-center active:translate-y-1 active:shadow-none">
                 <i className="hn hn-arrow-right text-lg"></i>
               </button>
             </div>
-
           </div>
         </div>
 
         <Link
           href="https://github.com/parthesh28?tab=repositories"
           target="_blank"
-          className="flex flex-col items-center gap-1 group mt-20 sm:mt-4"
+          className="flex flex-col items-center gap-1 group mt-10 sm:mt-4"
         >
           <span className="text-sm font-bold tracking-widest lowercase opacity-70">
             [ view all projects ]
           </span>
         </Link>
       </div>
-
     </main>
-  )
-}
+  );
+};
 
-export default WorkPage
+export default Work;

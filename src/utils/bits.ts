@@ -77,7 +77,7 @@ export const bits = [
         type: 'tech',
         date: '05 feb 2026',
         title: 'compressed nfts are proofs, not objects',
-        content: "the common mistake with compressed nfts is asking \"where is the nft stored?\" that assumes an nft must exist as an on-chain object. it doesn’t.\nin the traditional model, an nft is on-chain state: mints, token accounts, metadata. ownership is read directly from accounts. this model is simple, but expensive and difficult to scale.\n\ncompressed nfts replace storage with proof. each nft is a leaf in a merkle tree whose root is anchored on-chain. the chain stores only the root; ownership is validated by submitting a merkle proof that reconstructs it.\nimages and metadata still live on ipfs or arweave. their uri is committed into the leaf hash instead of a dedicated account.\n\nnothing is trusted off-chain. indexers only surface leaf data and proofs; the chain verifies everything.\nthe tradeoff is intentional: cnfts sacrifice on-chain discoverability and composability to make millions of nfts economically viable.",
+        content: "the common mistake with compressed nfts is the assumption that nft must exist as an on-chain object. \nnormally, an nft is on-chain state: mints, token accounts, metadata. this model is simple, but expensive and difficult to scale.\n\ncompressed nfts replace storage with proof. each nft is a leaf in a merkle tree whose root is anchored on-chain. the chain stores only the root; ownership is validated by submitting a merkle proof that reconstructs it.\nimages and metadata still live on ipfs or arweave. their uri is committed into the leaf hash instead of a dedicated account.",
         tags: ['solana', 'nfts', 'scaling', 'cryptography']
     }
 ];

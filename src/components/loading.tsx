@@ -1,10 +1,9 @@
 'use client'
-
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
 
-const BitLoader = () => {
+const Loading = () => {
     const pathname = usePathname();
     const [loading, setLoading] = useState(false);
     const [bits, setBits] = useState<boolean[]>(Array(16).fill(false));
@@ -72,4 +71,4 @@ const BitLoader = () => {
     )
 }
 
-export default BitLoader;
+export default Loading;

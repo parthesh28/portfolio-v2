@@ -22,12 +22,16 @@ export async function GET() {
     }
 
     try {
-        const response = await fetch('https://wakatime.com/api/v1/users/current/stats', {
-            headers: {
-                'Authorization': `Basic ${Buffer.from(apiKey).toString('base64')}`,
-                'Content-Type': 'application/json',
-            },
-        });
+        const response = await fetch(
+            'https://wakatime.com/api/v1/users/current/stats',
+            {
+                headers: {
+                    Authorization: `Basic ${Buffer.from(apiKey).toString('base64')}`,
+                    'Content-Type': 'application/json',
+                },
+                next: { revalidate: 3600 }
+            }
+        );
 
         if (!response.ok) {
             throw new Error(`WakaTime API error: ${response.status}`);

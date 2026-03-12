@@ -27,18 +27,17 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
       </head>
-      <body className={`antialiased font-pixel-square`}>
-        <div className="absolute top-20 left-1 sm:-left-2 lg:left-0 z-0 pointer-events-none select-none" aria-hidden="true">
-          <span className="block text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[20rem] font-sans font-black italic leading-none text-transparent [-webkit-text-stroke:1.5px_#e4e4e7] dark:[-webkit-text-stroke:1.5px_#27272a] opacity-70">
+      <body className="antialiased font-pixel-square overflow-hidden h-full w-full">
+
+        <div className="fixed inset-0 z-0 pointer-events-none select-none overflow-hidden">
+          <span className="absolute top-16 left-0 block text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[20rem] font-sans font-black italic leading-none text-transparent [-webkit-text-stroke:1.5px_#e4e4e7] dark:[-webkit-text-stroke:1.5px_#27272a] opacity-50">
             ///
           </span>
-        </div>
-        
-        <div className="absolute bottom-20 right-4 sm:right-6 z-0 pointer-events-none select-none" aria-hidden="true">
-          <span className="block text-[4rem] sm:text-[6rem] md:text-[10rem] lg:text-[13rem] font-sans font-black leading-none text-transparent [-webkit-text-stroke:1.5px_#e4e4e7] dark:[-webkit-text-stroke:1.5px_#27272a] opacity-70">
+          <span className="absolute bottom-16 right-0 block text-[4rem] sm:text-[6rem] md:text-[10rem] lg:text-[13rem] font-sans font-black leading-none text-transparent [-webkit-text-stroke:1.5px_#e4e4e7] dark:[-webkit-text-stroke:1.5px_#27272a] opacity-50">
             T_T
           </span>
         </div>
+
         <PixelLoader />
         <Navbar />
         <Footer />
