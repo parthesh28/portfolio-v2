@@ -1,29 +1,15 @@
 'use client'
-
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
+import { useEffect, useState } from 'react';
 
-interface NavLinkProps {
-  href: string;
-  icon: string;
-  children: React.ReactNode;
-}
+const LINKS = [
+  { name: 'home', href: '/', icon: 'hn-home' },
+  { name: 'bits', href: '/bits', icon: 'hn-tech-stories' },
+  { name: 'work', href: '/work', icon: 'hn-business' },
+];
 
-const NavLink = ({ href, icon, children }: NavLinkProps) => (
-  <Link
-    href={href}
-    className="navlink tracking-widest text-lg font-bold px-2 sm:px-3 py-2 sm:py-1.5 flex items-center justify-center min-w-[40px] sm:min-w-[80px] transition-none active:translate-y-1 active:shadow-none"
-  >
-    <i className={`hn ${icon} sm:hidden`}></i>
-    <span className="hidden sm:inline">
-      {children}
-    </span>
-  </Link>
-);
-
-const Navbar = () => {
+export default function Navbar() {
   const pathname = usePathname();
   const [isDark, setIsDark] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -31,71 +17,57 @@ const Navbar = () => {
   useEffect(() => {
     setMounted(true);
     const storedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const root = document.documentElement;
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark)) {
-      root.classList.add('dark');
+    if (storedTheme === 'dark' || (!storedTheme && systemDark)) {
+      document.documentElement.classList.add('dark');
       setIsDark(true);
     } else {
-      root.classList.remove('dark');
+      document.documentElement.classList.remove('dark');
       setIsDark(false);
     }
   }, []);
 
   const toggleTheme = () => {
     const root = document.documentElement;
-    if (root.classList.contains('dark')) {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-      setIsDark(false);
-    } else {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-      setIsDark(true);
-    }
+    const willBeDark = !root.classList.contains('dark');
+
+    root.classList.toggle('dark', willBeDark);
+    localStorage.setItem('theme', willBeDark ? 'dark' : 'light');
+    setIsDark(willBeDark);
   };
 
-  const links = [
-    { name: 'home', href: '/', icon: 'hn-home' },
-    { name: 'bits', href: '/bits', icon: 'hn-tech-stories' },
-    { name: 'work', href: '/work', icon: 'hn-business' },
-  ];
-
-  const filteredLinks = links.filter(link =>
+  const filteredLinks = LINKS.filter(link =>
     link.href !== '/' ? !pathname?.startsWith(link.href) : pathname !== '/'
   );
 
   return (
-    <nav className="fixed left-1/2 -translate-x-1/2 z-50 navbar px-4 py-2 w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-[55rem] flex items-center justify-between mt-4 sm:mt-6">
-      <div className='flex items-center'>
-        <p className="text-2xl sm:text-3xl font-bold px-2 sm:px-3 py-1 sm:py-2 tracking-wide">
-          parthesh
-        </p>
-      </div>
-      <div className="flex gap-2 sm:gap-4">
-        {filteredLinks.map((link) => (
-          <NavLink key={link.name} href={link.href} icon={link.icon}>
-            {link.name}
-          </NavLink>
+    <nav className="fixed inset-x-0 mx-auto z-50 brutalist px-4 py-2 w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-[55rem] flex items-center justify-between mt-6">
+      <p className="text-2xl sm:text-3xl font-bold px-2 sm:px-3 py-1 sm:py-2 tracking-wide">
+        parthesh
+      </p>
+
+      <div className="flex gap-3">
+        {filteredLinks.map(({ name, href, icon }) => (
+          <Link
+            key={name}
+            href={href}
+            className="brutalist tracking-widest text-lg font-bold p-2 flex items-center justify-center min-w-[40px] sm:min-w-[80px] active:translate-y-1"
+          >
+            <i className={`hn ${icon} sm:hidden pl-1`} />
+            <span className="hidden sm:inline pl-1">{name}</span>
+          </Link>
         ))}
 
         <button
           onClick={toggleTheme}
-          className="pl-2 sm:pl-0 py-2 sm:py-1.5 flex items-center justify-center cursor-pointer min-w-[30px]"
-          aria-label="Toggle Theme"
+          className="pl-2 sm:pl-0 py-2 flex items-center justify-center w-8 cursor-pointer"
+          aria-label="toggle theme"
         >
-          {!mounted ? (
-            <div className="w-5 h-5" />
-          ) : isDark ? (
-            <i className="hn hn-sun text-xl"></i>
-          ) : (
-            <i className="hn hn-moon text-xl"></i>
-          )}
+          {mounted && <i className={`hn ${isDark ? 'hn-sun' : 'hn-moon'} text-xl`} />}
         </button>
       </div>
+
     </nav>
   );
-};
-
-export default Navbar;
+}

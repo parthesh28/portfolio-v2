@@ -1,71 +1,51 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
 
 const Loading = () => {
     const pathname = usePathname();
-    const [loading, setLoading] = useState(false);
-    const [bits, setBits] = useState<boolean[]>(Array(16).fill(false));
+    const [order, setOrder] = useState<number[]>([]);
+    const [progress, setProgress] = useState(-1); 
 
     useEffect(() => {
-        setLoading(true);
-        setBits(Array(16).fill(false));
+        const shuffledIndices = Array.from({ length: 16 }, (_, i) => i)
+            .sort(() => Math.random() - 0.5);
 
-        let filledCount = 0;
-        const totalBits = 16;
-
+        setOrder(shuffledIndices);
+        setProgress(0);
         const interval = setInterval(() => {
-            setBits(prev => {
-                const newBits = [...prev];
-                const emptyIndices = newBits
-                    .map((val, idx) => val ? -1 : idx)
-                    .filter(idx => idx !== -1);
-
-                if (emptyIndices.length === 0) return newBits;
-
-                const randomIndex = emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
-                newBits[randomIndex] = true;
-
-                filledCount++;
-                return newBits;
+            setProgress((prev) => {
+                if (prev >= 15) {
+                    clearInterval(interval);
+                    setTimeout(() => setProgress(-1), 200); 
+                    return 16;
+                }
+                return prev + 1;
             });
-
-            if (filledCount >= totalBits) {
-                clearInterval(interval);
-                setTimeout(() => setLoading(false), 200);
-            }
         }, 50);
 
-        return () => {
-            clearInterval(interval);
-        }
+        return () => clearInterval(interval);
     }, [pathname]);
 
-    if (!loading) return null;
+    if (progress === -1) return null;
+
+    const activeIndices = new Set(order.slice(0, progress));
 
     return (
-        <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center backdrop-blur-md bg-white/30 dark:bg-black/30 cursor-wait transition-all duration-300">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center backdrop-blur-lg bg-white/30 dark:bg-black/30 cursor-wait">
             <div className="flex flex-col items-center gap-6">
-                <div className="relative w-16 h-16 border-4 border-zinc-900 dark:border-zinc-100 p-1">
-                    <div className="grid grid-cols-4 grid-rows-4 gap-1 w-full h-full">
-                        {bits.map((active, i) => (
-                            <div
-                                key={i}
-                                className={`
-                                    w-full h-full transition-colors duration-0
-                                    ${active
-                                        ? 'bg-zinc-900 dark:bg-zinc-100'
-                                        : 'bg-transparent'
-                                    }
-                                `}
-                            />
-                        ))}
-                    </div>
+                <div className="w-16 h-16 border-4 border-current p-1 grid grid-cols-4 gap-1">
+                    {Array.from({ length: 16 }).map((_, i) => (
+                        <div
+                            key={i}
+                            className={`w-full h-full ${activeIndices.has(i) ? 'bg-current' : 'bg-transparent'}`}
+                        />
+                    ))}
                 </div>
-                <p className="text-xs font-bold tracking-[0.2em] lowercase text-zinc-900 dark:text-zinc-100 animate-pulse drop-shadow-md">
+                <p className="text-xs font-mono font-bold">
                     loading...
                 </p>
+
             </div>
         </div>
     )

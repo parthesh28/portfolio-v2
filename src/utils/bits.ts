@@ -6,7 +6,6 @@ export const bits = [
         date: '28 nov 2025',
         title: 'scaling solana via lookup tables',
         content: "normally, a solana transaction can only fit about 30-40 accounts before hitting the packet size limit. address lookup tables (alts) solve this by storing full 32-byte public keys on-chain in a table, allowing you to reference them in a transaction using simple 1-byte indices.\n\nto the smart contract, these accounts look exactly like normal ones. the magic happens client-side: you create a table, extend it with pubkeys, and then compile a v0 message that references the table. it is a massive scaling win for complex compositions that need to touch hundreds of state accounts at once.",
-        tags: ['solana', 'scaling', 'optimization']
     },
     {
         id: '2',
@@ -14,8 +13,7 @@ export const bits = [
         type: 'tech',
         date: '03 nov 2025',
         title: 'solana delegates are not multisigs',
-        content: "there is often confusion between delegates and multisigs, but they solve different problems. a delegate is a permission model: you use the 'approve' instruction to give another wallet temporary access to spend your tokens. you remain the owner, and you can revoke this access at any time.\n\na multisig wallet is a shared ownership model. the authority of the token account is the multisig vault itself, not any single signer. transactions only execute when a threshold of members approve. essentially: a delegate is a temporary keycard; a multisig is a vault with multiple keys.",
-        tags: ['solana', 'security', 'patterns']
+        content: "there is often confusion between delegates and multisigs, but they solve different problems. a delegate is a permission model: you use the 'approve' instruction to give another wallet temporary access to spend your tokens. you remain the owner, and you can revoke this access at any time.\n\na multisig wallet is a shared ownership model. the authority of the token account is the multisig vault itself, not any single signer. transactions only execute when a threshold of members approve. essentially: a delegate is a temporary keybrutalist; a multisig is a vault with multiple keys.",
     },
     {
         id: '3',
@@ -24,7 +22,6 @@ export const bits = [
         date: '02 nov 2025',
         title: 'rust threadpool shutdown safety',
         content: "when implementing the drop trait for a threadpool, iterating with `vec::drain(..)` is tempting but dangerous. it destructively empties the vector immediately. if a thread panics mid-loop, you lose track of the remaining workers in the vector, making a graceful shutdown impossible.\n\nthe safer approach is iterating mutably and using `option::take()`. this allows you to extract the thread handle while leaving `none` in its place, keeping the vector structure intact. this prevents double joins and ensures that even if one thread panics, the others remain accessible for cleanup.",
-        tags: ['rust', 'concurrency', 'systems']
     },
     {
         id: '4',
@@ -42,7 +39,6 @@ export const bits = [
         date: '19 oct 2025',
         title: 'spl mints vs token accounts',
         content: "on solana, a mint only defines the token metadata; it doesn't hold value. tokens live in token accounts (tas) which link an owner to a mint. most users rely on associated token accounts (atas)—deterministic pdas derived from the wallet and mint—ensuring every user has exactly one standard account per token.\n\nminting requires the mint authority, while transfers need the owner's signature on the source ta. unlike ethereum's contract-mapped balances, solana accounts are distinct storage slots. closing a ta returns rent to the destination, but this operation fails unless the token balance is strictly zero.",
-        tags: ['solana', 'spl-tokens', 'rust']
     },
     {
         id: '6',
@@ -51,7 +47,6 @@ export const bits = [
         date: '11 dec 2025',
         title: 'crossroads and chai',
         content: "we often stand at crossroads, paralyzed by the weight of decision. we ask if these tangled problems are life's essence, or if living is simply the courage to set worries aside. these questions spiral endlessly, each answer only breeding more confusion.\n\nperhaps the solution isn't to drown in heavy choices, but to enjoy the tea at hand. that simple cup of 'chai' that fuels you for another hour is a valid choice in itself—and honestly, a pretty good one. maybe life was never about making the right choice, but about living every day fully.",
-        tags: ['philosophy', 'chai', 'life']
     },
     {
         id: '7',
@@ -60,7 +55,6 @@ export const bits = [
         date: '23 dec 2025',
         title: 'fear of the inevitable',
         content: "we all live to die. we witness people burning or being buried, worrying that one day we will leave this world too. but why does this fear persist? we know everything ends; we know the truth. why can't we simply accept it?\n\nwhat drives us to fill our time with unnecessary distractions, merely to mask this reality? we perform rituals and pray, doing anything to keep this ultimate truth at bay—even though it will catch up to us regardless.\n\nwhy fear death and lose the beauty of life? why ignore death and fear the uncertainty of living? why fear outcomes that are destined to occur, regardless of our anxiety?",
-        tags: ['philosophy', 'death', 'life']
     },
     {
         id: '8',
@@ -68,7 +62,7 @@ export const bits = [
         type: 'tech',
         date: '27 dec 2025',
         title: 'zero-copy deserialization',
-        content: "zero-copy deserialization does not convert bytes into values. instead, it reinterprets an existing byte buffer as a typed struct using a reference. the data is never copied; the struct is simply a view over raw memory.\n\nthis is fast, but unsafe. the compiler assumes the bytes already satisfy all invariants of the type: correct layout, correct alignment, correct padding, and valid values. none of these are checked at runtime. if any assumption is violated—such as a misaligned `u64`—the behavior is undefined and may crash immediately on strict architectures like bpf.\n\nbecause of this, zero-copy is only viable when copying is too expensive and the memory layout is fully controlled. systems like blockchains, kernels, and databases rely on it to avoid copying large state, but they pay for it with rigid layouts, explicit byte fields, and heavy safety discipline.",
+        content: "zero-copy deserialization doesn't convert bytes into values. instead, it reinterprets an existing byte buffer as a typed struct using a reference. the data is never copied; the struct is simply a view over raw memory.\n\nthis is fast, but unsafe. the compiler assumes the bytes already satisfy all invariants of the type: correct layout, correct alignment, correct padding, and valid values. none of these are checked at runtime. if any assumption is violated—such as a misaligned `u64`—the behavior is undefined and may crash immediately on strict architectures like bpf.\n\nbecause of this, zero-copy is only viable when copying is too expensive and the memory layout is fully controlled. systems like blockchains, kernels, and databases rely on it to avoid copying large state, but they pay for it with rigid layouts, explicit byte fields, and heavy safety discipline.",
         tags: ['rust', 'systems', 'solana', 'performance']
     },
     {
@@ -78,6 +72,13 @@ export const bits = [
         date: '05 feb 2026',
         title: 'compressed nfts are proofs, not objects',
         content: "the common mistake with compressed nfts is the assumption that nft must exist as an on-chain object. \nnormally, an nft is on-chain state: mints, token accounts, metadata. this model is simple, but expensive and difficult to scale.\n\ncompressed nfts replace storage with proof. each nft is a leaf in a merkle tree whose root is anchored on-chain. the chain stores only the root; ownership is validated by submitting a merkle proof that reconstructs it.\nimages and metadata still live on ipfs or arweave. their uri is committed into the leaf hash instead of a dedicated account.",
-        tags: ['solana', 'nfts', 'scaling', 'cryptography']
+    },
+    {
+        id: '10', 
+        slug: 'thought-and-execution',
+        type: 'life',
+        date: '13 mar 2026',
+        title: 'thought and execution',
+        content: "two things one must learn: how to execute a quick reset, and how to shrink the gap between having an idea and executing it.\n\nthese sound obvious, but our brains trick us 99% of the time in the real world. the brain only surrenders when it's time for survival. the problem is, we forget we are always in survival mode—hence the procrastination and what we call 'laziness'.\n\nrewiring your brain to choose the tougher path is actually quite simple. you just have to look at your past. if you've been taking the easy route and still haven't achieved what you want, your brain will naturally start craving for a different choice.\n\nreducing the time between thought and execution is what i think requires courage. your thoughts are absurd—not to you, but to the rest of the world. but if you trust them enough to act on them immediately, they will absolutely take you places.",
     }
 ];

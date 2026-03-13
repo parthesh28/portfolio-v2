@@ -3,84 +3,40 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-pixel-square: var(--font-geist-pixel-square);
 }
 
 :root {
-  --bg-color: #afafaf;
-  --bg-nav-color: theme(--color-zinc-300 / 100%);
-  --bg-card-color: theme(--color-stone-300 / 100%);
-  --bg-tab-color: theme(--color-stone-300 / 100%);
-  --bg-button-color: theme(--color-neutral-400 / 100%);
-  --bg-badge-color: theme(--color-zinc-300 / 100%);
-  --border-color: theme(--color-neutral-800 / 100%);
-  --shadow-color: theme(--color-neutral-800 / 100%);
-  --text-color: theme(--color-zinc-900 / 100%);
+  --background: #b4b4b4;
+  --text-color: theme(--color-zinc-900);
+  --item-color: theme(--color-zinc-300);
+  --border-color: theme(--color-neutral-900);
+  --shadow-color: theme(--color-neutral-800);
 }
 
 .dark {
-  --bg-color: #1a1a1a;
-  --bg-nav-color: theme(--color-zinc-700 / 100%);
-  --bg-card-color: theme(--color-zinc-700 / 100%);
-  --bg-tab-color: theme(--color-zinc-700 / 100%);
-  --bg-button-color: theme(--color-zinc-600 / 100%);
-  --bg-badge-color: theme(--color-zinc-700 / 100%);
-  --border-color: theme(--color-neutral-900 / 100%);
-  --shadow-color: theme(--color-neutral-800 / 100%);
-  --text-color: theme(--color-stone-300 / 100%);
+  --background: #1d1d1d;
+  --text-color: theme(--color-zinc-200);
+  --item-color: theme(--color-zinc-600);
+  --border-color: theme(--color-neutral-900);
+  --shadow-color: theme(--color-neutral-800);
 }
-
 
 html,
 body {
   color: var(--text-color);
-  background-color: var(--bg-color);
+  background-color: var(--background);
 }
 
-.page-container {
-  @apply h-[100dvh] w-full relative overflow-hidden flex flex-col items-center justify-center;
-}
-
-.page-title {
-  @apply text-3xl sm:text-4xl font-bold lowercase leading-tight;
-}
-
-.navbar {
-  background-color: var(--bg-nav-color);
+.brutalist {
+  background-color: var(--item-color);
   border: 2px solid var(--border-color);
-  box-shadow: 5px 5px 0 var(--shadow-color);
-}
-
-.card {
-  background-color: var(--bg-card-color);
-  border: 2px solid var(--border-color);
-  box-shadow: 5px 5px 0 var(--shadow-color);
+  box-shadow: 4px 4px 0 var(--shadow-color);
 }
 
 .tab {
-  background-color: var(--bg-tab-color);
+  background-color: var(--item-color);
   border: 2px solid var(--border-color);
-  border-bottom: 2px solid var(--border-color);
-  box-shadow: 3px 0 0 var(--shadow-color);
+  box-shadow: 5px 0 0 var(--shadow-color);
 }
-
-.button {
-  background-color: var(--bg-button-color);
-  border: 2px solid var(--border-color);
-  box-shadow: 3px 3px 0 var(--shadow-color);
-}
-
-.badge {
-  background-color: var(--bg-badge-color);
-  border: 2px solid var(--border-color);
-  box-shadow: 3px 3px 0 var(--shadow-color);
-}
-
-.navlink {
-  background-color: var(--bg-button-color);
-  border: 2px solid var(--border-color);
-  box-shadow: 4px 4px 0px 0px var(--shadow-color);
-}
-

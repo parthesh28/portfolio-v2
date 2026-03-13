@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import PixelLoader from "@/components/loading";
-import { GeistSans } from "geist/font/sans";
+import Loading from "@/components/loading";
 import { GeistMono } from "geist/font/mono";
 import { GeistPixelSquare } from "geist/font/pixel";
 import "./globals.css";
@@ -12,8 +11,7 @@ export const metadata: Metadata = {
   title: "parthesh purohit",
   description: "just a human",
   icons: {
-    icon: [],
-    apple: [],
+    icon: "data:image/png;base64,iVBORw0KGgo=",
   },
 };
 
@@ -23,24 +21,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} ${GeistPixelSquare.variable}`}>
-      <head>
-        <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
-      </head>
-      <body className="antialiased font-pixel-square overflow-hidden h-full w-full">
-
+    <html lang="en" className={`${GeistMono.variable} ${GeistPixelSquare.variable}`}>
+      <body className="antialiased font-pixel-square overflow-hidden h-full w-full lowercase">
         <div className="fixed inset-0 z-0 pointer-events-none select-none overflow-hidden">
-          <span className="absolute top-16 left-0 block text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[20rem] font-sans font-black italic leading-none text-transparent [-webkit-text-stroke:1.5px_#e4e4e7] dark:[-webkit-text-stroke:1.5px_#27272a] opacity-50">
-            ///
+          <span className="absolute font-mono font-black text-transparent opacity-45 [-webkit-text-stroke:1.5px_#e4e4e7] dark:[-webkit-text-stroke:1.5px_#27272a] top-16 left-0 text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[20rem]">
+            build
           </span>
-          <span className="absolute bottom-16 right-0 block text-[4rem] sm:text-[6rem] md:text-[10rem] lg:text-[13rem] font-sans font-black leading-none text-transparent [-webkit-text-stroke:1.5px_#e4e4e7] dark:[-webkit-text-stroke:1.5px_#27272a] opacity-50">
-            T_T
+          <span className="absolute font-mono font-black text-transparent opacity-45 [-webkit-text-stroke:1.5px_#e4e4e7] dark:[-webkit-text-stroke:1.5px_#27272a] bottom-16 right-0 text-[4rem] sm:text-[6rem] md:text-[10rem] lg:text-[13rem]">
+            build
           </span>
         </div>
 
-        <PixelLoader />
+        <Loading />
         <Navbar />
         <Footer />
+        
         {children}
       </body>
     </html>

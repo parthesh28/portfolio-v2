@@ -8,7 +8,7 @@ const projects = [
     title: 'printf',
     description: (
       <>
-        a printing utility which removes public pc logins with a secure oauth-based workflow. comprises three components: a android app for ordering, a restful api, and a rust daemon that interfaces directly with native <span className="font-bold text-zinc-900 dark:text-zinc-100">print apis</span> to execute jobs.
+        a printing utility which removes public pc logins with a secure oauth-based workflow. comprises three components: a android app for ordering, a restful api, and a rust daemon that interfaces directly with native print apis to execute jobs.
       </>
     ),
     tags: ['rust', 'react native', 'systems'],
@@ -20,10 +20,10 @@ const projects = [
     title: 'pulp',
     description: (
       <>
-        a text sharing platform available across three interfaces. the core rest api (<span className="font-bold text-zinc-900 dark:text-zinc-100">hono</span>/<span className="font-bold text-zinc-900 dark:text-zinc-100">sqlite</span>) powers a <span className="font-bold text-zinc-900 dark:text-zinc-100">next.js</span> web app, a native cli tool written in <span className="font-bold text-zinc-900 dark:text-zinc-100">go</span>, and a custom <span className="font-bold text-zinc-900 dark:text-zinc-100">vs code extension</span>—allowing developers to share code snippets directly from their editor environment.
+        a text sharing platform available across three interfaces. the core rest api (hono,sqlite) powers a next.js web app, a native cli tool written in go, and a vs code extension — allowing developers to share code snippets directly from their editor.
       </>
     ),
-    tags: ['next.js', 'go (cli)', 'vs code api', 'hono'],
+    tags: ['next.js', 'go', 'hono'],
     links: { github: 'https://github.com/parthesh28/pulp', live: 'https://pulpx.vercel.app' },
     status: 'june 2023',
   },
@@ -32,11 +32,11 @@ const projects = [
     title: 'spliter',
     description: (
       <>
-        a decentralized expense settlement dapp. use smart contracts to handle trustless fund routing and distinct splits. <span className="font-bold text-zinc-900 dark:text-zinc-100">next.js</span> frontend with real-time wallet integration, allowing users to create groups, track debts, and settle on-chain instantly.
+        a decentralized expense settlement app. use smart contracts to handle trustless fund routing and distinct splits. next.js frontend with real-time wallet integration, allowing users to create groups, track debts, and settle on-chain instantly.
       </>
     ),
-    tags: ['solana', 'anchor (rust)', 'next.js', 'web3.js'],
-    links: { github: 'https://github.com/parthesh28/spliter-sol', live: 'https://splitersol.vercel.app' },
+    tags: ['solana', 'anchor', 'next.js', 'web3.js'],
+    links: { github: 'https://github.com/parthesh28/spliter_sol', live: 'https://splitersol.vercel.app' },
     status: 'sept 2025',
   },
 ];
@@ -47,11 +47,11 @@ const experiences = [
     title: 'ackee blockchain',
     description: (
       <>
-        <span className="block mb-2 font-bold text-zinc-900 dark:text-zinc-100">{`> school of solana certified`}</span>
-        graduated from season 7 of the intensive blockchain security program. gained hands-on expertise in <span className="font-bold text-zinc-900 dark:text-zinc-100">solana architecture</span>, <span className="font-bold text-zinc-900 dark:text-zinc-100">rust</span> smart contracts, and the <span className="font-bold text-zinc-900 dark:text-zinc-100">anchor</span> framework. built and deployed full-stack dapps while studying security vulnerabilities and optimization patterns.
+        <span className="block mb-2 font-bold">{`> school of solana 7`}</span>
+        graduated from season 7 of school of solana. learned the basics of solana architecture, rust, and the anchor framework. built and deployed a full-stack dapp.
       </>
     ),
-    tags: ['certification', 'solana', 'rust', 'security'],
+    tags: ['solana', 'rust'],
     links: { github: undefined, live: 'https://ackee.xyz/school-of-solana' },
     status: '2025',
   },
@@ -60,26 +60,26 @@ const experiences = [
     title: 'turbin3',
     description: (
       <>
-        <span className="block mb-2 font-bold text-zinc-900 dark:text-zinc-100">{`> builders cohort`}</span>
-        part of an intensive cohort for <span className="font-bold text-zinc-900 dark:text-zinc-100">solana developers</span> focused on advanced smart contract techniques and holistic project development. covers <span className="font-bold text-zinc-900 dark:text-zinc-100">architecture design</span>, <span className="font-bold text-zinc-900 dark:text-zinc-100">rust optimization</span>, communication skills, and developer experience best practices—going beyond code to build production-ready applications.
+        <span className="block mb-2 font-bold">{`> async builders`}</span>
+        part of the async builders program by turbin3 focused on smart contract techniques and project development. covers architecture design, optimization, and communication skills.
       </>
     ),
-    tags: ['solana', 'smart contracts', 'architecture', 'rust'],
+    tags: ['anchor', 'rust'],
     links: { github: undefined, live: 'https://turbin3.org' },
-    status: 'jan 2026 - present',
+    status: '2026',
   },
   {
     type: 'experience',
-    title: 'text mercato',
+    title: 'superteam india',
     description: (
       <>
-        <span className="block mb-2 font-bold text-zinc-900 dark:text-zinc-100">{`> freelance technical writer`}</span>
-        worked as a freelance writer for 2+ years, authoring technical blogs, product descriptions, and articles for third-party clients. developed strong <span className="font-bold text-zinc-900 dark:text-zinc-100">documentation</span> and communication skills essential for explaining complex technical concepts to broader audiences.
+        <span className="block mb-2 font-bold">{`> solana india fellowship`}</span>
+        part of the solana india fellowship program by superteam india. deep diving into defi protocols, nft marketplaces, gaming infrastructure, dao governance systems, and emerging web3 primitives.
       </>
     ),
-    tags: ['writing', 'communication', 'freelance', 'seo'],
-    links: { github: undefined, live: 'https://textmercato.com' },
-    status: '2020-2022',
+    tags: ['defi', 'rust', 'solana'],
+    links: { github: undefined, live: 'https://fellowship.superteamin.fun/' },
+    status: '2026',
   },
 ];
 
@@ -91,109 +91,98 @@ const Work = () => {
   const currentItem = currentList[currentIndex];
 
   const handleTabChange = (tab: 'projects' | 'experience') => {
+    if (tab === activeTab) return;
     setActiveTab(tab);
     setCurrentIndex(0);
   };
 
-  const nextItem = () => setCurrentIndex(prev => (prev + 1) % currentList.length);
-  const prevItem = () => setCurrentIndex(prev => (prev - 1 + currentList.length) % currentList.length);
+  const nextItem = () => setCurrentIndex((prev) => (prev + 1) % currentList.length);
+  const prevItem = () => setCurrentIndex((prev) => (prev - 1 + currentList.length) % currentList.length);
 
   return (
-    <main className="page-container px-4 pt-45 pb-32" >
-      <div className="w-full max-w-2xl">
-
-        <div className="pb-4 pl-1">
-          <h1 className="page-title">proof of work</h1>
-        </div>
-
+    <main className="h-[100dvh] w-full relative overflow-hidden flex flex-col items-center justify-center px-4 pt-45 pb-32">
+      <div className="w-full max-w-2xl lowercase">
+        <h1 className="text-3xl sm:text-4xl font-bold pb-4 pl-1">proof of work</h1>
         <div className="flex items-end relative z-20 top-[2px]">
-          <button
-            onClick={() => handleTabChange('projects')}
-            className={`cursor-pointer px-8 py-3 font-bold text-sm ${activeTab === 'projects' ? 'card z-20 pb-[14px]' : 'tab z-0 text-zinc-400'
-              }`}>
-            projects
-          </button>
-          <button
-            onClick={() => handleTabChange('experience')}
-            className={`cursor-pointer px-8 py-3 font-bold text-sm ${activeTab === 'experience' ? 'card z-20 pb-[14px]' : 'tab z-0 text-zinc-400'
-              }`}>
-            experience
-          </button>
+          {(['projects', 'experience'] as const).map((tab) => (
+            <button
+              key={tab}
+              onClick={() => handleTabChange(tab)}
+              className={`px-8 py-3 cursor-pointer font-bold text-sm ${activeTab === tab ? 'brutalist z-20 pb-[14px]' : 'tab z-0'
+                }`}
+            >
+              {tab}
+            </button>
+          ))}
         </div>
 
         <div className="w-full relative mb-4 sm:mb-8">
-          <div className="card relative p-5 sm:p-6 flex flex-col min-h-[22rem] sm:min-h-[24rem] z-10">
-            <div className="flex justify-between items-center mb-4 border-b-2 border-dotted border-current pb-3">
+          <div className="brutalist relative p-5 sm:p-6 flex flex-col min-h-[23rem] z-10">
+            <header className="flex justify-between items-center mb-4 border-b-2 border-dotted border-current pb-3">
               <div className="flex items-center gap-2">
-                <span className="w-3 h-3 bg-current block" />
-                <span className="text-sm font-bold lowercase">
+                <span className="w-3 h-3 bg-current" />
+                <span className="text-sm font-bold">
                   {activeTab === 'projects' ? 'project' : 'record'}_0{currentIndex + 1}
                 </span>
               </div>
-              <span className="text-sm font-semibold px-2 py-1 lowercase">
+              <span className="text-sm font-semibold px-2 py-1">
                 {currentItem.status}
               </span>
+            </header>
+
+            <h2 className="text-3xl sm:text-4xl underline font-bold mb-3">{currentItem.title}</h2>
+
+            <div className="text-sm sm:text-base leading-6 sm:leading-7 font-medium opacity-90 text-justify sm:text-left max-h-[150px] overflow-y-auto pr-2">
+              {currentItem.description}
             </div>
 
-            <div className="flex-1 flex flex-col justify-between gap-4">
-              <div>
-                <h2 className="text-3xl sm:text-4xl font-bold mb-3 lowercase">{currentItem.title}</h2>
-                <div className="text-md sm:text-base leading-6 sm:leading-7 font-medium opacity-90 lowercase text-justify sm:text-left max-h-[150px] overflow-y-auto pr-2">
-                  {currentItem.description}
-                </div>
-              </div>
-
-              <div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {currentItem.tags.map(tag => (
-                    <span key={tag} className="badge px-2 py-0.5 text-[10px] sm:text-xs font-bold lowercase">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-6 mb-2">
-                  {currentItem.links?.github && (
-                    <Link href={currentItem.links.github} target="_blank" className="flex items-center gap-2 text-sm font-bold lowercase">
-                      <i className="hn hn-github text-lg"></i>
-                      code
-                    </Link>
-                  )}
-                  {currentItem.links?.live && (
-                    <Link href={currentItem.links.live} target="_blank" className="flex items-center gap-2 text-sm font-bold lowercase">
-                      <i className="hn hn-link text-lg"></i>
-                      {activeTab === 'projects' ? 'live demo' : 'visit org'}
-                    </Link>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            <div className="absolute -bottom-5 left-0 w-full flex justify-center items-center gap-4 z-20">
-              <button aria-label="previous item" onClick={prevItem} className="cursor-pointer button w-10 h-10 flex items-center justify-center active:translate-y-1 active:shadow-none">
-                <i className="hn hn-arrow-left text-lg"></i>
-              </button>
-
-              <div className="card flex gap-2 px-3 py-2">
-                {currentList.map((_, idx) => (
-                  <div key={idx} className={`w-2 h-2 ${idx === currentIndex ? 'bg-current' : 'bg-gray-400 dark:bg-zinc-500'}`} />
+            <div className="mt-auto pt-4">
+              <div className="flex flex-wrap gap-2 mb-4">
+                {currentItem.tags.map((tag) => (
+                  <span key={tag} className="brutalist px-2 py-0.5 text-[10px] sm:text-xs font-bold">
+                    {tag}
+                  </span>
                 ))}
               </div>
 
-              <button aria-label="next item" onClick={nextItem} className="cursor-pointer button w-10 h-10 flex items-center justify-center active:translate-y-1 active:shadow-none">
-                <i className="hn hn-arrow-right text-lg"></i>
-              </button>
+              <div className="flex gap-4 mb-2">
+                {currentItem.links?.github && (
+                  <Link href={currentItem.links.github} target="_blank" className="underline font-mono text-sm font-bold">
+                    code
+                  </Link>
+                )}
+                {currentItem.links?.live && (
+                  <Link href={currentItem.links.live} target="_blank" className="underline font-mono text-sm font-bold">
+                    {activeTab === 'projects' ? 'live' : 'visit org'}
+                  </Link>
+                )}
+              </div>
             </div>
+          </div>
+
+          <div className="absolute -bottom-5 inset-x-0 flex justify-center items-center gap-4 z-20">
+            <button aria-label="previous item" onClick={prevItem} className="brutalist cursor-pointer w-10 h-10 flex items-center justify-center active:translate-y-1">
+              <i className="hn hn-arrow-left text-lg" />
+            </button>
+
+            <div className="brutalist flex gap-2 px-3 py-2">
+              {currentList.map((_, idx) => (
+                <div key={idx} className={`w-2 h-2 ${idx === currentIndex ? 'bg-current' : 'bg-gray-400 dark:bg-zinc-500'}`} />
+              ))}
+            </div>
+
+            <button aria-label="next item" onClick={nextItem} className="brutalist cursor-pointer w-10 h-10 flex items-center justify-center active:translate-y-1">
+              <i className="hn hn-arrow-right text-lg" />
+            </button>
           </div>
         </div>
 
         <Link
           href="https://github.com/parthesh28?tab=repositories"
           target="_blank"
-          className="flex flex-col items-center gap-1 group mt-10 sm:mt-4"
+          className="block text-center mt-10 sm:mt-4 text-sm font-bold tracking-widest"
         >
-          <span className="text-sm font-bold tracking-widest lowercase opacity-70">
-            [ view all projects ]
-          </span>
+          [ view all projects ]
         </Link>
       </div>
     </main>
