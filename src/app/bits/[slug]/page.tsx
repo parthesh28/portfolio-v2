@@ -21,7 +21,6 @@ const BitDetail = async ({ params }: { params: Promise<{ slug: string }> }) => {
                 <header className="flex items-center justify-between shrink-0">
                     <Link href="/bits" aria-label="back to bits" className="flex items-center gap-2 text-lg font-bold">
                         <i className="hn hn-arrow-left text-lg" />
-                        back
                     </Link>
 
                     <div className="brutalist px-3 py-1.5 flex items-center gap-3 text-[10px] sm:text-xs font-bold">

@@ -67,7 +67,7 @@ const Bits = () => {
             ))
           ) : (
             <div className="py-10 flex items-center justify-center opacity-50 font-mono text-sm">
-              [ nothing found here ]
+              [ nothing here ]
             </div>
           )}
         </section>

@@ -56,18 +56,18 @@ const WeekStats = ({ stats }: { stats: WakaTimeData | null }) => {
   const isInactive = !stats?.total_time || stats.total_time === '0 secs';
 
   return (
-    <section className='flex flex-col gap-1 border-l-2 border-current pl-4'>
-      <div className='flex items-center gap-2 font-bold text-base font-pixel-square'>
-        <i className="hn hn-analytics text-xs" />
+    <section className='flex flex-col border-l-2 border-current pl-4 mt-2'>
+      <div className='flex items-center gap-2 font-bold text-base'>
+        <i className="hn hn-analytics" />
         <span>this week on keyboard</span>
       </div>
 
       {isInactive ? (
-        <span className="italic text-sm font-pixel-square">
-          was in pursuit of happyness...
+        <span className="italic text-sm">
+          had other things up...
         </span>
       ) : (
-        <div className="flex sm:items-center gap-1 sm:gap-4 text-sm font-mono">
+        <div className="flex items-center gap-3 mt-2 font-mono">
           <span className="font-medium text-base">{stats?.total_time}</span>
           <span className='font-black px-1'>|</span>
           <span className="text-base font-medium">
@@ -84,40 +84,39 @@ export default function Home() {
 
   useEffect(() => {
     fetch('/api/wakatime')
-      .then(res => res.ok ? res.json() : Promise.reject('Failed to fetch stats'))
+      .then(res => res.ok ? res.json() : Promise.reject('failed to fetch stats'))
       .then(setStats)
       .catch(console.error);
   }, []);
 
   return (
-    <main className="h-[100dvh] w-full relative overflow-hidden flex flex-col items-center justify-center p-6 sm:p-12 pt-10 sm:pt-28">
-      <article className='max-w-2xl flex flex-col gap-4 sm:gap-10'>
-
-        <header className='flex flex-col sm:flex-row gap-3 sm:gap-5 items-center text-center sm:text-left'>
+    <main className="h-[100dvh] relative flex flex-col items-center justify-center">
+      <article className='max-w-2xl flex flex-col gap-5'>
+        <header className='flex flex-col sm:flex-row gap-5 items-center text-center sm:text-left'>
           <Profile />
           <div>
             <p className='text-lg'>
-              hey, this is <span className='font-bold underline'>parthesh purohit</span>.
+              this is <span className='font-bold underline'>parthesh purohit</span>.
             </p>
             <p className='text-base'>
-              a cs undergrad, full stack dev and <span className='font-bold underline'>a human</span>.
+              cs undergrad, full stack dev and <span className='font-bold underline'>a human</span>.
             </p>
           </div>
         </header>
 
         <WeekStats stats={stats} />
 
-        <section className='flex flex-col mt-5 gap-2 border-l-2 border-current pl-4'>
-          <div className='flex items-center gap-2 font-bold text-base'>
+        <section className='flex flex-col mt-3 gap-2 border-l-2 border-current pl-4'>
+          <div className='flex items-center gap-2 font-bold'>
             <i className="hn hn-heart" />
             <span>things i know:</span>
           </div>
 
-          <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 gap-5 mt-2'>
             {STACKS.map((stack) => (
-              <div key={stack.title} className='brutalist p-3 flex flex-col justify-between gap-3'>
+              <div key={stack.title} className='brutalist p-3 flex flex-col gap-3'>
                 <div>
-                  <h3 className='font-bold text-sm mb-1'>{stack.title}</h3>
+                  <h3 className='font-bold text-sm'>{stack.title}</h3>
                   <p className='text-sm'>{stack.desc}</p>
                 </div>
                 <div className='flex flex-wrap gap-2'>
@@ -132,7 +131,7 @@ export default function Home() {
 
             <div className='text-base font-medium sm:col-span-2'>
               + thinking and solving on{' '}
-              <a className='underline font-bold font-mono tracking-tight' href="https://codeforces.com/profile/parthesh28" target="_blank" rel="noreferrer">
+              <a className='underline font-bold font-mono' href="https://codeforces.com/profile/parthesh28" target="_blank" rel="noreferrer">
                 @codeforces
               </a>.
             </div>

@@ -13,7 +13,7 @@ const Footer = () => {
             <hr className="border-t-2 border-dashed border-zinc-800/90 dark:border-zinc-600/90" />
             <div className="flex items-center justify-between w-full">
                 <p className="font-mono tracking-wide text-sm font-bold leading-none">
-                    ^_^ 
+                    made in bliss 
                 </p>
 
                 <div className="flex items-center gap-4 sm:gap-5 flex-wrap">
