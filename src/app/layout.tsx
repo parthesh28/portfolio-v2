@@ -5,14 +5,45 @@ import Loading from "@/components/loading";
 import { GeistMono } from "geist/font/mono";
 import { GeistPixelSquare } from "geist/font/pixel";
 import "./globals.css";
-import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
 
 export const metadata: Metadata = {
-  title: "parthesh purohit",
-  description: "just a human",
-  icons: {
-    icon: "data:image/png;base64,iVBORw0KGgo=",
+  title: {
+    default: "parthesh purohit",
+    template: "%s | parthesh purohit",
   },
+  description: "cs undergrad, full stack dev and a human building web, mobile, and solana applications.",
+  keywords: ["parthesh purohit", "full stack developer", "solana", "rust", "next.js", "react native"],
+  authors: [{ name: "parthesh purohit" }],
+  creator: "parthesh purohit",
+  metadataBase: new URL("https://partheshpurohit.vercel.app"),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://partheshpurohit.vercel.app",
+    title: "parthesh purohit",
+    description: "cs undergrad, full stack dev and a human building web, mobile, and solana applications.",
+    siteName: "parthesh purohit",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "parthesh purohit",
+    description: "cs undergrad, full stack dev and a human building web, mobile, and solana applications.",
+    creator: "@parthesh28",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "parthesh purohit",
+  url: "https://parthesh.in",
+  sameAs: [
+    "https://github.com/parthesh28",
+    "https://x.com/parthesh28",
+    "https://linkedin.com/in/parthesh28",
+  ],
+  jobTitle: "Full Stack Developer",
+  knowsAbout: ["Next.js", "Solana", "Rust", "React Native", "Hono", "TypeScript"],
 };
 
 export default function RootLayout({
@@ -22,20 +53,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${GeistMono.variable} ${GeistPixelSquare.variable}`}>
-      <body className="antialiased font-pixel-square overflow-hidden h-full w-full lowercase">
-        <div className="fixed inset-0 z-0 pointer-events-none select-none overflow-hidden">
-          <span className="absolute font-mono font-black text-transparent opacity-30 [-webkit-text-stroke:2px_#e4e4e7] dark:[-webkit-text-stroke:2px_#333338] top-16 left-0 text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[20rem]">
-            build
-          </span>
-          <span className="absolute font-mono font-black text-transparent opacity-30 [-webkit-text-stroke:2px_#e4e4e7] dark:[-webkit-text-stroke:2px_#333338] bottom-16 right-0 text-[4rem] sm:text-[6rem] md:text-[10rem] lg:text-[13rem]">
-            build
-          </span>
-        </div>
-
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="antialiased font-pixel-square overflow-hidden h-dvh w-vw lowercase">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-neutral-950 focus:text-neutral-50 focus:border-2 focus:border-neutral-900"
+        >
+          skip to content
+        </a>
         <Loading />
         <Navbar />
         <Footer />
-        
         {children}
       </body>
     </html>

@@ -1,0 +1,104 @@
+'use client'
+import { useState } from 'react'
+import Link from 'next/link'
+import { bits } from '@/utils/bits'
+
+const ITEMS_PER_PAGE = 3;
+const FILTERS = ['tech', 'life'];
+
+export default function BitsClient() {
+  const [filter, setFilter] = useState('tech');
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const filteredBits = bits.filter(bit => bit.type === filter);
+
+  const totalPages = Math.ceil(filteredBits.length / ITEMS_PER_PAGE);
+  const displayedBits = filteredBits.slice(
+    currentPage * ITEMS_PER_PAGE,
+    (currentPage + 1) * ITEMS_PER_PAGE
+  );
+
+  const handleFilterChange = (newFilter: string) => {
+    if (filter === newFilter) return;
+    setFilter(newFilter);
+    setCurrentPage(0);
+  };
+
+  return (
+    <main id="main-content" className="h-dvh w-full relative overflow-hidden flex flex-col items-center justify-center pt-28 pb-20 px-4">
+      <div className="w-full max-w-2xl flex flex-col h-auto max-h-[75vh]">
+
+        <header className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4 shrink-0">
+          <h1 className="text-3xl sm:text-4xl font-bold">bits & logs</h1>
+
+          <nav aria-label="content filter" className="brutalist flex p-1 gap-1">
+            {FILTERS.map((type) => (
+              <button
+                key={type}
+                onClick={() => handleFilterChange(type)}
+                aria-pressed={filter === type}
+                className={`px-4 py-1 text-sm font-bold cursor-pointer font-mono ${filter === type
+                  ? 'bg-neutral-950 text-neutral-100'
+                  : 'text-neutral-900 opacity-60'
+                  }`}
+              >
+                {type}
+              </button>
+            ))}
+          </nav>
+        </header>
+
+        <section aria-label="bits list" className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden p-3 flex flex-col gap-3">
+          {displayedBits.length > 0 ? (
+            displayedBits.map((bit) => (
+              <Link
+                key={bit.id}
+                href={`/bits/${bit.slug}`}
+                aria-label={`read bit: ${bit.title}`}
+                className="brutalist block p-4 sm:p-5"
+              >
+                <div className="flex items-center gap-3 mb-3 text-xs font-bold">
+                  <span>{bit.date}</span>
+                  <span className="w-1 h-1 bg-current rounded-full" aria-hidden="true" />
+                  <span className="px-1.5 py-0.5 border border-current text-[10px]">{bit.type}</span>
+                </div>
+                <h2 className="text-lg sm:text-xl font-bold leading-tight">
+                  {bit.title}
+                </h2>
+              </Link>
+            ))
+          ) : (
+            <div className="py-10 flex items-center justify-center opacity-50 font-mono text-sm">
+              [ nothing here ]
+            </div>
+          )}
+        </section>
+
+        <footer className="mt-4 flex justify-center items-center gap-4 shrink-0 pt-2">
+          <button
+            aria-label="previous page"
+            onClick={() => setCurrentPage((p) => p - 1)}
+            disabled={currentPage === 0}
+            className="brutalist cursor-pointer w-10 h-10 flex items-center justify-center disabled:invisible text-base font-bold font-mono"
+          >
+            <span aria-hidden="true">&lt;</span>
+          </button>
+
+          <span className="text-xs font-bold">
+            page {currentPage + 1} of {Math.max(1, totalPages)}
+          </span>
+
+          <button
+            aria-label="next page"
+            onClick={() => setCurrentPage((p) => p + 1)}
+            disabled={currentPage >= Math.max(1, totalPages) - 1}
+            className="brutalist cursor-pointer w-10 h-10 flex items-center justify-center disabled:invisible text-base font-bold font-mono"
+          >
+            <span aria-hidden="true">&gt;</span>
+          </button>
+        </footer>
+
+      </div>
+    </main>
+  );
+}

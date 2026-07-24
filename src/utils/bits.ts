@@ -13,7 +13,7 @@ export const bits = [
         type: 'tech',
         date: '03 nov 2025',
         title: 'solana delegates are not multisigs',
-        content: "there is often confusion between delegates and multisigs, but they solve different problems. a delegate is a permission model: you use the 'approve' instruction to give another wallet temporary access to spend your tokens. you remain the owner, and you can revoke this access at any time.\n\na multisig wallet is a shared ownership model. the authority of the token account is the multisig vault itself, not any single signer. transactions only execute when a threshold of members approve. essentially: a delegate is a temporary keybrutalist; a multisig is a vault with multiple keys.",
+        content: "there is often confusion between delegates and multisigs, but they solve different problems. a delegate is a permission model: you use the 'approve' instruction to give another wallet temporary access to spend your tokens. you remain the owner, and you can revoke this access at any time.\n\na multisig wallet is a shared ownership model. the authority of the token account is the multisig vault itself, not any single signer. transactions only execute when a threshold of members approve. essentially: a delegate is a temporary key; a multisig is a vault with multiple keys.",
     },
     {
         id: '3',
@@ -80,5 +80,13 @@ export const bits = [
         date: '13 mar 2026',
         title: 'thought and execution',
         content: "two things one must learn: how to execute a quick reset, and how to shrink the gap between having an idea and executing it.\n\nthese sound obvious, but our brains trick us 99% of the time in the real world. the brain only surrenders when it's time for survival. the problem is, we forget we are always in survival mode—hence the procrastination and what we call 'laziness'.\n\nrewiring your brain to choose the tougher path is actually quite simple. you just have to look at your past. if you've been taking the easy route and still haven't achieved what you want, your brain will naturally start craving for a different choice.\n\nreducing the time between thought and execution is what i think requires courage. your thoughts are absurd—not to you, but to the rest of the world. but if you trust them enough to act on them immediately, they will absolutely take you places.",
+    },
+    {
+        id: '11',
+        slug: 'human-and-contradiction',
+        type: 'life',
+        date: '24 jul 2026',
+        title: 'human and contradiction',
+        content: "there comes a point in life when you stop asking whether the world is fair. not because you've answered the question. because you've grown tired of asking it.\n\nyou begin to notice smaller things instead. the damp wall that needs paint before the monsoon. the glass tumblers bought because guests might visit. the door left slightly open after an argument. the tea that tastes different depending on who sits across from you. you realize that life isn't made of revelations. it's mostly maintenance.\n\nyou don't become wise one afternoon. you simply stop expecting people—including yourself—to be the same person every day. one evening you're patient. the next morning you're unfair to your parents. one year you believe heartbreak is the end. another year you smile because it happened at all.\n\nbeing human isn't consistency. it's a variation. and perhaps maturity is nothing more than recognizing your contradictions without rushing to erase them.",
     }
 ];

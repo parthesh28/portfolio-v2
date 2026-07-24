@@ -17,12 +17,12 @@ const Loading = () => {
             setProgress((prev) => {
                 if (prev >= 15) {
                     clearInterval(interval);
-                    setTimeout(() => setProgress(-1), 200); 
+                    setTimeout(() => setProgress(-1), 70); 
                     return 16;
                 }
                 return prev + 1;
             });
-        }, 50);
+        }, 15);
 
         return () => clearInterval(interval);
     }, [pathname]);
@@ -32,7 +32,7 @@ const Loading = () => {
     const activeIndices = new Set(order.slice(0, progress));
 
     return (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center backdrop-blur-lg bg-white/30 dark:bg-black/30 cursor-wait">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center backdrop-blur-lg bg-white/30 cursor-wait">
             <div className="flex flex-col items-center gap-6">
                 <div className="w-16 h-16 border-4 border-current p-1 grid grid-cols-4 gap-1">
                     {Array.from({ length: 16 }).map((_, i) => (

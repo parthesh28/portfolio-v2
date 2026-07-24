@@ -1,42 +1,113 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
   --font-mono: var(--font-geist-mono);
   --font-pixel-square: var(--font-geist-pixel-square);
 }
 
 :root {
-  --background: #b4b4b4;
-  --text-color: theme(--color-zinc-900);
-  --item-color: theme(--color-zinc-300);
+  --background: theme(--color-neutral-500);
+  --text-color: theme(--color-neutral-950);
+  --item-color: theme(--color-neutral-400);
   --border-color: theme(--color-neutral-900);
-  --shadow-color: theme(--color-neutral-800);
-}
-
-.dark {
-  --background: #1d1d1d;
-  --text-color: theme(--color-zinc-200);
-  --item-color: theme(--color-zinc-600);
-  --border-color: theme(--color-neutral-900);
-  --shadow-color: theme(--color-neutral-800);
+  --shadow-color: theme(--color-neutral-950);
 }
 
 html,
 body {
   color: var(--text-color);
   background-color: var(--background);
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--text-color) !important;
+  outline-offset: 2px !important;
 }
 
 .brutalist {
   background-color: var(--item-color);
   border: 2px solid var(--border-color);
   box-shadow: 5px 5px 0 var(--shadow-color);
+  transition: transform 80ms steps(1), box-shadow 80ms steps(1);
+  contain: layout;
+}
+
+button.brutalist:active,
+a.brutalist:active,
+.brutalist-btn:active {
+  transform: translate(5px, 5px) !important;
+  box-shadow: 0px 0px 0 var(--shadow-color) !important;
+  transition: transform 0ms steps(1), box-shadow 0ms steps(1) !important;
 }
 
 .tab {
   background-color: var(--item-color);
   border: 2px solid var(--border-color);
   box-shadow: 5px 0 0 var(--shadow-color);
+}
+
+/* === Mobile Height-Adaptive Layout System === */
+@media (max-width: 767px) {
+  /* Default (<750px height: e.g. iPhone SE, 8, Mini) */
+  .portrait-responsive {
+    font-size: 1.5px !important;
+    line-height: 1.7px !important;
+  }
+  .title-responsive {
+    font-size: 0.875rem !important; /* 14px */
+  }
+  .body-responsive {
+    font-size: 0.75rem !important; /* 12px */
+  }
+  .small-responsive {
+    font-size: 0.6875rem !important; /* 11px */
+  }
+  .gap-responsive {
+    gap: 0.625rem !important; /* 10px */
+  }
+
+  /* Medium phones (750px–849px height: e.g. iPhone 14, 14 Pro, Pixel 7) */
+  @media (min-height: 750px) {
+    .portrait-responsive {
+      font-size: 1.95px !important;
+      line-height: 2.15px !important;
+    }
+    .title-responsive {
+      font-size: 1.0625rem !important; /* 17px */
+    }
+    .body-responsive {
+      font-size: 0.8438rem !important; /* 13.5px */
+    }
+    .small-responsive {
+      font-size: 0.75rem !important; /* 12px */
+    }
+    .gap-responsive {
+      gap: 0.875rem !important; /* 14px */
+    }
+  }
+
+  /* Extra tall phones (≥850px height: e.g. iPhone 14 Pro Max, 15 Pro Max) */
+  @media (min-height: 850px) {
+    .portrait-responsive {
+      font-size: 2.35px !important;
+      line-height: 2.55px !important;
+    }
+    .title-responsive {
+      font-size: 1.25rem !important; /* 20px */
+    }
+    .body-responsive {
+      font-size: 0.9375rem !important; /* 15px */
+    }
+    .small-responsive {
+      font-size: 0.8125rem !important; /* 13px */
+    }
+    .gap-responsive {
+      gap: 1.125rem !important; /* 18px */
+    }
+  }
 }
