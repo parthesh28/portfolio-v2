@@ -24,6 +24,10 @@ body {
   padding: 0;
 }
 
+a {
+  text-decoration: underline;
+}
+
 *:focus-visible {
   outline: 2px solid var(--text-color) !important;
   outline-offset: 2px !important;
@@ -32,7 +36,7 @@ body {
 .brutalist {
   background-color: var(--item-color);
   border: 2px solid var(--border-color);
-  box-shadow: 5px 5px 0 var(--shadow-color);
+  box-shadow: 2px 2px 0 var(--shadow-color);
   transition: transform 80ms steps(1), box-shadow 80ms steps(1);
   contain: layout;
 }
@@ -45,15 +49,76 @@ a.brutalist:active,
   transition: transform 0ms steps(1), box-shadow 0ms steps(1) !important;
 }
 
+button[role="tab"]:active,
+.no-active-anim:active {
+  transform: none !important;
+  transition: none !important;
+}
+
 .tab {
   background-color: var(--item-color);
   border: 2px solid var(--border-color);
-  box-shadow: 5px 0 0 var(--shadow-color);
 }
 
 /* === Mobile Height-Adaptive Layout System === */
 @media (max-width: 767px) {
-  /* Default (<750px height: e.g. iPhone SE, 8, Mini) */
+  /* Default / Short phones (<750px height: e.g. iPhone SE, 8, Mini) */
+  .page-main-adaptive {
+    padding-top: 4.25rem !important; /* ~68px */
+    padding-bottom: 2.75rem !important; /* ~44px */
+  }
+  .page-title-adaptive {
+    font-size: 1.35rem !important; /* 21.6px */
+    padding-bottom: 0.5rem !important;
+  }
+  .card-padding-adaptive {
+    padding: 0.95rem !important; /* ~15px */
+  }
+  .card-title-adaptive {
+    font-size: 1.35rem !important; /* 21.6px */
+    margin-bottom: 0.35rem !important;
+  }
+  .card-text-adaptive {
+    font-size: 0.78125rem !important; /* 12.5px */
+    line-height: 1.3rem !important;
+  }
+  .work-card-min-h-adaptive {
+    min-height: 17rem !important; /* 272px */
+  }
+  .tab-btn-adaptive {
+    padding: 0.45rem 1.125rem !important; /* 7px 18px */
+    font-size: 0.8125rem !important; /* 13px */
+  }
+  .nav-container-adaptive {
+    margin-top: 0.75rem !important; /* 12px */
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
+  }
+  .nav-logo-adaptive {
+    font-size: 1.25rem !important; /* 20px */
+  }
+  .nav-btn-adaptive {
+    padding: 0.3rem 0.7rem !important; /* ~5px 11px */
+    font-size: 0.78125rem !important; /* 12.5px */
+  }
+  .control-btn-adaptive {
+    width: 2.125rem !important; /* 34px */
+    height: 2.125rem !important;
+    font-size: 0.8125rem !important;
+  }
+  .bits-container-adaptive {
+    max-height: 65vh !important;
+  }
+  .bits-header-title-adaptive {
+    font-size: 1.35rem !important; /* 21.6px on iPhone SE */
+  }
+  .bits-card-padding-adaptive {
+    padding: 0.75rem !important; /* 12px on iPhone SE */
+  }
+  .bits-card-title-adaptive {
+    font-size: 0.875rem !important; /* 14px on iPhone SE */
+  }
+
   .portrait-responsive {
     font-size: 1.5px !important;
     line-height: 1.7px !important;
@@ -73,6 +138,62 @@ a.brutalist:active,
 
   /* Medium phones (750px–849px height: e.g. iPhone 14, 14 Pro, Pixel 7) */
   @media (min-height: 750px) {
+    .page-main-adaptive {
+      padding-top: 5.5rem !important; /* 88px */
+      padding-bottom: 3.75rem !important; /* 60px */
+    }
+    .page-title-adaptive {
+      font-size: 1.875rem !important; /* 30px */
+      padding-bottom: 0.75rem !important;
+    }
+    .card-padding-adaptive {
+      padding: 1.25rem !important; /* 20px */
+    }
+    .card-title-adaptive {
+      font-size: 1.875rem !important; /* 30px */
+      margin-bottom: 0.625rem !important;
+    }
+    .card-text-adaptive {
+      font-size: 0.9375rem !important; /* 15px */
+      line-height: 1.55rem !important;
+    }
+    .work-card-min-h-adaptive {
+      min-height: 20.5rem !important; /* 328px */
+    }
+    .tab-btn-adaptive {
+      padding: 0.625rem 1.625rem !important; /* 10px 26px */
+      font-size: 0.875rem !important; /* 14px */
+    }
+    .nav-container-adaptive {
+      margin-top: 1.25rem !important; /* 20px */
+      padding-top: 0.45rem !important;
+      padding-bottom: 0.45rem !important;
+    }
+    .nav-logo-adaptive {
+      font-size: 1.5rem !important; /* 24px */
+    }
+    .nav-btn-adaptive {
+      padding: 0.4rem 0.9rem !important;
+      font-size: 0.875rem !important;
+    }
+    .control-btn-adaptive {
+      width: 2.375rem !important; /* 38px */
+      height: 2.375rem !important;
+      font-size: 0.875rem !important;
+    }
+    .bits-container-adaptive {
+      max-height: 72vh !important;
+    }
+    .bits-header-title-adaptive {
+      font-size: 1.625rem !important; /* 26px on iPhone 14 */
+    }
+    .bits-card-padding-adaptive {
+      padding: 1rem !important; /* 16px on iPhone 14 */
+    }
+    .bits-card-title-adaptive {
+      font-size: 1.0625rem !important; /* 17px on iPhone 14 */
+    }
+
     .portrait-responsive {
       font-size: 1.95px !important;
       line-height: 2.15px !important;
@@ -93,6 +214,62 @@ a.brutalist:active,
 
   /* Extra tall phones (≥850px height: e.g. iPhone 14 Pro Max, 15 Pro Max) */
   @media (min-height: 850px) {
+    .page-main-adaptive {
+      padding-top: 6.5rem !important; /* 104px */
+      padding-bottom: 4.5rem !important; /* 72px */
+    }
+    .page-title-adaptive {
+      font-size: 2.25rem !important; /* 36px */
+      padding-bottom: 1rem !important;
+    }
+    .card-padding-adaptive {
+      padding: 1.5rem !important; /* 24px */
+    }
+    .card-title-adaptive {
+      font-size: 2.25rem !important; /* 36px */
+      margin-bottom: 0.75rem !important;
+    }
+    .card-text-adaptive {
+      font-size: 1rem !important; /* 16px */
+      line-height: 1.65rem !important;
+    }
+    .work-card-min-h-adaptive {
+      min-height: 23rem !important; /* 368px */
+    }
+    .tab-btn-adaptive {
+      padding: 0.75rem 2rem !important; /* 12px 32px */
+      font-size: 0.9375rem !important; /* 15px */
+    }
+    .nav-container-adaptive {
+      margin-top: 1.5rem !important; /* 24px */
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
+    }
+    .nav-logo-adaptive {
+      font-size: 1.625rem !important; /* 26px */
+    }
+    .nav-btn-adaptive {
+      padding: 0.5rem 1rem !important;
+      font-size: 0.9375rem !important;
+    }
+    .control-btn-adaptive {
+      width: 2.5rem !important; /* 40px */
+      height: 2.5rem !important;
+      font-size: 1rem !important;
+    }
+    .bits-container-adaptive {
+      max-height: 75vh !important;
+    }
+    .bits-header-title-adaptive {
+      font-size: 1.875rem !important; /* 30px on iPhone 14 Pro Max */
+    }
+    .bits-card-padding-adaptive {
+      padding: 1.25rem !important; /* 20px on iPhone 14 Pro Max */
+    }
+    .bits-card-title-adaptive {
+      font-size: 1.1875rem !important; /* 19px on iPhone 14 Pro Max */
+    }
+
     .portrait-responsive {
       font-size: 2.35px !important;
       line-height: 2.55px !important;

@@ -61,30 +61,30 @@ const BitDetail = async ({ params }: { params: Promise<{ slug: string }> }) => {
     };
 
     return (
-        <main id="main-content" className="h-dvh w-full relative overflow-hidden flex flex-col items-center justify-center px-6">
+        <main id="main-content" className="h-dvh w-full relative overflow-hidden flex flex-col items-center justify-center px-4 sm:px-6 page-main-adaptive md:pt-20">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <article className="w-full max-w-2xl flex flex-col gap-5 my-auto">
+            <article className="w-full max-w-2xl flex flex-col gap-3 sm:gap-5 my-auto">
 
                 <header className="flex items-center justify-between shrink-0">
-                    <Link href="/bits" aria-label="back to bits list" className="text-sm font-bold font-mono">
+                    <Link href="/bits" aria-label="back to bits list" className="text-xs sm:text-sm font-bold font-mono">
                         &lt; back
                     </Link>
 
-                    <div className="flex items-center gap-2 text-xs font-bold font-mono opacity-80">
+                    <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold font-mono opacity-80">
                         <span>{bit.date}</span>
                         <span aria-hidden="true">•</span>
                         <span>{bit.type}</span>
                     </div>
                 </header>
 
-                <h1 className="text-3xl sm:text-4xl font-bold">
+                <h1 className="page-title-adaptive md:text-4xl font-bold">
                     {bit.title}
                 </h1>
 
-                <p className="text-base leading-relaxed font-medium whitespace-pre-wrap text-justify sm:text-left">
+                <p className="card-text-adaptive md:text-base leading-relaxed font-medium whitespace-pre-wrap text-left">
                     {bit.content}
                 </p>
 

@@ -3,12 +3,12 @@ import { ASCII_ART, JAVA_ASCII, RUST_ASCII, TYPESCRIPT_ASCII } from "@/utils/asc
 
 export default function HomeClient() {
   return (
-    <main id="main-content" className="h-dvh w-full relative flex items-center justify-center pt-24 pb-20 md:pt-20 md:pb-12 px-4 overflow-hidden">
-      <div className="w-full max-w-[95vw] sm:max-w-4xl flex flex-col md:flex-row items-center justify-center gap-responsive md:gap-12 lg:gap-14">
+    <main id="main-content" className="h-dvh w-full relative flex items-center justify-center pt-16 pb-12 sm:pt-24 sm:pb-20 md:pt-20 md:pb-12 px-4 overflow-hidden">
+      <div className="w-full max-w-[95vw] sm:max-w-4xl md:max-w-5xl lg:max-w-6xl flex flex-col md:flex-row items-center justify-center gap-responsive md:gap-6 lg:gap-12">
 
         {/* ASCII Portrait */}
-        <div className="shrink-0 flex justify-center w-full md:w-auto overflow-hidden">
-          <pre className="portrait-responsive sm:text-[2.2px] sm:leading-[2.4px] md:text-[2.8px] md:leading-[3px] lg:text-[3.2px] lg:leading-[3.4px] font-mono select-none whitespace-pre tracking-tighter text-current overflow-hidden scale-x-110 origin-center">
+        <div className="shrink-0 flex justify-center w-full md:w-auto">
+          <pre className="portrait-responsive sm:text-[2.2px] sm:leading-[2.4px] md:text-[2.6px] md:leading-[2.8px] lg:text-[2.9px] lg:leading-[3.1px] font-mono select-none whitespace-pre tracking-tighter text-current origin-center scale-x-[1.08]">
             {ASCII_ART}
           </pre>
         </div>
