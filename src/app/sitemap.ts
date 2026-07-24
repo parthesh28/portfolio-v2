@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { bits } from '@/utils/bits';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://partheshpurohit.vercel.app';
+  const baseUrl = 'https://parthesh.in';
 
   const bitUrls = bits.map((bit) => ({
     url: `${baseUrl}/bits/${bit.slug}`,

@@ -15,11 +15,11 @@ export const metadata: Metadata = {
   keywords: ["parthesh purohit", "full stack developer", "solana", "rust", "next.js", "react native"],
   authors: [{ name: "parthesh purohit" }],
   creator: "parthesh purohit",
-  metadataBase: new URL("https://partheshpurohit.vercel.app"),
+  metadataBase: new URL("https://parthesh.in"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://partheshpurohit.vercel.app",
+    url: "https://parthesh.in",
     title: "parthesh purohit",
     description: "cs undergrad, full stack dev and a human building web, mobile, and solana applications.",
     siteName: "parthesh purohit",

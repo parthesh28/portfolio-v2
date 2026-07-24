@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'work | parthesh purohit',
     description: 'proof of work and record of software engineering projects, rust programs, and solana ecosystem experiences by parthesh purohit.',
-    url: 'https://partheshpurohit.vercel.app/work',
+    url: 'https://parthesh.in/work',
   },
   twitter: {
     card: 'summary_large_image',

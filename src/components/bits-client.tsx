@@ -26,6 +26,19 @@ export default function BitsClient() {
 
   return (
     <main id="main-content" className="h-dvh w-full relative overflow-hidden flex flex-col items-center justify-center pt-28 pb-20 px-4">
+      {/* Crawler-accessible link list so search engine crawlers index ALL bits (tech and life) */}
+      <nav aria-label="all bits archive" className="sr-only">
+        <ul>
+          {bits.map((bit) => (
+            <li key={bit.id}>
+              <Link href={`/bits/${bit.slug}`}>
+                {bit.title} - {bit.type} ({bit.date})
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
       <div className="w-full max-w-2xl flex flex-col h-auto max-h-[75vh]">
 
         <header className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4 shrink-0">

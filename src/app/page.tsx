@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'parthesh purohit',
     description: 'cs undergrad, full stack dev and a human building web, mobile, and solana applications.',
-    url: 'https://partheshpurohit.vercel.app',
+    url: 'https://parthesh.in',
   },
   twitter: {
     card: 'summary_large_image',

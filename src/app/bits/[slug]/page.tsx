@@ -16,13 +16,28 @@ export async function generateMetadata({
 
     if (!bit) return { title: 'bit not found' };
 
+    const fullTitle = `${bit.title} - parthesh purohit`;
+    const snippet = bit.content.slice(0, 155).replace(/\s+/g, ' ').trim() + '...';
+    const pageUrl = `https://parthesh.in/bits/${bit.slug}`;
+
     return {
-        title: bit.title,
-        description: bit.content.slice(0, 160) + '...',
+        title: {
+            absolute: fullTitle,
+        },
+        description: snippet,
+        alternates: {
+            canonical: pageUrl,
+        },
         openGraph: {
-            title: `${bit.title} | parthesh purohit`,
-            description: bit.content.slice(0, 160) + '...',
+            title: fullTitle,
+            description: snippet,
+            url: pageUrl,
             type: 'article',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: fullTitle,
+            description: snippet,
         },
     };
 }
