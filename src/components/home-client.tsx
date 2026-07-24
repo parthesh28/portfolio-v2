@@ -14,7 +14,7 @@ export default function HomeClient() {
         </div>
 
         {/* Profile Content */}
-        <article className="flex flex-col gap-responsive max-w-lg w-full">
+        <article className="flex flex-col gap-responsive md:gap-4 lg:gap-5 max-w-lg w-full">
 
           <header className="flex flex-col border-l-2 border-current pl-3 md:pl-4">
             <h1 className="title-responsive md:text-2xl font-normal leading-snug">
