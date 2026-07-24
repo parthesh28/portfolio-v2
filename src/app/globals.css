@@ -6,9 +6,9 @@
 }
 
 :root {
-  --background: theme(--color-neutral-500);
+  --background: theme(--color-neutral-400);
   --text-color: theme(--color-neutral-950);
-  --item-color: theme(--color-neutral-400);
+  --item-color: theme(--color-stone-300);
   --border-color: theme(--color-neutral-900);
   --shadow-color: theme(--color-neutral-950);
 }
