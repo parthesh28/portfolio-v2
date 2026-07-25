@@ -17,7 +17,12 @@ export async function generateMetadata({
     if (!bit) return { title: 'bit not found' };
 
     const fullTitle = `${bit.title} - parthesh purohit`;
-    const snippet = bit.content.slice(0, 155).replace(/\s+/g, ' ').trim() + '...';
+    // Clean content for snippet: remove backticks, collapse whitespace, cut at word boundary
+    const cleanContent = bit.content.replace(/`[^`]*`/g, '').replace(/\s+/g, ' ').trim();
+    const maxLen = 155;
+    const snippet = cleanContent.length <= maxLen
+        ? cleanContent
+        : cleanContent.slice(0, cleanContent.lastIndexOf(' ', maxLen)) + '...';
     const pageUrl = `https://parthesh.in/bits/${bit.slug}`;
 
     return {
@@ -33,6 +38,8 @@ export async function generateMetadata({
             description: snippet,
             url: pageUrl,
             type: 'article',
+            publishedTime: bit.isoDate,
+            authors: ['https://parthesh.in'],
         },
         twitter: {
             card: 'summary_large_image',
@@ -48,15 +55,35 @@ const BitDetail = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
     if (!bit) notFound();
 
+    const cleanContent = bit.content.replace(/`[^`]*`/g, '').replace(/\s+/g, ' ').trim();
+    const maxLen = 155;
+    const snippet = cleanContent.length <= maxLen
+        ? cleanContent
+        : cleanContent.slice(0, cleanContent.lastIndexOf(' ', maxLen)) + '...';
+    const pageUrl = `https://parthesh.in/bits/${bit.slug}`;
+
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
+        mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': pageUrl,
+        },
         headline: bit.title,
-        datePublished: bit.date,
+        description: snippet,
+        datePublished: bit.isoDate,
+        dateModified: bit.isoDate,
         articleBody: bit.content,
+        url: pageUrl,
         author: {
             '@type': 'Person',
             name: 'Parthesh Purohit',
+            url: 'https://parthesh.in',
+        },
+        publisher: {
+            '@type': 'Person',
+            name: 'Parthesh Purohit',
+            url: 'https://parthesh.in',
         },
     };
 
@@ -69,22 +96,22 @@ const BitDetail = async ({ params }: { params: Promise<{ slug: string }> }) => {
             <article className="w-full max-w-2xl flex flex-col gap-3 sm:gap-5 my-auto">
 
                 <header className="flex items-center justify-between shrink-0">
-                    <Link href="/bits" aria-label="back to bits list" className="text-xs sm:text-sm font-bold font-mono">
+                    <Link href="/bits" aria-label="back to bits list" className="text-xs sm:text-sm font-mono">
                         &lt; back
                     </Link>
 
-                    <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold font-mono opacity-80">
+                    <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono opacity-80">
                         <span>{bit.date}</span>
                         <span aria-hidden="true">•</span>
                         <span>{bit.type}</span>
                     </div>
                 </header>
 
-                <h1 className="page-title-adaptive md:text-4xl font-bold">
+                <h1 className="page-title-adaptive md:text-sm">
                     {bit.title}
                 </h1>
 
-                <p className="card-text-adaptive md:text-base leading-relaxed font-medium whitespace-pre-wrap text-left">
+                <p className="card-text-adaptive md:text-xs leading-relaxed whitespace-pre-wrap text-left">
                     {bit.content}
                 </p>
 

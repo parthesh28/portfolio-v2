@@ -19,7 +19,7 @@ const Footer = () => {
                             href={href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-mono text-xs sm:text-sm font-bold"
+                            className="font-mono text-[8px] sm:text-[10px]"
                         >
                             {label}
                         </Link>

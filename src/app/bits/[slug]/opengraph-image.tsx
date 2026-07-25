@@ -16,7 +16,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const title = bit ? bit.title : 'bits & logs';
 
   const fontData = await fs.readFile(
-    path.join(process.cwd(), 'public/fonts/GeistPixel-Square.ttf')
+    path.join(process.cwd(), 'public/fonts/PublicPixel.ttf')
   );
 
   return new ImageResponse(
@@ -30,7 +30,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           justifyContent: 'center',
           backgroundColor: '#1d1d1d',
           color: '#e4e4e7',
-          fontFamily: 'GeistPixelSquare',
+          fontFamily: 'PublicPixel',
           padding: '50px',
         }}
       >
@@ -61,7 +61,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           <div
             style={{
               fontSize: '52px',
-              fontWeight: 700,
+              fontWeight: 400,
               lineHeight: '1.25',
               letterSpacing: '-0.02em',
             }}
@@ -75,10 +75,10 @@ export default async function Image({ params }: { params: Promise<{ slug: string
       ...size,
       fonts: [
         {
-          name: 'GeistPixelSquare',
+          name: 'PublicPixel',
           data: fontData,
           style: 'normal',
-          weight: 700,
+          weight: 400,
         },
       ],
     }

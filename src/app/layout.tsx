@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Loading from "@/components/loading";
-import { GeistMono } from "geist/font/mono";
-import { GeistPixelSquare } from "geist/font/pixel";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const publicPixel = localFont({
+  src: "./fonts/PublicPixel.ttf",
+  variable: "--font-public-pixel",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -21,13 +26,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://parthesh.in",
     title: "parthesh purohit",
-    description: "cs undergrad, full stack dev and a human building web, mobile, and solana applications.",
+    description: "cs undergrad, full stack dev and a human building multi-platform applications.",
     siteName: "parthesh purohit",
   },
   twitter: {
     card: "summary_large_image",
     title: "parthesh purohit",
-    description: "cs undergrad, full stack dev and a human building web, mobile, and solana applications.",
+    description: "cs undergrad, full stack dev and a human building multi-platform applications.",
     creator: "@parthesh28",
   },
 };
@@ -52,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${GeistMono.variable} ${GeistPixelSquare.variable}`}>
+    <html lang="en" className={publicPixel.variable}>
       <head>
         <script
           type="application/ld+json"

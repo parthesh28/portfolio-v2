@@ -16,9 +16,9 @@ export default function Navbar() {
   );
 
   return (
-    <nav aria-label="main navigation" className="fixed inset-x-0 mx-auto z-50 brutalist px-3.5 sm:px-4 nav-container-adaptive md:py-2 md:mt-6 w-full max-w-[95vw] sm:max-w-4xl flex items-center justify-between">
-      <p className="nav-logo-adaptive md:text-3xl font-bold tracking-wide flex items-center gap-1.5 sm:gap-2">
-        <span className="nav-logo-adaptive md:text-3xl select-none inline-block translate-y-[2px] sm:translate-y-[3px] leading-none" aria-hidden="true">❐</span>
+    <nav aria-label="main navigation" className="fixed inset-x-0 mx-auto z-50 brutalist px-4 sm:px-6 nav-container-adaptive py-2.5 sm:py-3.5 md:py-3.5 md:mt-6 w-full max-w-[90vw] sm:max-w-2xl md:max-w-3xl flex items-center justify-between">
+      <p className="nav-logo-adaptive md:text-sm tracking-wide flex items-center gap-2 sm:gap-2.5">
+        <span className="text-xl sm:text-2xl md:text-3xl select-none inline-block leading-none" aria-hidden="true">❐</span>
         <span className="leading-none">parthesh</span>
       </p>
 
@@ -28,7 +28,7 @@ export default function Navbar() {
             key={name}
             href={href}
             aria-label={`navigate to ${name}`}
-            className="brutalist tracking-wider nav-btn-adaptive md:text-lg md:px-4 md:py-2 font-bold flex items-center justify-center"
+            className="brutalist tracking-wider nav-btn-adaptive md:text-[11px] px-3 py-1.5 sm:px-5 sm:py-2.5 flex items-center justify-center"
           >
             <span>{name}</span>
           </Link>

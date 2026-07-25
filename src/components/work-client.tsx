@@ -106,7 +106,7 @@ export default function WorkClient() {
   return (
     <main id="main-content" className="h-dvh w-full relative overflow-hidden flex flex-col items-center justify-center px-4 page-main-adaptive md:pt-24 md:pb-16">
       <div className="w-full max-w-2xl lowercase">
-        <h1 className="page-title-adaptive md:text-4xl font-bold pl-1">proof of work</h1>
+        <h1 className="page-title-adaptive md:text-sm pl-1">proof of work</h1>
         
         <div role="tablist" aria-label="work categories" className="flex items-end relative z-20 top-[2px]">
           {(['projects', 'experience'] as const).map((tab) => {
@@ -121,7 +121,7 @@ export default function WorkClient() {
                 tabIndex={isSelected ? 0 : -1}
                 onClick={() => handleTabChange(tab)}
                 onKeyDown={(e) => handleKeyDown(e, tab)}
-                className={`tab-btn-adaptive md:px-8 md:py-3 cursor-pointer font-bold md:text-sm ${
+                className={`tab-btn-adaptive md:px-8 md:py-3 cursor-pointer md:text-[10px] ${
                   isSelected ? 'brutalist z-20 pb-[10px] md:pb-[14px]' : 'tab z-0'
                 }`}
               >
@@ -136,25 +136,25 @@ export default function WorkClient() {
             <header className="flex justify-between items-center mb-2.5 sm:mb-4 border-b-2 border-dotted border-current pb-2 sm:pb-3">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-current" aria-hidden="true" />
-                <span className="text-xs sm:text-sm font-bold">
+                <span className="text-[10px] sm:text-xs">
                   {activeTab === 'projects' ? 'project' : 'record'}_0{currentIndex + 1}
                 </span>
               </div>
-              <span className="text-xs sm:text-sm font-semibold px-2 py-0.5 sm:py-1">
+              <span className="text-[10px] sm:text-xs px-2 py-0.5 sm:py-1">
                 {currentItem.status}
               </span>
             </header>
 
-            <h2 className="card-title-adaptive md:text-4xl font-bold">{currentItem.title}</h2>
+            <h2 className="card-title-adaptive md:text-sm">{currentItem.title}</h2>
 
-            <div className="card-text-adaptive md:text-base md:leading-7 font-medium opacity-90 text-left">
+            <div className="card-text-adaptive md:text-xs md:leading-5 opacity-90 text-left">
               {currentItem.description}
             </div>
 
             <div className="mt-auto pt-3 sm:pt-4">
               <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
                 {currentItem.tags.map((tag) => (
-                  <span key={tag} className="brutalist px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-bold">
+                  <span key={tag} className="brutalist px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs">
                     {tag}
                   </span>
                 ))}
@@ -162,12 +162,12 @@ export default function WorkClient() {
 
               <div className="flex gap-3 sm:gap-4 mb-1 sm:mb-2">
                 {currentItem.links?.github && (
-                  <Link href={currentItem.links.github} target="_blank" rel="noopener noreferrer" className="font-mono text-xs sm:text-sm font-bold">
+                  <Link href={currentItem.links.github} target="_blank" rel="noopener noreferrer" className="font-mono text-xs sm:text-sm">
                     code
                   </Link>
                 )}
                 {currentItem.links?.live && (
-                  <Link href={currentItem.links.live} target="_blank" rel="noopener noreferrer" className="font-mono text-xs sm:text-sm font-bold">
+                  <Link href={currentItem.links.live} target="_blank" rel="noopener noreferrer" className="font-mono text-xs sm:text-sm">
                     {activeTab === 'projects' ? 'live' : 'visit org'}
                   </Link>
                 )}
@@ -176,8 +176,8 @@ export default function WorkClient() {
           </div>
 
           <div className="absolute -bottom-4 sm:-bottom-5 inset-x-0 flex justify-center items-center gap-3 sm:gap-4 z-20">
-            <button aria-label={`previous ${activeTab === 'projects' ? 'project' : 'experience'}`} onClick={prevItem} className="brutalist cursor-pointer control-btn-adaptive md:w-10 md:h-10 flex items-center justify-center font-bold font-mono">
-              <span aria-hidden="true">&lt;</span>
+            <button aria-label={`previous ${activeTab === 'projects' ? 'project' : 'experience'}`} onClick={prevItem} className="brutalist cursor-pointer control-btn-adaptive md:w-10 md:h-10 flex items-center justify-center font-mono">
+              <span aria-hidden="true" className="leading-none inline-block text-xs sm:text-sm -translate-y-[1px] translate-x-[0.5px]">&lt;</span>
             </button>
 
             <div className="brutalist flex gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2" role="group" aria-label={`Item ${currentIndex + 1} of ${currentList.length}`}>
@@ -186,8 +186,8 @@ export default function WorkClient() {
               ))}
             </div>
 
-            <button aria-label={`next ${activeTab === 'projects' ? 'project' : 'experience'}`} onClick={nextItem} className="brutalist cursor-pointer control-btn-adaptive md:w-10 md:h-10 flex items-center justify-center font-bold font-mono">
-              <span aria-hidden="true">&gt;</span>
+            <button aria-label={`next ${activeTab === 'projects' ? 'project' : 'experience'}`} onClick={nextItem} className="brutalist cursor-pointer control-btn-adaptive md:w-10 md:h-10 flex items-center justify-center font-mono">
+              <span aria-hidden="true" className="leading-none inline-block text-xs sm:text-sm -translate-y-[2px] translate-x-[1.5px]">&gt;</span>
             </button>
           </div>
         </div>

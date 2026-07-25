@@ -8,74 +8,74 @@ export default function HomeClient() {
 
         {/* ASCII Portrait */}
         <div className="shrink-0 flex justify-center w-full md:w-auto">
-          <pre className="portrait-responsive sm:text-[2.2px] sm:leading-[2.4px] md:text-[2.6px] md:leading-[2.8px] lg:text-[2.9px] lg:leading-[3.1px] font-mono select-none whitespace-pre tracking-tighter text-current origin-center scale-x-[1.08]">
+          <pre className="portrait-responsive portrait-mask sm:text-[0.80px] sm:leading-[1.05px] md:text-[0.95px] md:leading-[1.24px] lg:text-[1.10px] lg:leading-[1.42px] xl:text-[1.25px] xl:leading-[1.62px] font-bold font-mono select-none whitespace-pre tracking-tighter text-current origin-center scale-x-[0.88] scale-y-[1.20]">
             {ASCII_ART}
           </pre>
         </div>
 
         {/* Profile Content */}
-        <article className="flex flex-col gap-responsive md:gap-4 lg:gap-5 max-w-lg w-full">
+        <article className="flex-1 flex flex-col gap-responsive md:gap-4 lg:gap-5 max-w-lg w-full">
 
           <header className="flex flex-col border-l-2 border-current pl-3 md:pl-4">
-            <h1 className="title-responsive md:text-2xl font-normal leading-snug">
-              this is <span className="font-bold">parthesh purohit</span>.
+            <h1 className="title-responsive md:text-base font-normal leading-snug">
+              this is <span>parthesh purohit</span>.
             </h1>
-            <p className="body-responsive md:text-base">
-              cs undergrad, full stack dev and <span className="font-bold">a human</span>.
+            <p className="body-responsive md:text-xs leading-relaxed">
+              cs undergrad, full stack dev and <span>a human</span>.
             </p>
           </header>
 
           <section className="flex flex-col border-l-2 border-current pl-3 md:pl-4">
-            <blockquote className="body-responsive md:text-lg font-medium leading-snug">
-              <span className="title-responsive md:text-4xl font-bold select-none opacity-50 align-[-0.2em] mr-0.5 md:mr-1 inline-block">&ldquo;</span>
+            <blockquote className="body-responsive md:text-xs leading-relaxed">
+              <span className="text-base sm:text-lg md:text-xl select-none opacity-50 align-[-0.2em] mr-0.5 md:mr-1 inline-block">&ldquo;</span>
               <em>i can love anything if i spend enough time with it.</em>
-              <span className="title-responsive md:text-4xl font-bold select-none opacity-50 align-[-0.35em] ml-0.5 md:ml-1 inline-block">&rdquo;</span>
+              <span className="text-base sm:text-lg md:text-xl select-none opacity-50 align-[-0.35em] ml-0.5 md:ml-1 inline-block">&rdquo;</span>
             </blockquote>
           </section>
 
           <section className="flex flex-col gap-1.5 md:gap-3 border-l-2 border-current pl-3 md:pl-4">
-            <div className="flex items-center gap-1.5 font-bold body-responsive md:text-base">
-              <span aria-hidden="true">♡</span>
+            <div className="flex items-center gap-1.5 body-responsive md:text-xs">
+              <span aria-hidden="true">&gt;</span>
               <span>things i work with:</span>
             </div>
             <div className="flex flex-row items-center gap-3 md:gap-8 overflow-hidden flex-wrap">
               <pre
-                className="font-mono font-black select-none whitespace-pre text-current shrink-0"
-                style={{ fontSize: '1.3px', lineHeight: '1.48px' }}
+                className="font-mono font-bold select-none whitespace-pre text-current shrink-0"
+                style={{ fontSize: '0.95px', lineHeight: '1.10px' }}
               >
                 {JAVA_ASCII}
               </pre>
               <pre
-                className="font-mono font-black select-none whitespace-pre text-current shrink-0"
-                style={{ fontSize: '2.35px', lineHeight: '2.40px' }}
+                className="font-mono font-bold select-none whitespace-pre text-current shrink-0"
+                style={{ fontSize: '1.60px', lineHeight: '1.70px' }}
               >
                 {RUST_ASCII}
               </pre>
               <pre
-                className="font-mono font-black select-none whitespace-pre text-current shrink-0"
-                style={{ fontSize: '2.35px', lineHeight: '2.40px' }}
+                className="font-mono font-bold select-none whitespace-pre text-current shrink-0"
+                style={{ fontSize: '1.60px', lineHeight: '1.70px' }}
               >
                 {TYPESCRIPT_ASCII}
               </pre>
             </div>
           </section>
 
-          <section className="flex flex-col gap-1 md:gap-1.5 border-l-2 border-current pl-3 md:pl-4">
-            <div className="flex items-center gap-1.5 font-bold body-responsive md:text-base">
-              <span aria-hidden="true">✦</span>
+          <section className="flex flex-col gap-1.5 md:gap-2 border-l-2 border-current pl-3 md:pl-4">
+            <div className="flex items-center gap-1.5 body-responsive md:text-xs">
+              <span aria-hidden="true" className="text-md">&gt;</span>
               <span>extras:</span>
             </div>
-            <ul className="small-responsive md:text-sm font-medium space-y-0.5 md:space-y-1">
+            <ul className="small-responsive md:text-xs leading-relaxed space-y-1">
               <li>
                 + solving on{' '}
-                <a className="font-bold font-mono" href="https://codeforces.com/profile/parthesh28" target="_blank" rel="noopener noreferrer">
+                <a className="font-mono" href="https://codeforces.com/profile/parthesh28" target="_blank" rel="noopener noreferrer">
                   @codeforces
                 </a>
               </li>
               <li>+ writing and reading philosophy</li>
               <li>
                 + playing chess on{' '}
-                <a className="font-bold font-mono" href="https://www.chess.com/member/parthesh28" target="_blank" rel="noopener noreferrer">
+                <a className="font-mono" href="https://www.chess.com/member/parthesh28" target="_blank" rel="noopener noreferrer">
                   @chessdotcom
                 </a>
               </li>

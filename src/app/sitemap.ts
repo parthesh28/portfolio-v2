@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const bitUrls = bits.map((bit) => ({
     url: `${baseUrl}/bits/${bit.slug}`,
-    lastModified: new Date(),
+    lastModified: new Date(bit.isoDate),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));

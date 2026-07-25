@@ -11,7 +11,7 @@ export const contentType = 'image/png';
 
 export default async function Image() {
   const fontData = await fs.readFile(
-    path.join(process.cwd(), 'public/fonts/GeistPixel-Square.ttf')
+    path.join(process.cwd(), 'public/fonts/PublicPixel.ttf')
   );
 
   return new ImageResponse(
@@ -25,7 +25,7 @@ export default async function Image() {
           justifyContent: 'center',
           backgroundColor: '#1d1d1d',
           color: '#e4e4e7',
-          fontFamily: 'GeistPixelSquare',
+          fontFamily: 'PublicPixel',
           padding: '40px',
         }}
       >
@@ -45,7 +45,7 @@ export default async function Image() {
           <div
             style={{
               fontSize: '64px',
-              fontWeight: 700,
+              fontWeight: 400,
               letterSpacing: '-0.02em',
               marginBottom: '16px',
             }}
@@ -62,10 +62,10 @@ export default async function Image() {
       ...size,
       fonts: [
         {
-          name: 'GeistPixelSquare',
+          name: 'PublicPixel',
           data: fontData,
           style: 'normal',
-          weight: 700,
+          weight: 400,
         },
       ],
     }
