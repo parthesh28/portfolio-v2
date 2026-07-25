@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   authors: [{ name: "parthesh purohit" }],
   creator: "parthesh purohit",
   metadataBase: new URL("https://parthesh.in"),
+  alternates: {
+    canonical: "https://parthesh.in",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -64,7 +67,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="antialiased font-pixel-square overflow-hidden h-dvh w-vw lowercase">
+      <body className="overflow-hidden h-dvh w-screen lowercase">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-neutral-950 focus:text-neutral-50 focus:border-2 focus:border-neutral-900"

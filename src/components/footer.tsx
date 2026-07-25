@@ -19,7 +19,8 @@ const Footer = () => {
                             href={href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-mono text-[8px] sm:text-[10px]"
+                            aria-label={`${label} (opens in new tab)`}
+                            className="text-[8px] sm:text-[10px]"
                         >
                             {label}
                         </Link>

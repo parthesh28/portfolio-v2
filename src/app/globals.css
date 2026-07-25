@@ -1,16 +1,6 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'PublicPixel';
-  src: url('/fonts/PublicPixel.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme inline {
-  --font-mono: var(--font-public-pixel), 'PublicPixel', monospace;
-  --font-pixel-square: var(--font-public-pixel), 'PublicPixel', monospace;
   --font-sans: var(--font-public-pixel), 'PublicPixel', monospace;
 }
 
@@ -22,27 +12,24 @@
   --shadow-color: #000000;
 }
 
-html {
-  height: 100dvh;
-  width: 100vw;
-}
-
 body {
   color: var(--text-color);
   background-color: var(--background);
-  height: 100dvh;
-  width: 100vw;
-  overflow: hidden;
   margin: 0;
   padding: 0;
   user-select: none;
   -webkit-user-select: none;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
 }
 
 pre {
-  font-weight: 700 !important;
+  letter-spacing: normal;
 }
 
 a,
@@ -50,6 +37,12 @@ a:hover,
 a:focus,
 a:visited {
   text-decoration: none !important;
+}
+
+a[target="_blank"],
+a[target="_blank"]:hover,
+a[target="_blank"]:focus {
+  text-decoration: underline !important;
 }
 
 *:focus-visible {
@@ -73,8 +66,7 @@ a.brutalist:active,
   transition: transform 0ms steps(1), box-shadow 0ms steps(1) !important;
 }
 
-button[role="tab"]:active,
-.no-active-anim:active {
+button[role="tab"]:active {
   transform: none !important;
   transition: none !important;
 }

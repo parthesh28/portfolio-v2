@@ -4,6 +4,9 @@ import HomeClient from '@/components/home-client';
 export const metadata: Metadata = {
   title: 'parthesh purohit',
   description: 'cs undergrad, full stack dev and a human building web, mobile, and solana applications.',
+  alternates: {
+    canonical: 'https://parthesh.in',
+  },
   openGraph: {
     title: 'parthesh purohit',
     description: 'cs undergrad, full stack dev and a human building web, mobile, and solana applications.',

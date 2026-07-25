@@ -105,8 +105,8 @@ export default function WorkClient() {
 
   return (
     <main id="main-content" className="h-dvh w-full relative overflow-hidden flex flex-col items-center justify-center px-4 page-main-adaptive md:pt-24 md:pb-16">
-      <div className="w-full max-w-2xl lowercase">
-        <h1 className="page-title-adaptive md:text-sm pl-1">proof of work</h1>
+      <div className="w-full max-w-2xl">
+        <h1 className="page-title-adaptive md:text-sm pl-1 mb-3">proof of work</h1>
         
         <div role="tablist" aria-label="work categories" className="flex items-end relative z-20 top-[2px]">
           {(['projects', 'experience'] as const).map((tab) => {
@@ -145,9 +145,9 @@ export default function WorkClient() {
               </span>
             </header>
 
-            <h2 className="card-title-adaptive md:text-sm">{currentItem.title}</h2>
+            <h2 className="card-title-adaptive md:text-sm mb-2">{currentItem.title}</h2>
 
-            <div className="card-text-adaptive md:text-xs md:leading-5 opacity-90 text-left">
+            <div className="card-text-adaptive md:text-xs md:leading-5 opacity-90 text-left mt-1">
               {currentItem.description}
             </div>
 
@@ -162,12 +162,12 @@ export default function WorkClient() {
 
               <div className="flex gap-3 sm:gap-4 mb-1 sm:mb-2">
                 {currentItem.links?.github && (
-                  <Link href={currentItem.links.github} target="_blank" rel="noopener noreferrer" className="font-mono text-xs sm:text-sm">
+                  <Link href={currentItem.links.github} target="_blank" rel="noopener noreferrer" aria-label={`view ${currentItem.title} source code (opens in new tab)`} className="text-[9px] sm:text-[10px]">
                     code
                   </Link>
                 )}
                 {currentItem.links?.live && (
-                  <Link href={currentItem.links.live} target="_blank" rel="noopener noreferrer" className="font-mono text-xs sm:text-sm">
+                  <Link href={currentItem.links.live} target="_blank" rel="noopener noreferrer" aria-label={`visit ${currentItem.title} ${activeTab === 'projects' ? 'live site' : 'organisation'} (opens in new tab)`} className="text-[9px] sm:text-[10px]">
                     {activeTab === 'projects' ? 'live' : 'visit org'}
                   </Link>
                 )}
@@ -176,17 +176,25 @@ export default function WorkClient() {
           </div>
 
           <div className="absolute -bottom-4 sm:-bottom-5 inset-x-0 flex justify-center items-center gap-3 sm:gap-4 z-20">
-            <button aria-label={`previous ${activeTab === 'projects' ? 'project' : 'experience'}`} onClick={prevItem} className="brutalist cursor-pointer control-btn-adaptive md:w-10 md:h-10 flex items-center justify-center font-mono">
+            <button
+              aria-label={`previous ${activeTab === 'projects' ? 'project' : 'experience'}`}
+              onClick={prevItem}
+              className="brutalist cursor-pointer control-btn-adaptive md:w-10 md:h-10 flex items-center justify-center"
+            >
               <span aria-hidden="true" className="leading-none inline-block text-xs sm:text-sm -translate-y-[1px] translate-x-[0.5px]">&lt;</span>
             </button>
 
-            <div className="brutalist flex gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2" role="group" aria-label={`Item ${currentIndex + 1} of ${currentList.length}`}>
+            <div className="brutalist flex gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2" role="group" aria-label={`item ${currentIndex + 1} of ${currentList.length}`}>
               {currentList.map((_, idx) => (
-                <div key={idx} className={`w-2 h-2 sm:w-2.5 sm:h-2.5 ${idx === currentIndex ? 'bg-current' : 'bg-current opacity-25'}`} />
+                <div key={idx} className={`w-2 h-2 sm:w-2.5 sm:h-2.5 ${idx === currentIndex ? 'bg-current' : 'bg-current opacity-25'}`} aria-hidden="true" />
               ))}
             </div>
 
-            <button aria-label={`next ${activeTab === 'projects' ? 'project' : 'experience'}`} onClick={nextItem} className="brutalist cursor-pointer control-btn-adaptive md:w-10 md:h-10 flex items-center justify-center font-mono">
+            <button
+              aria-label={`next ${activeTab === 'projects' ? 'project' : 'experience'}`}
+              onClick={nextItem}
+              className="brutalist cursor-pointer control-btn-adaptive md:w-10 md:h-10 flex items-center justify-center"
+            >
               <span aria-hidden="true" className="leading-none inline-block text-xs sm:text-sm -translate-y-[2px] translate-x-[1.5px]">&gt;</span>
             </button>
           </div>

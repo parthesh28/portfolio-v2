@@ -6,6 +6,13 @@ import type { Metadata } from 'next'
 export const generateStaticParams = async () =>
     bits.map((bit) => ({ slug: bit.slug }));
 
+/** Extracts a clean text snippet from bit content for use in SEO metadata. */
+function getSnippet(content: string, maxLen = 155): string {
+    const clean = content.replace(/`[^`]*`/g, '').replace(/\s+/g, ' ').trim();
+    if (clean.length <= maxLen) return clean;
+    return clean.slice(0, clean.lastIndexOf(' ', maxLen)) + '...';
+}
+
 export async function generateMetadata({
     params,
 }: {
@@ -17,12 +24,7 @@ export async function generateMetadata({
     if (!bit) return { title: 'bit not found' };
 
     const fullTitle = `${bit.title} - parthesh purohit`;
-    // Clean content for snippet: remove backticks, collapse whitespace, cut at word boundary
-    const cleanContent = bit.content.replace(/`[^`]*`/g, '').replace(/\s+/g, ' ').trim();
-    const maxLen = 155;
-    const snippet = cleanContent.length <= maxLen
-        ? cleanContent
-        : cleanContent.slice(0, cleanContent.lastIndexOf(' ', maxLen)) + '...';
+    const snippet = getSnippet(bit.content);
     const pageUrl = `https://parthesh.in/bits/${bit.slug}`;
 
     return {
@@ -55,11 +57,7 @@ const BitDetail = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
     if (!bit) notFound();
 
-    const cleanContent = bit.content.replace(/`[^`]*`/g, '').replace(/\s+/g, ' ').trim();
-    const maxLen = 155;
-    const snippet = cleanContent.length <= maxLen
-        ? cleanContent
-        : cleanContent.slice(0, cleanContent.lastIndexOf(' ', maxLen)) + '...';
+    const snippet = getSnippet(bit.content);
     const pageUrl = `https://parthesh.in/bits/${bit.slug}`;
 
     const jsonLd = {
@@ -96,11 +94,11 @@ const BitDetail = async ({ params }: { params: Promise<{ slug: string }> }) => {
             <article className="w-full max-w-2xl flex flex-col gap-3 sm:gap-5 my-auto">
 
                 <header className="flex items-center justify-between shrink-0">
-                    <Link href="/bits" aria-label="back to bits list" className="text-xs sm:text-sm font-mono">
+                    <Link href="/bits" aria-label="back to bits list" className="text-xs sm:text-sm">
                         &lt; back
                     </Link>
 
-                    <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono opacity-80">
+                    <div className="flex items-center gap-2 text-[10px] sm:text-xs opacity-80" aria-label={`published ${bit.date}, category: ${bit.type}`}>
                         <span>{bit.date}</span>
                         <span aria-hidden="true">•</span>
                         <span>{bit.type}</span>
