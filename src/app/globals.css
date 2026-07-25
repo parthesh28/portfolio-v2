@@ -1,48 +1,43 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-public-pixel), 'PublicPixel', monospace;
+  --font-mono: var(--font-geist-mono);
+  --font-pixel-square: var(--font-geist-pixel-square);
 }
 
 :root {
-  --background: #F0F0EE;
-  --text-color: #000000;
-  --item-color: #f8f8f8;
-  --border-color: #000000;
-  --shadow-color: #000000;
+  --background: theme(--color-neutral-300);
+  --text-color: theme(--color-neutral-950);
+  --item-color: theme(--color-neutral-200);
+  --border-color: theme(--color-neutral-900);
+  --shadow-color: theme(--color-neutral-950);
+}
+
+html {
+  height: 100dvh;
+  width: 100vw;
 }
 
 body {
   color: var(--text-color);
   background-color: var(--background);
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
   margin: 0;
   padding: 0;
   user-select: none;
   -webkit-user-select: none;
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.05em;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-}
-
-pre {
-  letter-spacing: normal;
-}
-
-a,
-a:hover,
-a:focus,
-a:visited {
-  text-decoration: none !important;
+a {
+  text-decoration: none;
 }
 
 a[target="_blank"],
-a[target="_blank"]:hover,
-a[target="_blank"]:focus {
-  text-decoration: underline !important;
+a[href^="http://"],
+a[href^="https://"] {
+  text-decoration: underline;
 }
 
 *:focus-visible {
@@ -66,7 +61,8 @@ a.brutalist:active,
   transition: transform 0ms steps(1), box-shadow 0ms steps(1) !important;
 }
 
-button[role="tab"]:active {
+button[role="tab"]:active,
+.no-active-anim:active {
   transform: none !important;
   transition: none !important;
 }
@@ -76,68 +72,77 @@ button[role="tab"]:active {
   border: 2px solid var(--border-color);
 }
 
-/* Portrait Mask for Organic Bottom Dissolve */
-.portrait-mask {
-  mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0, 0, 0, 0.85) 75%, rgba(0, 0, 0, 0.3) 90%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0, 0, 0, 0.85) 75%, rgba(0, 0, 0, 0.3) 90%, transparent 100%);
-}
-
 /* === Mobile Height-Adaptive Layout System === */
 @media (max-width: 767px) {
 
   /* Default / Short phones (<750px height: e.g. iPhone SE, 8, Mini) */
   .page-main-adaptive {
     padding-top: 4.25rem !important;
+    /* ~68px */
     padding-bottom: 2.75rem !important;
+    /* ~44px */
   }
 
   .page-title-adaptive {
-    font-size: 0.85rem !important;
-    padding-bottom: 0.4rem !important;
+    font-size: 1.35rem !important;
+    /* 21.6px */
+    padding-bottom: 0.5rem !important;
   }
 
   .card-padding-adaptive {
-    padding: 0.95rem !important;
+    padding-top: 0.95rem !important;
+    padding-left: 0.95rem !important;
+    padding-right: 0.95rem !important;
+    padding-bottom: 3.25rem !important;
   }
 
   .card-title-adaptive {
-    font-size: 0.85rem !important;
-    margin-bottom: 0.3rem !important;
+    font-size: 1.35rem !important;
+    /* 21.6px */
+    margin-bottom: 0.35rem !important;
   }
 
   .card-text-adaptive {
-    font-size: 0.58rem !important;
-    line-height: 1.6rem !important;
+    font-size: 0.78125rem !important;
+    /* 12.5px */
+    line-height: 1.3rem !important;
   }
 
   .work-card-min-h-adaptive {
-    min-height: 17rem !important;
+    min-height: 13rem !important;
   }
 
   .tab-btn-adaptive {
     padding: 0.45rem 1.125rem !important;
-    font-size: 0.55rem !important;
+    /* 7px 18px */
+    font-size: 0.8125rem !important;
+    /* 13px */
   }
 
   .nav-container-adaptive {
     margin-top: 0.75rem !important;
+    /* 12px */
     padding-top: 0.35rem !important;
     padding-bottom: 0.35rem !important;
   }
 
   .nav-logo-adaptive {
-    font-size: 0.75rem !important;
+    font-size: 1.25rem !important;
+    /* 20px */
   }
 
   .nav-btn-adaptive {
     padding: 0.3rem 0.7rem !important;
-    font-size: 0.52rem !important;
+    /* ~5px 11px */
+    font-size: 0.78125rem !important;
+    /* 12.5px */
   }
 
   .control-btn-adaptive {
     width: 2.125rem !important;
+    /* 34px */
     height: 2.125rem !important;
-    font-size: 0.6rem !important;
+    font-size: 0.8125rem !important;
   }
 
   .bits-container-adaptive {
@@ -145,95 +150,112 @@ button[role="tab"]:active {
   }
 
   .bits-header-title-adaptive {
-    font-size: 0.85rem !important;
+    font-size: 1.35rem !important;
+    /* 21.6px on iPhone SE */
   }
 
   .bits-card-padding-adaptive {
     padding: 0.75rem !important;
+    /* 12px on iPhone SE */
   }
 
   .bits-card-title-adaptive {
-    font-size: 0.6rem !important;
+    font-size: 0.875rem !important;
+    /* 14px on iPhone SE */
   }
 
   .portrait-responsive {
-    font-size: 0.6px !important;
-    line-height: 0.88px !important;
+    font-size: 0.98px !important;
+    line-height: 1.08px !important;
   }
 
   .title-responsive {
-    font-size: 0.62rem !important;
-    line-height: 1.5 !important;
+    font-size: 0.875rem !important;
+    /* 14px */
   }
 
   .body-responsive {
-    font-size: 0.52rem !important;
-    line-height: 1.65 !important;
+    font-size: 0.75rem !important;
+    /* 12px */
   }
 
   .small-responsive {
-    font-size: 0.48rem !important;
-    line-height: 1.55 !important;
+    font-size: 0.6875rem !important;
+    /* 11px */
   }
 
   .gap-responsive {
     gap: 1.125rem !important;
+    /* 18px */
   }
 
   /* Medium phones (750px–849px height: e.g. iPhone 14, 14 Pro, Pixel 7) */
   @media (min-height: 750px) {
     .page-main-adaptive {
       padding-top: 5.5rem !important;
+      /* 88px */
       padding-bottom: 3.75rem !important;
+      /* 60px */
     }
 
     .page-title-adaptive {
-      font-size: 0.95rem !important;
-      padding-bottom: 0.5rem !important;
+      font-size: 1.875rem !important;
+      /* 30px */
+      padding-bottom: 0.75rem !important;
     }
 
     .card-padding-adaptive {
-      padding: 1.25rem !important;
+      padding-top: 1.25rem !important;
+      padding-left: 1.25rem !important;
+      padding-right: 1.25rem !important;
+      padding-bottom: 3.5rem !important;
     }
 
     .card-title-adaptive {
-      font-size: 0.95rem !important;
-      margin-bottom: 0.5rem !important;
+      font-size: 1.875rem !important;
+      /* 30px */
+      margin-bottom: 0.625rem !important;
     }
 
     .card-text-adaptive {
-      font-size: 0.62rem !important;
-      line-height: 1.75rem !important;
+      font-size: 0.9375rem !important;
+      /* 15px */
+      line-height: 1.55rem !important;
     }
 
     .work-card-min-h-adaptive {
-      min-height: 20.5rem !important;
+      min-height: 15rem !important;
     }
 
     .tab-btn-adaptive {
       padding: 0.625rem 1.625rem !important;
-      font-size: 0.6rem !important;
+      /* 10px 26px */
+      font-size: 0.875rem !important;
+      /* 14px */
     }
 
     .nav-container-adaptive {
       margin-top: 1.25rem !important;
+      /* 20px */
       padding-top: 0.45rem !important;
       padding-bottom: 0.45rem !important;
     }
 
     .nav-logo-adaptive {
-      font-size: 0.85rem !important;
+      font-size: 1.5rem !important;
+      /* 24px */
     }
 
     .nav-btn-adaptive {
       padding: 0.4rem 0.9rem !important;
-      font-size: 0.58rem !important;
+      font-size: 0.875rem !important;
     }
 
     .control-btn-adaptive {
       width: 2.375rem !important;
+      /* 38px */
       height: 2.375rem !important;
-      font-size: 0.65rem !important;
+      font-size: 0.875rem !important;
     }
 
     .bits-container-adaptive {
@@ -241,39 +263,43 @@ button[role="tab"]:active {
     }
 
     .bits-header-title-adaptive {
-      font-size: 0.95rem !important;
+      font-size: 1.625rem !important;
+      /* 26px on iPhone 14 */
     }
 
     .bits-card-padding-adaptive {
       padding: 1rem !important;
+      /* 16px on iPhone 14 */
     }
 
     .bits-card-title-adaptive {
-      font-size: 0.68rem !important;
+      font-size: 1.0625rem !important;
+      /* 17px on iPhone 14 */
     }
 
     .portrait-responsive {
-      font-size: 0.72px !important;
-      line-height: 1.08px !important;
+      font-size: 1.22px !important;
+      line-height: 1.34px !important;
     }
 
     .title-responsive {
-      font-size: 0.7rem !important;
-      line-height: 1.6 !important;
+      font-size: 1.0625rem !important;
+      /* 17px */
     }
 
     .body-responsive {
-      font-size: 0.58rem !important;
-      line-height: 1.75 !important;
+      font-size: 0.8438rem !important;
+      /* 13.5px */
     }
 
     .small-responsive {
-      font-size: 0.52rem !important;
-      line-height: 1.65 !important;
+      font-size: 0.75rem !important;
+      /* 12px */
     }
 
     .gap-responsive {
       gap: 1.375rem !important;
+      /* 22px */
     }
   }
 
@@ -281,56 +307,69 @@ button[role="tab"]:active {
   @media (min-height: 850px) {
     .page-main-adaptive {
       padding-top: 6.5rem !important;
+      /* 104px */
       padding-bottom: 4.5rem !important;
+      /* 72px */
     }
 
     .page-title-adaptive {
-      font-size: 1.05rem !important;
-      padding-bottom: 0.75rem !important;
+      font-size: 2.25rem !important;
+      /* 36px */
+      padding-bottom: 1rem !important;
     }
 
     .card-padding-adaptive {
-      padding: 1.5rem !important;
+      padding-top: 1.5rem !important;
+      padding-left: 1.5rem !important;
+      padding-right: 1.5rem !important;
+      padding-bottom: 3.75rem !important;
     }
 
     .card-title-adaptive {
-      font-size: 1.05rem !important;
-      margin-bottom: 0.6rem !important;
+      font-size: 2.25rem !important;
+      /* 36px */
+      margin-bottom: 0.75rem !important;
     }
 
     .card-text-adaptive {
-      font-size: 0.68rem !important;
-      line-height: 1.9rem !important;
+      font-size: 1rem !important;
+      /* 16px */
+      line-height: 1.65rem !important;
     }
 
     .work-card-min-h-adaptive {
-      min-height: 23rem !important;
+      min-height: 16.5rem !important;
     }
 
     .tab-btn-adaptive {
       padding: 0.75rem 2rem !important;
-      font-size: 0.68rem !important;
+      /* 12px 32px */
+      font-size: 0.9375rem !important;
+      /* 15px */
     }
 
     .nav-container-adaptive {
       margin-top: 1.5rem !important;
+      /* 24px */
       padding-top: 0.5rem !important;
       padding-bottom: 0.5rem !important;
     }
 
     .nav-logo-adaptive {
-      font-size: 0.95rem !important;
+      font-size: 1.625rem !important;
+      /* 26px */
     }
 
     .nav-btn-adaptive {
       padding: 0.5rem 1rem !important;
-      font-size: 0.62rem !important;
+      font-size: 0.9375rem !important;
     }
 
     .control-btn-adaptive {
       width: 2.5rem !important;
+      /* 40px */
       height: 2.5rem !important;
-      font-size: 0.68rem !important;
+      font-size: 1rem !important;
     }
 
     .bits-container-adaptive {
@@ -338,39 +377,43 @@ button[role="tab"]:active {
     }
 
     .bits-header-title-adaptive {
-      font-size: 1.05rem !important;
+      font-size: 1.875rem !important;
+      /* 30px on iPhone 14 Pro Max */
     }
 
     .bits-card-padding-adaptive {
       padding: 1.25rem !important;
+      /* 20px on iPhone 14 Pro Max */
     }
 
     .bits-card-title-adaptive {
-      font-size: 0.72rem !important;
+      font-size: 1.1875rem !important;
+      /* 19px on iPhone 14 Pro Max */
     }
 
     .portrait-responsive {
-      font-size: 0.95px !important;
-      line-height: 1.42px !important;
+      font-size: 1.65px !important;
+      line-height: 1.815px !important;
     }
 
     .title-responsive {
-      font-size: 0.75rem !important;
-      line-height: 1.7 !important;
+      font-size: 1.25rem !important;
+      /* 20px */
     }
 
     .body-responsive {
-      font-size: 0.62rem !important;
-      line-height: 1.85 !important;
+      font-size: 0.9375rem !important;
+      /* 15px */
     }
 
     .small-responsive {
-      font-size: 0.55rem !important;
-      line-height: 1.75 !important;
+      font-size: 0.8125rem !important;
+      /* 13px */
     }
 
     .gap-responsive {
       gap: 1.75rem !important;
+      /* 28px */
     }
   }
 }

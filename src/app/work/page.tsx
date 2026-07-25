@@ -4,9 +4,6 @@ import WorkClient from '@/components/work-client';
 export const metadata: Metadata = {
   title: 'work',
   description: 'proof of work and record of software engineering projects, rust programs, and solana ecosystem experiences by parthesh purohit.',
-  alternates: {
-    canonical: 'https://parthesh.in/work',
-  },
   openGraph: {
     title: 'work | parthesh purohit',
     description: 'proof of work and record of software engineering projects, rust programs, and solana ecosystem experiences by parthesh purohit.',

@@ -11,7 +11,7 @@ export const contentType = 'image/png';
 
 export default async function Image() {
   const fontData = await fs.readFile(
-    path.join(process.cwd(), 'public/fonts/PublicPixel.ttf')
+    path.join(process.cwd(), 'public/fonts/GeistPixel-Square.ttf')
   );
 
   return new ImageResponse(
@@ -23,9 +23,9 @@ export default async function Image() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#1d1d1d',
-          color: '#e4e4e7',
-          fontFamily: 'PublicPixel',
+          backgroundColor: '#d4d4d4',
+          color: '#0a0a0a',
+          fontFamily: 'GeistPixelSquare',
           padding: '40px',
         }}
       >
@@ -35,24 +35,24 @@ export default async function Image() {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            border: '3px solid #e4e4e7',
+            border: '4px solid #171717',
             padding: '48px 72px',
-            backgroundColor: '#27272a',
-            boxShadow: '10px 10px 0px #000000',
+            backgroundColor: '#e5e5e5',
+            boxShadow: '12px 12px 0px #0a0a0a',
             textAlign: 'center',
           }}
         >
           <div
             style={{
               fontSize: '64px',
-              fontWeight: 400,
+              fontWeight: 700,
               letterSpacing: '-0.02em',
               marginBottom: '16px',
             }}
           >
             proof of work
           </div>
-          <div style={{ fontSize: '26px', color: '#a1a1aa' }}>
+          <div style={{ fontSize: '26px', color: '#525252', fontWeight: 700 }}>
             parthesh purohit
           </div>
         </div>
@@ -62,10 +62,10 @@ export default async function Image() {
       ...size,
       fonts: [
         {
-          name: 'PublicPixel',
+          name: 'GeistPixelSquare',
           data: fontData,
           style: 'normal',
-          weight: 400,
+          weight: 700,
         },
       ],
     }
