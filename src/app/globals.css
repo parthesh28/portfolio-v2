@@ -165,8 +165,8 @@ button[role="tab"]:active,
   }
 
   .portrait-responsive {
-    font-size: 0.98px !important;
-    line-height: 1.08px !important;
+    font-size: 1.2px !important;
+    line-height: 1.1px !important;
   }
 
   .title-responsive {
@@ -278,8 +278,8 @@ button[role="tab"]:active,
     }
 
     .portrait-responsive {
-      font-size: 1.22px !important;
-      line-height: 1.34px !important;
+      font-size: 1px !important;
+      line-height: 1px !important;
     }
 
     .title-responsive {
@@ -392,8 +392,8 @@ button[role="tab"]:active,
     }
 
     .portrait-responsive {
-      font-size: 1.65px !important;
-      line-height: 1.815px !important;
+      font-size: 2px !important;
+      line-height: 1.5px !important;
     }
 
     .title-responsive {

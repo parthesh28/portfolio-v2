@@ -8,7 +8,7 @@ export default function HomeClient() {
 
         {/* ASCII Portrait */}
         <div className="shrink-0 flex justify-center w-full md:w-auto">
-          <pre className="portrait-responsive sm:text-[1.25px] sm:leading-[1.38px] md:text-[1.32px] md:leading-[1.42px] lg:text-[1.52px] lg:leading-[1.62px] xl:text-[1.72px] xl:leading-[1.82px] font-bold font-mono select-none whitespace-pre tracking-tighter text-current origin-center scale-x-[1.3]">
+          <pre className="portrait-responsive sm:text-[1.1px] sm:leading-[1.20px] md:text-[1.32px] md:leading-[1.42px] lg:text-[1.52px] lg:leading-[1.62px] xl:text-[1.72px] xl:leading-[1.82px] font-bold font-mono select-none whitespace-pre tracking-tighter text-current origin-center md:scale-x-[1.3]">
             {ASCII_ART}
           </pre>
         </div>
