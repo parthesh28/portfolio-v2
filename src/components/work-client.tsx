@@ -146,12 +146,12 @@ export default function WorkClient() {
 
               <div className="flex items-center gap-4 shrink-0">
                 {currentItem.links?.github && (
-                  <Link href={currentItem.links.github} target="_blank" rel="noopener noreferrer" className="brutalist px-3 py-1.5 text-[clamp(12px,calc(6.97px_+_0.75dvh),14px)] md:text-sm font-bold">
+                  <Link href={currentItem.links.github} target="_blank" rel="noopener noreferrer" className="text-[clamp(12px,calc(6.97px_+_0.75dvh),14px)] md:text-sm font-bold">
                     code
                   </Link>
                 )}
                 {currentItem.links?.live && (
-                  <Link href={currentItem.links.live} target="_blank" rel="noopener noreferrer" className="brutalist px-3 py-1.5 text-[clamp(12px,calc(6.97px_+_0.75dvh),14px)] md:text-sm font-bold">
+                  <Link href={currentItem.links.live} target="_blank" rel="noopener noreferrer" className="text-[clamp(12px,calc(6.97px_+_0.75dvh),14px)] md:text-sm font-bold">
                     {activeTab === 'projects' ? 'live' : 'visit org'}
                   </Link>
                 )}
