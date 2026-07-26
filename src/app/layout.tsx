@@ -59,7 +59,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="antialiased font-pixel-square overflow-hidden h-dvh w-vw lowercase">
+      <body className="antialiased font-pixel-square overflow-hidden h-dvh w-vw lowercase flex flex-col">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-neutral-950 focus:text-neutral-50 focus:border-2 focus:border-neutral-900"
@@ -68,8 +68,8 @@ export default function RootLayout({
         </a>
         <Loading />
         <Navbar />
-        <Footer />
         {children}
+        <Footer />
       </body>
     </html>
   );

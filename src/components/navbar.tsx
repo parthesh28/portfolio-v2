@@ -16,21 +16,24 @@ export default function Navbar() {
   );
 
   return (
-    <nav aria-label="main navigation" className="fixed inset-x-0 mx-auto z-50 brutalist px-3.5 sm:px-4 nav-container-adaptive md:py-2 md:mt-6 w-full max-w-[95vw] sm:max-w-4xl flex items-center justify-between">
-      <p className="nav-logo-adaptive md:text-3xl font-bold tracking-wide flex items-center gap-1.5 sm:gap-2">
-        <span className="nav-logo-adaptive md:text-3xl select-none inline-block translate-y-[2px] sm:translate-y-[3px] leading-none" aria-hidden="true">❐</span>
+    <nav
+      aria-label="main navigation"
+      className="shrink-0 mx-auto z-50 brutalist px-4 py-2 mt-3 md:mt-6 w-full max-w-[92vw] md:max-w-3xl flex items-center justify-between"
+    >
+      <p className="text-xl md:text-2xl font-bold tracking-wide flex items-center gap-2">
+        <span className="select-none inline-block translate-y-[2px] leading-none" aria-hidden="true">❐</span>
         <span className="leading-none">parthesh</span>
       </p>
 
-      <div className="flex items-center gap-2 sm:gap-3">
+      <div className="flex items-center gap-2">
         {filteredLinks.map(({ name, href }) => (
           <Link
             key={name}
             href={href}
             aria-label={`navigate to ${name}`}
-            className="brutalist tracking-wider nav-btn-adaptive md:text-lg md:px-4 md:py-2 font-bold flex items-center justify-center"
+            className="brutalist px-3 py-1.5 md:px-4 md:py-2 text-sm md:text-base font-bold tracking-wider flex items-center justify-center"
           >
-            <span>{name}</span>
+            {name}
           </Link>
         ))}
       </div>
