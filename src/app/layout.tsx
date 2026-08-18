@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | parthesh purohit",
   },
   description: "cs undergrad, full stack dev and a human building web, mobile, and solana applications.",
-  keywords: ["parthesh purohit", "full stack developer", "solana", "rust", "next.js", "react native"],
+  keywords: ["parthesh purohit", "full stack developer", "solana", "rust", "next.js", "react native", "c++"],
   authors: [{ name: "parthesh purohit" }],
   creator: "parthesh purohit",
   metadataBase: new URL("https://parthesh.in"),
@@ -43,7 +43,7 @@ const jsonLd = {
     "https://linkedin.com/in/parthesh28",
   ],
   jobTitle: "Full Stack Developer",
-  knowsAbout: ["Next.js", "Solana", "Rust", "React Native", "Hono", "TypeScript"],
+  knowsAbout: ["Next.js", "Solana", "Rust", "React Native", "Hono", "TypeScript", "C++"],
 };
 
 export default function RootLayout({

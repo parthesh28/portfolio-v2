@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { ASCII_ART, JAVA_ASCII, RUST_ASCII, TYPESCRIPT_ASCII } from "@/utils/ascii";
+import { ASCII_ART, CPP_ASCII, JAVA_ASCII, RUST_ASCII, TYPESCRIPT_ASCII } from "@/utils/ascii";
 
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function Home() {
             {ASCII_ART}
           </pre>
         </div>
-        <article className="flex flex-col gap-2 md:gap-4 max-w-sm w-full">
+        <article className="flex flex-col gap-2 md:gap-4 max-w-sm md:max-w-md w-full">
           <header className="flex flex-col border-l-2 border-current pl-3 md:pl-4">
             <h1 className="text-[clamp(16px,2.1dvh,18.4px)] md:text-xl font-normal leading-snug">
               this is <span className="font-bold">parthesh purohit</span>.
@@ -53,19 +53,24 @@ export default function Home() {
               <span aria-hidden="true">&gt;</span>
               <span>things i work with:</span>
             </div>
-            <div className="flex flex-row items-center gap-4 md:gap-6 flex-wrap">
+            <div className="flex flex-row items-center gap-3 sm:gap-4 md:gap-5 flex-nowrap">
               <pre
-                className="font-mono font-black select-none whitespace-pre text-current shrink-0 text-[clamp(0.9px,0.145dvh,1.45px)] leading-[clamp(1px,0.13dvh,1.45px)] md:text-[1.3px] md:leading-[1.5px]"
+                className="font-mono font-black select-none whitespace-pre text-current shrink-0 text-[clamp(0.34px,0.06dvh,0.58px)] leading-[clamp(0.38px,0.066dvh,0.64px)] md:text-[0.58px] md:leading-[0.64px]"
               >
-                {JAVA_ASCII}
+                {CPP_ASCII}
               </pre>
               <pre
-                className="font-mono font-black select-none whitespace-pre text-current shrink-0 text-[clamp(1.6px,0.26dvh,2.5px)] leading-[clamp(1.75px,0.235dvh,2.5px)] md:text-[2.35px] md:leading-[2.55px]"
+                className="font-mono font-black select-none whitespace-pre text-current shrink-0 text-[clamp(0.34px,0.06dvh,0.58px)] leading-[clamp(0.38px,0.066dvh,0.64px)] md:text-[0.58px] md:leading-[0.64px]"
               >
                 {RUST_ASCII}
               </pre>
               <pre
-                className="font-mono font-black select-none whitespace-pre text-current shrink-0 text-[clamp(1.6px,0.26dvh,2.5px)] leading-[clamp(1.75px,0.235dvh,2.5px)] md:text-[2.35px] md:leading-[2.55px]"
+                className="font-mono font-black select-none whitespace-pre text-current shrink-0 text-[clamp(0.34px,0.06dvh,0.58px)] leading-[clamp(0.38px,0.066dvh,0.64px)] md:text-[0.58px] md:leading-[0.64px]"
+              >
+                {JAVA_ASCII}
+              </pre>
+              <pre
+                className="font-mono font-black select-none whitespace-pre text-current shrink-0 text-[clamp(0.34px,0.06dvh,0.58px)] leading-[clamp(0.38px,0.066dvh,0.64px)] md:text-[0.58px] md:leading-[0.64px]"
               >
                 {TYPESCRIPT_ASCII}
               </pre>
